@@ -1,0 +1,863 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		03FC49CE6E630A279A1102B8A07824A3 /* WYPieChartForegroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = B27A179A1986F44B43AF7FCD11E103EB /* WYPieChartForegroundView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		06E9F856974BBEDC309454FB51116D04 /* WYLineChartCalculator.h in Headers */ = {isa = PBXBuildFile; fileRef = CBB583691286524F5EFBA88410C49ED8 /* WYLineChartCalculator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		114DB763630F0AF8A56AC225284819D0 /* WYPieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E574478710FAAB999D9D7F108970E713 /* WYPieChartView.m */; };
+		18A39FDEEC58F259E2FEF3DF19B92395 /* WYPieChartForegroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE8688F0BBE35E47AE10CD401077A13 /* WYPieChartForegroundView.m */; };
+		1BA07F76A644F655360143B583A423EA /* WYLineChartPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FB8EACCEEE30309260C26A36E0EC8F /* WYLineChartPoint.m */; };
+		2D4F3A0FA5A8E319ED59FE2128ED3CEE /* WYLineChartView.h in Headers */ = {isa = PBXBuildFile; fileRef = C4CE1C6D6E46450036DB7E409409B537 /* WYLineChartView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3765C4D38B934B00D341E64A21D97F2C /* WYLineChartMainLineView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2196BEE2521460EEADAB12C472CD66DB /* WYLineChartMainLineView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37FCB2EAC208DA49B9B901CDA4F13F8E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
+		3805B939F9F0827336133C1574788A8B /* WYPieChartCalculator.h in Headers */ = {isa = PBXBuildFile; fileRef = A49B902D7ECF6B46BEF9562AB90696A5 /* WYPieChartCalculator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		389EF3FEBC7447F79D088C2324C9B149 /* WYSectorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC3C331293711B237953E0520AA5C69 /* WYSectorLayer.m */; };
+		39175175164ADB5BFD2661145279E984 /* WYPieCenterCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6841C05588A3C9AE1175CB99E651CC37 /* WYPieCenterCircle.m */; };
+		3ADE4E4DFBE4827BEE7CD7556405B699 /* WYLineChartBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = B9A6F038222E5BBEDEC9D8913C0D2FC3 /* WYLineChartBackgroundView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E168886577BB367F5F5CAD544E43EB7 /* WYChart-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BD597914B2A745EB72AD0E707C4021F7 /* WYChart-dummy.m */; };
+		3E17104AC1787A26FAAB7DB9218BD9B1 /* WYChartCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = F973351AF2C76D24A67DE5758A0A234C /* WYChartCategory.m */; };
+		52E8D9756B84753F98BB126AD8138254 /* Pods-WYChart_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 63703D0781F393F2CD8AC19D5DF47946 /* Pods-WYChart_Tests-dummy.m */; };
+		59E3E265C4D80D6D2D1EE4927D436FF4 /* WYLineChartCoordinateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 530DC450757C31DCA83B8D8542506190 /* WYLineChartCoordinateView.m */; };
+		5B61C235CF6EE4C705BDF52B030AD82A /* WYLineChartCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0323FF9BF95D6EF2F24D0D810123FBB8 /* WYLineChartCalculator.m */; };
+		5B8B49B303830114B9BD88D2E1BA1B0E /* WYLineChartBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE0ADEC254DC5703E1CA8DDBD0B0228 /* WYLineChartBackgroundView.m */; };
+		5C03A93B1C52C1E8BE229E8164CE9CEC /* Pods-WYChart_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F44018A8500144C3731E0A697F759350 /* Pods-WYChart_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5FCF4E3E94AB5065C72E4CAFA4C257B6 /* WYPieChartCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7061D3298BAB512640D5560FCA4A9F6B /* WYPieChartCalculator.m */; };
+		6B206F83A802125337E61BCBEB77E631 /* WYPieCenterCircle.h in Headers */ = {isa = PBXBuildFile; fileRef = FED6093C62E97BA2F60B5A6F7994F3A4 /* WYPieCenterCircle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6B35F4D6F84BB5706C83A3482456852C /* WYPieChartView.h in Headers */ = {isa = PBXBuildFile; fileRef = DCDDC10AD82B16578BDC734B3759266A /* WYPieChartView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E465EB1B8B6C7F444699D9A3F3C5F62 /* WYMainPieChartView.h in Headers */ = {isa = PBXBuildFile; fileRef = D793BD98AF1E433C35158FC988115AFE /* WYMainPieChartView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		76B95FB8F6FAB366DDF1A4F3454D69FE /* WYPieSector.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BA584A4EF3B9EDC97E3AA6214100A0 /* WYPieSector.m */; };
+		8976A5321BE795B4CD4278433EC44820 /* WYChartCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = E47515E8374F9549A9CA12104C30871C /* WYChartCategory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8A406370BD84929D1699D4C7C3EBB444 /* WYLineChartJunctionShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 560714D2AB2C4F815CCA3B3EB6B0CC34 /* WYLineChartJunctionShape.m */; };
+		8F7D10F5B45CF67532F1C3E50B4953E9 /* WYChart-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E1B5B3CEF5A8147EA3B6473DB9B92663 /* WYChart-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		915F8490C098293F6BB97E8F39D8F527 /* Pods-WYChart_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 439179C634A2BE03327E64B3C8E998AF /* Pods-WYChart_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		91809885923661384AE4548C49A4ACE8 /* WYLineChartJunctionShape.h in Headers */ = {isa = PBXBuildFile; fileRef = C7CBD0B28546C915B9A6BA5D31302336 /* WYLineChartJunctionShape.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		95D84E751FACE71D4D4FB7A23F25FDE7 /* WYLineChartMainLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4469AC0138D9666D321B105DB689E392 /* WYLineChartMainLineView.m */; };
+		9A52639FE7F4FA8DB8129A97391B11B2 /* WYLineChartReferenceLineView.h in Headers */ = {isa = PBXBuildFile; fileRef = C127ABA8738C9DD48E2038607CE24397 /* WYLineChartReferenceLineView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9A7B4CFA7A50DD960E2156EEA3C3EBDE /* WYLineChartPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 51FA5A2381C839CB32E1C6B13E797C48 /* WYLineChartPoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A208BB685DC72FE977306202D48D8E4B /* WYLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 195D3BF80AC5248241BEC67F78845401 /* WYLineChartView.m */; };
+		A2488EDF6AAE30F22ABE33B82B7F02C3 /* WYSectorLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 18FC6B84950C4F718AB9D6E55415B635 /* WYSectorLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B7378F5D7DC7D84A298CB9D3831302CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
+		CB0C34F2DB13AE504CFF92331654ABF2 /* WYLineChartCoordinateView.h in Headers */ = {isa = PBXBuildFile; fileRef = 771D9A12C850156EA48AD18F97222876 /* WYLineChartCoordinateView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CEAD668CD2EA82ED6E804C3CCA41C812 /* WYMainPieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D04CC7E8625F21A7E9F8B1E7119E50 /* WYMainPieChartView.m */; };
+		D5A3E71C81883E1C2094704F200215AC /* WYPieSector.h in Headers */ = {isa = PBXBuildFile; fileRef = 352D8A4148E132127EA16C620CDE3432 /* WYPieSector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DF7A71CD60FF402F3E6AAC8C97BADBD9 /* Pods-WYChart_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A754D09B83927FE60C99C5EA33F830A3 /* Pods-WYChart_Example-dummy.m */; };
+		E53CC80B711650107AADB8E9825DAA64 /* WYLineChartReferenceLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3844D0918980D1C87813AD98A066E81 /* WYLineChartReferenceLineView.m */; };
+		FD7A8CCBFFD5F9443565FE553D10351C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		98ED1077A2017F5D4514C1938DF18826 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81974F0442183E1C9EFC7D68A731F283;
+			remoteInfo = WYChart;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0323FF9BF95D6EF2F24D0D810123FBB8 /* WYLineChartCalculator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartCalculator.m; sourceTree = "<group>"; };
+		064A3C3FE068F9D7EFD933095F8EABA0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15CB9284A835F178D30245E96C7C1279 /* WYChart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WYChart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1728156EAD35B89E6CDD51A10FBD536A /* WYChart-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WYChart-prefix.pch"; sourceTree = "<group>"; };
+		18FC6B84950C4F718AB9D6E55415B635 /* WYSectorLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYSectorLayer.h; sourceTree = "<group>"; };
+		195D3BF80AC5248241BEC67F78845401 /* WYLineChartView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartView.m; sourceTree = "<group>"; };
+		1EE0ADEC254DC5703E1CA8DDBD0B0228 /* WYLineChartBackgroundView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartBackgroundView.m; sourceTree = "<group>"; };
+		2196BEE2521460EEADAB12C472CD66DB /* WYLineChartMainLineView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartMainLineView.h; sourceTree = "<group>"; };
+		22917278D7CB1B9898A7445E31C6E85A /* Pods-WYChart_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-WYChart_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		2C523CAC085CB686B26092BB66255DB4 /* Pods-WYChart_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-WYChart_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		31325A8C75B87AD6BC9E0C30559B0F69 /* Pods_WYChart_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WYChart_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		352D8A4148E132127EA16C620CDE3432 /* WYPieSector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYPieSector.h; sourceTree = "<group>"; };
+		392EE9249D495DFB4812C8C6C867DDDD /* Pods-WYChart_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-WYChart_Tests.modulemap"; sourceTree = "<group>"; };
+		3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		3E9137BE4556AD36653738D8D030745D /* Pods_WYChart_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WYChart_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		439179C634A2BE03327E64B3C8E998AF /* Pods-WYChart_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WYChart_Example-umbrella.h"; sourceTree = "<group>"; };
+		4469AC0138D9666D321B105DB689E392 /* WYLineChartMainLineView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartMainLineView.m; sourceTree = "<group>"; };
+		44D93E5167D42B39F7737D294A5E321D /* Pods-WYChart_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WYChart_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		49077A798B8D5BC34262D995BBFEF932 /* Pods-WYChart_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-WYChart_Example.modulemap"; sourceTree = "<group>"; };
+		51FA5A2381C839CB32E1C6B13E797C48 /* WYLineChartPoint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartPoint.h; sourceTree = "<group>"; };
+		530DC450757C31DCA83B8D8542506190 /* WYLineChartCoordinateView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartCoordinateView.m; sourceTree = "<group>"; };
+		54FB8EACCEEE30309260C26A36E0EC8F /* WYLineChartPoint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartPoint.m; sourceTree = "<group>"; };
+		560714D2AB2C4F815CCA3B3EB6B0CC34 /* WYLineChartJunctionShape.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartJunctionShape.m; sourceTree = "<group>"; };
+		57BA584A4EF3B9EDC97E3AA6214100A0 /* WYPieSector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYPieSector.m; sourceTree = "<group>"; };
+		63703D0781F393F2CD8AC19D5DF47946 /* Pods-WYChart_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-WYChart_Tests-dummy.m"; sourceTree = "<group>"; };
+		6538D691A60D1BA47AE19E30D89FD7B8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		67D04CC7E8625F21A7E9F8B1E7119E50 /* WYMainPieChartView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYMainPieChartView.m; sourceTree = "<group>"; };
+		6841C05588A3C9AE1175CB99E651CC37 /* WYPieCenterCircle.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYPieCenterCircle.m; sourceTree = "<group>"; };
+		6BAE13C716FAC981BD40490C01ABC66A /* Pods-WYChart_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WYChart_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		7061D3298BAB512640D5560FCA4A9F6B /* WYPieChartCalculator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYPieChartCalculator.m; sourceTree = "<group>"; };
+		771D9A12C850156EA48AD18F97222876 /* WYLineChartCoordinateView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartCoordinateView.h; sourceTree = "<group>"; };
+		7F29023F39CFBD4870A2C08587D8E3B9 /* Pods-WYChart_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WYChart_Example-frameworks.sh"; sourceTree = "<group>"; };
+		8305A770154DFF233F822A45D9B88349 /* Pods-WYChart_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WYChart_Tests-resources.sh"; sourceTree = "<group>"; };
+		89A2CF630C2BD84D7D0C9535E651998B /* Pods-WYChart_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-WYChart_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		9F2BDD7A4BB568D18587442E285BCE96 /* Pods-WYChart_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WYChart_Example.release.xcconfig"; sourceTree = "<group>"; };
+		9FC3C331293711B237953E0520AA5C69 /* WYSectorLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYSectorLayer.m; sourceTree = "<group>"; };
+		A3844D0918980D1C87813AD98A066E81 /* WYLineChartReferenceLineView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartReferenceLineView.m; sourceTree = "<group>"; };
+		A49B902D7ECF6B46BEF9562AB90696A5 /* WYPieChartCalculator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYPieChartCalculator.h; sourceTree = "<group>"; };
+		A754D09B83927FE60C99C5EA33F830A3 /* Pods-WYChart_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-WYChart_Example-dummy.m"; sourceTree = "<group>"; };
+		B27A179A1986F44B43AF7FCD11E103EB /* WYPieChartForegroundView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYPieChartForegroundView.h; sourceTree = "<group>"; };
+		B9A6F038222E5BBEDEC9D8913C0D2FC3 /* WYLineChartBackgroundView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartBackgroundView.h; sourceTree = "<group>"; };
+		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		BD597914B2A745EB72AD0E707C4021F7 /* WYChart-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "WYChart-dummy.m"; sourceTree = "<group>"; };
+		BD672D15A02C14EED3091C6DEBEEB4C6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C127ABA8738C9DD48E2038607CE24397 /* WYLineChartReferenceLineView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartReferenceLineView.h; sourceTree = "<group>"; };
+		C4CE1C6D6E46450036DB7E409409B537 /* WYLineChartView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartView.h; sourceTree = "<group>"; };
+		C7CBD0B28546C915B9A6BA5D31302336 /* WYLineChartJunctionShape.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartJunctionShape.h; sourceTree = "<group>"; };
+		CAE8688F0BBE35E47AE10CD401077A13 /* WYPieChartForegroundView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYPieChartForegroundView.m; sourceTree = "<group>"; };
+		CBB583691286524F5EFBA88410C49ED8 /* WYLineChartCalculator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartCalculator.h; sourceTree = "<group>"; };
+		D0CA4A5F002BE96B0203EB40963A33C8 /* Pods-WYChart_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WYChart_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		D2E09C97F9E4B4199E3BD054C7477364 /* WYChart.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = WYChart.modulemap; sourceTree = "<group>"; };
+		D793BD98AF1E433C35158FC988115AFE /* WYMainPieChartView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYMainPieChartView.h; sourceTree = "<group>"; };
+		DCDDC10AD82B16578BDC734B3759266A /* WYPieChartView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYPieChartView.h; sourceTree = "<group>"; };
+		E0DD49A25FFA6261E7BD5D902826A689 /* Pods-WYChart_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-WYChart_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		E1B5B3CEF5A8147EA3B6473DB9B92663 /* WYChart-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WYChart-umbrella.h"; sourceTree = "<group>"; };
+		E47515E8374F9549A9CA12104C30871C /* WYChartCategory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYChartCategory.h; sourceTree = "<group>"; };
+		E574478710FAAB999D9D7F108970E713 /* WYPieChartView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYPieChartView.m; sourceTree = "<group>"; };
+		EA51A76EFC9D7B0A7FAE60A244957C16 /* WYChart.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = WYChart.xcconfig; sourceTree = "<group>"; };
+		F44018A8500144C3731E0A697F759350 /* Pods-WYChart_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WYChart_Tests-umbrella.h"; sourceTree = "<group>"; };
+		F4B3B613B9C7CD6387307AD86D31F8A2 /* Pods-WYChart_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WYChart_Example-resources.sh"; sourceTree = "<group>"; };
+		F973351AF2C76D24A67DE5758A0A234C /* WYChartCategory.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYChartCategory.m; sourceTree = "<group>"; };
+		FED6093C62E97BA2F60B5A6F7994F3A4 /* WYPieCenterCircle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYPieCenterCircle.h; sourceTree = "<group>"; };
+		FFE19E56CBD190EA7DCC5B9A1FED2EC5 /* Pods-WYChart_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WYChart_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		08C48DDADC1254AF7D96D6117A92801E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7378F5D7DC7D84A298CB9D3831302CF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		200F0EDA9F61A69E9FADEA9D6D219FB7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD7A8CCBFFD5F9443565FE553D10351C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30E3982DD2565AB41CE2B87E7EF69432 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37FCB2EAC208DA49B9B901CDA4F13F8E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		06AF14718FDD620E9207158EAE7D028B /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				79FAE7FB40101B66A51DCC1AAA8732E7 /* WYChart */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		112C7921E3A497328D11F4930CBBC9CA /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		2176CBFBC20812BFBD3490069F738E8E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3388DAFD0AE418D79FB2BFB06A45CAFE /* WYLineChart */,
+				2F46359422AD05B24FF7E94D25C2AD5B /* WYPieChart */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		2F46359422AD05B24FF7E94D25C2AD5B /* WYPieChart */ = {
+			isa = PBXGroup;
+			children = (
+				B03CAC157B64E1319BF0FB6BE3171655 /* Components */,
+				5E8FBCBE34F0D93028068B0D957F389E /* Main */,
+			);
+			path = WYPieChart;
+			sourceTree = "<group>";
+		};
+		32BFBAE07E542A38629117423E6910FA /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				E47515E8374F9549A9CA12104C30871C /* WYChartCategory.h */,
+				F973351AF2C76D24A67DE5758A0A234C /* WYChartCategory.m */,
+				CBB583691286524F5EFBA88410C49ED8 /* WYLineChartCalculator.h */,
+				0323FF9BF95D6EF2F24D0D810123FBB8 /* WYLineChartCalculator.m */,
+				51FA5A2381C839CB32E1C6B13E797C48 /* WYLineChartPoint.h */,
+				54FB8EACCEEE30309260C26A36E0EC8F /* WYLineChartPoint.m */,
+				C4CE1C6D6E46450036DB7E409409B537 /* WYLineChartView.h */,
+				195D3BF80AC5248241BEC67F78845401 /* WYLineChartView.m */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		3388DAFD0AE418D79FB2BFB06A45CAFE /* WYLineChart */ = {
+			isa = PBXGroup;
+			children = (
+				95834AA8D1C704572AF72E43B460655E /* Background */,
+				4A17E1A9B32AD33F10C7F003D5157670 /* Foreground */,
+				32BFBAE07E542A38629117423E6910FA /* Main */,
+			);
+			path = WYLineChart;
+			sourceTree = "<group>";
+		};
+		3E27C1B7EE79CEED2E70277D1E4EC294 /* Pods-WYChart_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				6538D691A60D1BA47AE19E30D89FD7B8 /* Info.plist */,
+				392EE9249D495DFB4812C8C6C867DDDD /* Pods-WYChart_Tests.modulemap */,
+				2C523CAC085CB686B26092BB66255DB4 /* Pods-WYChart_Tests-acknowledgements.markdown */,
+				E0DD49A25FFA6261E7BD5D902826A689 /* Pods-WYChart_Tests-acknowledgements.plist */,
+				63703D0781F393F2CD8AC19D5DF47946 /* Pods-WYChart_Tests-dummy.m */,
+				6BAE13C716FAC981BD40490C01ABC66A /* Pods-WYChart_Tests-frameworks.sh */,
+				8305A770154DFF233F822A45D9B88349 /* Pods-WYChart_Tests-resources.sh */,
+				F44018A8500144C3731E0A697F759350 /* Pods-WYChart_Tests-umbrella.h */,
+				FFE19E56CBD190EA7DCC5B9A1FED2EC5 /* Pods-WYChart_Tests.debug.xcconfig */,
+				44D93E5167D42B39F7737D294A5E321D /* Pods-WYChart_Tests.release.xcconfig */,
+			);
+			name = "Pods-WYChart_Tests";
+			path = "Target Support Files/Pods-WYChart_Tests";
+			sourceTree = "<group>";
+		};
+		4A17E1A9B32AD33F10C7F003D5157670 /* Foreground */ = {
+			isa = PBXGroup;
+			children = (
+				C7CBD0B28546C915B9A6BA5D31302336 /* WYLineChartJunctionShape.h */,
+				560714D2AB2C4F815CCA3B3EB6B0CC34 /* WYLineChartJunctionShape.m */,
+				2196BEE2521460EEADAB12C472CD66DB /* WYLineChartMainLineView.h */,
+				4469AC0138D9666D321B105DB689E392 /* WYLineChartMainLineView.m */,
+				C127ABA8738C9DD48E2038607CE24397 /* WYLineChartReferenceLineView.h */,
+				A3844D0918980D1C87813AD98A066E81 /* WYLineChartReferenceLineView.m */,
+			);
+			path = Foreground;
+			sourceTree = "<group>";
+		};
+		5E8FBCBE34F0D93028068B0D957F389E /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				A49B902D7ECF6B46BEF9562AB90696A5 /* WYPieChartCalculator.h */,
+				7061D3298BAB512640D5560FCA4A9F6B /* WYPieChartCalculator.m */,
+				DCDDC10AD82B16578BDC734B3759266A /* WYPieChartView.h */,
+				E574478710FAAB999D9D7F108970E713 /* WYPieChartView.m */,
+				352D8A4148E132127EA16C620CDE3432 /* WYPieSector.h */,
+				57BA584A4EF3B9EDC97E3AA6214100A0 /* WYPieSector.m */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		79FAE7FB40101B66A51DCC1AAA8732E7 /* WYChart */ = {
+			isa = PBXGroup;
+			children = (
+				98DE000276B9AE39CA356E97D763035E /* Support Files */,
+				DF1B1B0FCC8F7D49E71CC28607E268E0 /* WYChart */,
+			);
+			name = WYChart;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
+				06AF14718FDD620E9207158EAE7D028B /* Development Pods */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				A83CED12A5E72D07349471BB2CF31E99 /* Products */,
+				B3BD395361954A7A0910AA63FBD03E4A /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		8BCE238DE48DF5737C4FCBA564191C9B /* Pods-WYChart_Example */ = {
+			isa = PBXGroup;
+			children = (
+				064A3C3FE068F9D7EFD933095F8EABA0 /* Info.plist */,
+				49077A798B8D5BC34262D995BBFEF932 /* Pods-WYChart_Example.modulemap */,
+				89A2CF630C2BD84D7D0C9535E651998B /* Pods-WYChart_Example-acknowledgements.markdown */,
+				22917278D7CB1B9898A7445E31C6E85A /* Pods-WYChart_Example-acknowledgements.plist */,
+				A754D09B83927FE60C99C5EA33F830A3 /* Pods-WYChart_Example-dummy.m */,
+				7F29023F39CFBD4870A2C08587D8E3B9 /* Pods-WYChart_Example-frameworks.sh */,
+				F4B3B613B9C7CD6387307AD86D31F8A2 /* Pods-WYChart_Example-resources.sh */,
+				439179C634A2BE03327E64B3C8E998AF /* Pods-WYChart_Example-umbrella.h */,
+				D0CA4A5F002BE96B0203EB40963A33C8 /* Pods-WYChart_Example.debug.xcconfig */,
+				9F2BDD7A4BB568D18587442E285BCE96 /* Pods-WYChart_Example.release.xcconfig */,
+			);
+			name = "Pods-WYChart_Example";
+			path = "Target Support Files/Pods-WYChart_Example";
+			sourceTree = "<group>";
+		};
+		95834AA8D1C704572AF72E43B460655E /* Background */ = {
+			isa = PBXGroup;
+			children = (
+				B9A6F038222E5BBEDEC9D8913C0D2FC3 /* WYLineChartBackgroundView.h */,
+				1EE0ADEC254DC5703E1CA8DDBD0B0228 /* WYLineChartBackgroundView.m */,
+				771D9A12C850156EA48AD18F97222876 /* WYLineChartCoordinateView.h */,
+				530DC450757C31DCA83B8D8542506190 /* WYLineChartCoordinateView.m */,
+			);
+			path = Background;
+			sourceTree = "<group>";
+		};
+		98DE000276B9AE39CA356E97D763035E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				BD672D15A02C14EED3091C6DEBEEB4C6 /* Info.plist */,
+				D2E09C97F9E4B4199E3BD054C7477364 /* WYChart.modulemap */,
+				EA51A76EFC9D7B0A7FAE60A244957C16 /* WYChart.xcconfig */,
+				BD597914B2A745EB72AD0E707C4021F7 /* WYChart-dummy.m */,
+				1728156EAD35B89E6CDD51A10FBD536A /* WYChart-prefix.pch */,
+				E1B5B3CEF5A8147EA3B6473DB9B92663 /* WYChart-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/WYChart";
+			sourceTree = "<group>";
+		};
+		A83CED12A5E72D07349471BB2CF31E99 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3E9137BE4556AD36653738D8D030745D /* Pods_WYChart_Example.framework */,
+				31325A8C75B87AD6BC9E0C30559B0F69 /* Pods_WYChart_Tests.framework */,
+				15CB9284A835F178D30245E96C7C1279 /* WYChart.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B03CAC157B64E1319BF0FB6BE3171655 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D793BD98AF1E433C35158FC988115AFE /* WYMainPieChartView.h */,
+				67D04CC7E8625F21A7E9F8B1E7119E50 /* WYMainPieChartView.m */,
+				FED6093C62E97BA2F60B5A6F7994F3A4 /* WYPieCenterCircle.h */,
+				6841C05588A3C9AE1175CB99E651CC37 /* WYPieCenterCircle.m */,
+				B27A179A1986F44B43AF7FCD11E103EB /* WYPieChartForegroundView.h */,
+				CAE8688F0BBE35E47AE10CD401077A13 /* WYPieChartForegroundView.m */,
+				18FC6B84950C4F718AB9D6E55415B635 /* WYSectorLayer.h */,
+				9FC3C331293711B237953E0520AA5C69 /* WYSectorLayer.m */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		B3BD395361954A7A0910AA63FBD03E4A /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8BCE238DE48DF5737C4FCBA564191C9B /* Pods-WYChart_Example */,
+				3E27C1B7EE79CEED2E70277D1E4EC294 /* Pods-WYChart_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				112C7921E3A497328D11F4930CBBC9CA /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DF1B1B0FCC8F7D49E71CC28607E268E0 /* WYChart */ = {
+			isa = PBXGroup;
+			children = (
+				2176CBFBC20812BFBD3490069F738E8E /* Classes */,
+			);
+			path = WYChart;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		982D56D1A2D3447118089B6A25FB5C41 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				915F8490C098293F6BB97E8F39D8F527 /* Pods-WYChart_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACC2CF7846DB6FCFC26FA915AE503807 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C03A93B1C52C1E8BE229E8164CE9CEC /* Pods-WYChart_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D599CF49C2451729883F435A2E29CB51 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F7D10F5B45CF67532F1C3E50B4953E9 /* WYChart-umbrella.h in Headers */,
+				8976A5321BE795B4CD4278433EC44820 /* WYChartCategory.h in Headers */,
+				3ADE4E4DFBE4827BEE7CD7556405B699 /* WYLineChartBackgroundView.h in Headers */,
+				06E9F856974BBEDC309454FB51116D04 /* WYLineChartCalculator.h in Headers */,
+				CB0C34F2DB13AE504CFF92331654ABF2 /* WYLineChartCoordinateView.h in Headers */,
+				91809885923661384AE4548C49A4ACE8 /* WYLineChartJunctionShape.h in Headers */,
+				3765C4D38B934B00D341E64A21D97F2C /* WYLineChartMainLineView.h in Headers */,
+				9A7B4CFA7A50DD960E2156EEA3C3EBDE /* WYLineChartPoint.h in Headers */,
+				9A52639FE7F4FA8DB8129A97391B11B2 /* WYLineChartReferenceLineView.h in Headers */,
+				2D4F3A0FA5A8E319ED59FE2128ED3CEE /* WYLineChartView.h in Headers */,
+				6E465EB1B8B6C7F444699D9A3F3C5F62 /* WYMainPieChartView.h in Headers */,
+				6B206F83A802125337E61BCBEB77E631 /* WYPieCenterCircle.h in Headers */,
+				3805B939F9F0827336133C1574788A8B /* WYPieChartCalculator.h in Headers */,
+				03FC49CE6E630A279A1102B8A07824A3 /* WYPieChartForegroundView.h in Headers */,
+				6B35F4D6F84BB5706C83A3482456852C /* WYPieChartView.h in Headers */,
+				D5A3E71C81883E1C2094704F200215AC /* WYPieSector.h in Headers */,
+				A2488EDF6AAE30F22ABE33B82B7F02C3 /* WYSectorLayer.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		1134301A9716DCE3D0BE34E7D61110EE /* Pods-WYChart_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E79B7C1910CF2B7B6123C2BB1845A95 /* Build configuration list for PBXNativeTarget "Pods-WYChart_Tests" */;
+			buildPhases = (
+				E344AACE4845FE429F39C2F4F90CF454 /* Sources */,
+				08C48DDADC1254AF7D96D6117A92801E /* Frameworks */,
+				ACC2CF7846DB6FCFC26FA915AE503807 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-WYChart_Tests";
+			productName = "Pods-WYChart_Tests";
+			productReference = 31325A8C75B87AD6BC9E0C30559B0F69 /* Pods_WYChart_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		1D9433F53D9F58F59402C40E8ADCA2E9 /* Pods-WYChart_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E7E52A6895BA4EE006F960EC1A2A7354 /* Build configuration list for PBXNativeTarget "Pods-WYChart_Example" */;
+			buildPhases = (
+				E59732601A6030B1D6ACC549DBBC1338 /* Sources */,
+				200F0EDA9F61A69E9FADEA9D6D219FB7 /* Frameworks */,
+				982D56D1A2D3447118089B6A25FB5C41 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				558C10561A3037FB0A230A5B2512C6BA /* PBXTargetDependency */,
+			);
+			name = "Pods-WYChart_Example";
+			productName = "Pods-WYChart_Example";
+			productReference = 3E9137BE4556AD36653738D8D030745D /* Pods_WYChart_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		81974F0442183E1C9EFC7D68A731F283 /* WYChart */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 92C189C62B4DB0E6C0AAEC65F7C20C3B /* Build configuration list for PBXNativeTarget "WYChart" */;
+			buildPhases = (
+				623BE6BED553F979FC1D84358F5574DA /* Sources */,
+				30E3982DD2565AB41CE2B87E7EF69432 /* Frameworks */,
+				D599CF49C2451729883F435A2E29CB51 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WYChart;
+			productName = WYChart;
+			productReference = 15CB9284A835F178D30245E96C7C1279 /* WYChart.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = A83CED12A5E72D07349471BB2CF31E99 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D9433F53D9F58F59402C40E8ADCA2E9 /* Pods-WYChart_Example */,
+				1134301A9716DCE3D0BE34E7D61110EE /* Pods-WYChart_Tests */,
+				81974F0442183E1C9EFC7D68A731F283 /* WYChart */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		623BE6BED553F979FC1D84358F5574DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E168886577BB367F5F5CAD544E43EB7 /* WYChart-dummy.m in Sources */,
+				3E17104AC1787A26FAAB7DB9218BD9B1 /* WYChartCategory.m in Sources */,
+				5B8B49B303830114B9BD88D2E1BA1B0E /* WYLineChartBackgroundView.m in Sources */,
+				5B61C235CF6EE4C705BDF52B030AD82A /* WYLineChartCalculator.m in Sources */,
+				59E3E265C4D80D6D2D1EE4927D436FF4 /* WYLineChartCoordinateView.m in Sources */,
+				8A406370BD84929D1699D4C7C3EBB444 /* WYLineChartJunctionShape.m in Sources */,
+				95D84E751FACE71D4D4FB7A23F25FDE7 /* WYLineChartMainLineView.m in Sources */,
+				1BA07F76A644F655360143B583A423EA /* WYLineChartPoint.m in Sources */,
+				E53CC80B711650107AADB8E9825DAA64 /* WYLineChartReferenceLineView.m in Sources */,
+				A208BB685DC72FE977306202D48D8E4B /* WYLineChartView.m in Sources */,
+				CEAD668CD2EA82ED6E804C3CCA41C812 /* WYMainPieChartView.m in Sources */,
+				39175175164ADB5BFD2661145279E984 /* WYPieCenterCircle.m in Sources */,
+				5FCF4E3E94AB5065C72E4CAFA4C257B6 /* WYPieChartCalculator.m in Sources */,
+				18A39FDEEC58F259E2FEF3DF19B92395 /* WYPieChartForegroundView.m in Sources */,
+				114DB763630F0AF8A56AC225284819D0 /* WYPieChartView.m in Sources */,
+				76B95FB8F6FAB366DDF1A4F3454D69FE /* WYPieSector.m in Sources */,
+				389EF3FEBC7447F79D088C2324C9B149 /* WYSectorLayer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E344AACE4845FE429F39C2F4F90CF454 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52E8D9756B84753F98BB126AD8138254 /* Pods-WYChart_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E59732601A6030B1D6ACC549DBBC1338 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF7A71CD60FF402F3E6AAC8C97BADBD9 /* Pods-WYChart_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		558C10561A3037FB0A230A5B2512C6BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = WYChart;
+			target = 81974F0442183E1C9EFC7D68A731F283 /* WYChart */;
+			targetProxy = 98ED1077A2017F5D4514C1938DF18826 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1F2486A647242B26C0824A7BEB71E675 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FFE19E56CBD190EA7DCC5B9A1FED2EC5 /* Pods-WYChart_Tests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-WYChart_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-WYChart_Tests/Pods-WYChart_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_WYChart_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		372FF5048FF42C3A7A18B70A30D785C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		65B8B1ADCAF726624E2654A0DBD1E09F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA51A76EFC9D7B0A7FAE60A244957C16 /* WYChart.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/WYChart/WYChart-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/WYChart/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/WYChart/WYChart.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = WYChart;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		70F0378D63DE3D2DCC739550669BD46A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		98541312C4F69E888EDD7F549CF07E00 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44D93E5167D42B39F7737D294A5E321D /* Pods-WYChart_Tests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-WYChart_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-WYChart_Tests/Pods-WYChart_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_WYChart_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9E6BE95717F1FF122E759006B15B8B57 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0CA4A5F002BE96B0203EB40963A33C8 /* Pods-WYChart_Example.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-WYChart_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-WYChart_Example/Pods-WYChart_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_WYChart_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		BC2C97921F4908D4001028188F763FE3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA51A76EFC9D7B0A7FAE60A244957C16 /* WYChart.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/WYChart/WYChart-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/WYChart/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/WYChart/WYChart.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = WYChart;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D0198774D875141FBDEF762EE795BBCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F2BDD7A4BB568D18587442E285BCE96 /* Pods-WYChart_Example.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-WYChart_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-WYChart_Example/Pods-WYChart_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_WYChart_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70F0378D63DE3D2DCC739550669BD46A /* Debug */,
+				372FF5048FF42C3A7A18B70A30D785C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E79B7C1910CF2B7B6123C2BB1845A95 /* Build configuration list for PBXNativeTarget "Pods-WYChart_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F2486A647242B26C0824A7BEB71E675 /* Debug */,
+				98541312C4F69E888EDD7F549CF07E00 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		92C189C62B4DB0E6C0AAEC65F7C20C3B /* Build configuration list for PBXNativeTarget "WYChart" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC2C97921F4908D4001028188F763FE3 /* Debug */,
+				65B8B1ADCAF726624E2654A0DBD1E09F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E7E52A6895BA4EE006F960EC1A2A7354 /* Build configuration list for PBXNativeTarget "Pods-WYChart_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E6BE95717F1FF122E759006B15B8B57 /* Debug */,
+				D0198774D875141FBDEF762EE795BBCB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

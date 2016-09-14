@@ -7,12 +7,20 @@
 //
 
 #import "WYCAppDelegate.h"
+#import "WYCViewController.h"
 
 @implementation WYCAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    WYCViewController *vc = [[WYCViewController alloc] init];
+    UINavigationController *rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
+    
+//    NSLog(@"%@", NSStringFromCGRect([UIScreen mainScreen].bounds));
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.rootViewController = rootViewController;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

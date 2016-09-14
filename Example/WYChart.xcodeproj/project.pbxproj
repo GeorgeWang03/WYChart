@@ -21,7 +21,10 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
-		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		C36D9DBD1D88E65300846668 /* LineChartSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36D9DB61D88E65300846668 /* LineChartSettingViewController.m */; };
+		C36D9DBE1D88E65300846668 /* LineChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36D9DB81D88E65300846668 /* LineChartViewController.m */; };
+		C36D9DBF1D88E65300846668 /* PieChartSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36D9DBA1D88E65300846668 /* PieChartSettingViewController.m */; };
+		C36D9DC01D88E65300846668 /* PieChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36D9DBC1D88E65300846668 /* PieChartViewController.m */; };
 		FBD01E71894203B918431BBE /* Pods_WYChart_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4763CB3E283B0C712178B70B /* Pods_WYChart_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,7 +63,14 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
-		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		C36D9DB51D88E65300846668 /* LineChartSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineChartSettingViewController.h; sourceTree = "<group>"; };
+		C36D9DB61D88E65300846668 /* LineChartSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineChartSettingViewController.m; sourceTree = "<group>"; };
+		C36D9DB71D88E65300846668 /* LineChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineChartViewController.h; sourceTree = "<group>"; };
+		C36D9DB81D88E65300846668 /* LineChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineChartViewController.m; sourceTree = "<group>"; };
+		C36D9DB91D88E65300846668 /* PieChartSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChartSettingViewController.h; sourceTree = "<group>"; };
+		C36D9DBA1D88E65300846668 /* PieChartSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartSettingViewController.m; sourceTree = "<group>"; };
+		C36D9DBB1D88E65300846668 /* PieChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChartViewController.h; sourceTree = "<group>"; };
+		C36D9DBC1D88E65300846668 /* PieChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartViewController.m; sourceTree = "<group>"; };
 		DBCC2709E9947E6314F19645 /* Pods-WYChart_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYChart_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-WYChart_Example/Pods-WYChart_Example.release.xcconfig"; sourceTree = "<group>"; };
 		E0B7672EE8A611812FEAFF17 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		E48CC2B9FFB300B02E455495 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -132,9 +142,16 @@
 			children = (
 				6003F59C195388D20070C39A /* WYCAppDelegate.h */,
 				6003F59D195388D20070C39A /* WYCAppDelegate.m */,
-				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* WYCViewController.h */,
 				6003F5A6195388D20070C39A /* WYCViewController.m */,
+				C36D9DB51D88E65300846668 /* LineChartSettingViewController.h */,
+				C36D9DB61D88E65300846668 /* LineChartSettingViewController.m */,
+				C36D9DB71D88E65300846668 /* LineChartViewController.h */,
+				C36D9DB81D88E65300846668 /* LineChartViewController.m */,
+				C36D9DB91D88E65300846668 /* PieChartSettingViewController.h */,
+				C36D9DBA1D88E65300846668 /* PieChartSettingViewController.m */,
+				C36D9DBB1D88E65300846668 /* PieChartViewController.h */,
+				C36D9DBC1D88E65300846668 /* PieChartViewController.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
@@ -276,7 +293,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
@@ -390,9 +406,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C36D9DBD1D88E65300846668 /* LineChartSettingViewController.m in Sources */,
+				C36D9DBF1D88E65300846668 /* PieChartSettingViewController.m in Sources */,
 				6003F59E195388D20070C39A /* WYCAppDelegate.m in Sources */,
+				C36D9DBE1D88E65300846668 /* LineChartViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* WYCViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				C36D9DC01D88E65300846668 /* PieChartViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +536,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WYChart/WYChart-Prefix.pch";
 				INFOPLIST_FILE = "WYChart/WYChart-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -532,6 +553,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WYChart/WYChart-Prefix.pch";
 				INFOPLIST_FILE = "WYChart/WYChart-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";

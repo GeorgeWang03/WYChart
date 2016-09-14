@@ -1,0 +1,6 @@
+framework module WYChart {
+  umbrella header "WYChart-umbrella.h"
+
+  export *
+  module * { export * }
+}

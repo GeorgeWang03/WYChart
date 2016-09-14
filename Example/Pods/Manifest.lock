@@ -1,0 +1,16 @@
+PODS:
+  - WYChart (0.1.0)
+
+DEPENDENCIES:
+  - WYChart (from `../`)
+
+EXTERNAL SOURCES:
+  WYChart:
+    :path: ../
+
+SPEC CHECKSUMS:
+  WYChart: f1b644f699027abac7de1b80ef673b4f26fde93c
+
+PODFILE CHECKSUM: 12132ca0771cc71a20852f152ddc6b3397589e23
+
+COCOAPODS: 1.0.0.beta.4
