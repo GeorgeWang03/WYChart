@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'WYChart_Example' do
+  pod 'WYChart', :path => '../'
+
+  target 'WYChart_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
