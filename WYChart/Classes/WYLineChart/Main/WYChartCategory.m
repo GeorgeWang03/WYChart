@@ -80,7 +80,7 @@
 + (UIColor *)wy_colorWithHexString:(NSString *)str {
     const char *cStr = [str cStringUsingEncoding:NSASCIIStringEncoding];
     long x = strtol(cStr+1, NULL, 16);
-    return [UIColor wy_colorWithHex:x];
+    return [UIColor wy_colorWithHex:(UInt32)x];
 }
 
 // takes 0x123456

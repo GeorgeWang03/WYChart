@@ -38,6 +38,8 @@
     _movingView.hidden = YES;
 }
 
+- (void)moveReferenceLineToPoint:(CGPoint)point {}
+
 @end
 
 @implementation WYLineChartHorizontalReferenceLineView
@@ -156,6 +158,9 @@
         CGFloat verticalToValue;
         NSString *keyPath;
         
+        averageToValue = 0;
+        verticalToValue = 0;
+        
         if (self.animationStyle == kWYLineChartAnimationAlpha) {
             
             keyPath = @"opacity";
@@ -261,6 +266,8 @@
         
         CGFloat horizontalToValue;
         NSString *keyPath;
+        
+        horizontalToValue = 0;
         
         if (self.animationStyle == kWYLineChartAnimationAlpha) {
             

@@ -215,7 +215,11 @@
     }
     
     [_link invalidate];
+    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
     [_parentView performSelector:@selector(chartAnimationDidStop)];
+#pragma clang diagnostic pop
     
     CALayer *layer = [anim valueForKeyPath:@"opacity"];
     if (layer) {
@@ -501,11 +505,18 @@
     _currentPanPoint = point;
     
     CGFloat angle = _currentRotateAngle+_generalRotateAngle;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
     NSMethodSignature *signature = [_parentView methodSignatureForSelector:@selector(chartRotateAngle:)];
+#pragma clang diagnostic pop
+    
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
     if (invocation) {
-        
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
         [invocation setSelector:@selector(chartRotateAngle:)];
+#pragma clang diagnostic pop
+        
         [invocation setTarget:_parentView];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wincompatible-pointer-types"
