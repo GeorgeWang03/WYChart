@@ -24,7 +24,7 @@ More type of charts will come not long after.
 </p>
 
 ## Project
-***
+
 ### Requirements
 
 WYChart works on iOS7+, compatible with ARC.
@@ -60,7 +60,7 @@ The demo page shows follow:
 
 ## Getting Started
 
-***
+
 
 ### Installation
 
@@ -283,7 +283,7 @@ WYLineChart containe a long press gesture for a point to show where you touch on
 There`re numbers of feature in WYLineChart, if you are intrested in it, see the [interface]("WYChart/WYLineChart/Main/WYLineChartView.h").
 
 #### WYPieChart  
-***
+
 
 **First**, and following line to follow WYPieChartViewDelegate and WYPieChartViewDataSource:  
 
@@ -407,5 +407,5 @@ Some other feature also include in WYPieChart, you can find them in [PieChartVie
 </br>
 </br>
 ##Contact
-***
+
 If you have any problem or got an idear, i will be glad if share them to me by [georgewang003@gmail.com](georgewang003@gmail.com), and this my [personal blog](www.oneinbest.com) where you can find some technology about WYChart or any other topics.
