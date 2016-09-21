@@ -23,6 +23,10 @@ More type of charts will come not long after.
 </p>
 </p>
 
+***
+If you love WYChart , encourage me with a star 🌟 , thanks!
+如果你喜欢WYChart , 给我一个星星🌟作为奖励 , 谢谢 ！
+
 ## Project
 
 ### Requirements
