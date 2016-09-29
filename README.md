@@ -27,7 +27,7 @@ More type of charts will come not long after.
 If you love WYChart , encourage me with a star 🌟 , thanks!
 如果你喜欢WYChart , 给我一个星星🌟作为奖励 , 谢谢 ！
 
-中文简介请点击 👉 [中文简介]("README.zh.md")
+中文简介请点击 👉 [中文简介](https://github.com/GeorgeWang03/WYChart/blob/master/README.zh.md)
 
 ## Project
 
@@ -44,7 +44,7 @@ Some Framework are required, as follow:
 The frameworks above always included in most xcode project.
 
 ### License
-WYChart is available under the [MIT license]("LICENSE"). See the LICENSE file for more info.
+WYChart is available under the [MIT license](LICENSE). See the LICENSE file for more info.
 ### Demo
 The Project included a demo showing the tow chart and the code that how to use the chart with properties and methods.In perticalculer, there are setting pages for  two charts which you can change the property and see what changed. 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.

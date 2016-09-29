@@ -25,7 +25,7 @@ WYChart是一个简洁优雅的，集线性图和扇形图一体的图形库，�
 ***
 如果你喜欢WYChart , 给我一个星星🌟作为奖励 , 谢谢 ！
 
-README.md for English 👉 [README]("README.md")
+README.md for English 👉 [README](README.md)
 
 ## 项目
 
