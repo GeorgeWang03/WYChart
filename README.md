@@ -27,6 +27,8 @@ More type of charts will come not long after.
 If you love WYChart , encourage me with a star 🌟 , thanks!
 如果你喜欢WYChart , 给我一个星星🌟作为奖励 , 谢谢 ！
 
+中文简介请点击 👉 [中文简介]("README.zh.md")
+
 ## Project
 
 ### Requirements
@@ -266,7 +268,7 @@ For example, `kWYLineChartJunctionShapeHollowRectangle` will show as:
 
 <p align="center"><img width="180" src="IMG/Junction_001.png"/></p> 
 <p align="center">
-<b>None Line</b>
+<b>Hollow Rectangle</b>
 </p>
 </br>
 
@@ -375,7 +377,7 @@ Six styles of animation you can choose to animation the pie chart when reloading
     kWYPieChartAnimationAlpha,
     kWYPieChartAnimationScale  
 
-For example, kWYPieChartAnimationAllSpreading style will show as below:
+For example, `kWYPieChartAnimationAllSpreading` style will show as below:
 
 <p align="center"><img width="240" src="IMG/PieAnimationStyle_001.gif"/></p> 
 <p align="center">
@@ -412,4 +414,4 @@ Some other feature also include in WYPieChart, you can find them in [PieChartVie
 </br>
 ##Contact
 
-If you have any problem or got an idear, i will be glad if share them to me by [georgewang003@gmail.com](georgewang003@gmail.com), and this my [personal blog](www.oneinbest.com) where you can find some technology about WYChart or any other topics.
+If you have any problem or got an idear, i will be glad if share them to me by a `#issue` or [georgewang003@gmail.com](georgewang003@gmail.com), and this my [personal blog](blog.oneinbest.com) where you can find some technology about WYChart or any other topics.
