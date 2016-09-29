@@ -27,7 +27,7 @@ More type of charts will come not long after.
 If you love WYChart , encourage me with a star 🌟 , thanks!
 如果你喜欢WYChart , 给我一个星星🌟作为奖励 , 谢谢 ！
 
-中文简介请点击 👉 [中文简介](https://github.com/GeorgeWang03/WYChart/blob/master/README.zh.md)
+### 中文简介请点击 👉 [中文简介](https://github.com/GeorgeWang03/WYChart/blob/master/README.zh.md)
 
 ## Project
 
