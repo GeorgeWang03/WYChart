@@ -414,4 +414,4 @@ Some other feature also include in WYPieChart, you can find them in [PieChartVie
 </br>
 ##Contact
 
-If you have any problem or got an idear, i will be glad if share them to me by a `#issue` or [georgewang003@gmail.com](georgewang003@gmail.com), and this my [personal blog](blog.oneinbest.com) where you can find some technology about WYChart or any other topics.
+If you have any problem or got an idear, i will be glad if share them to me by a `#issue` or [georgewang003@gmail.com](georgewang003@gmail.com), and this my [personal blog](http://blog.oneinbest.com) where you can find some technology about WYChart or any other topics.

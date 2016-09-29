@@ -405,4 +405,4 @@ WYPieChart 有两种方式让你选中扇块，并触发代理方法`pieChartVie
 </br>
 ##联系方式
 
-如果你有任何问题或者有一些建议，我很期待你分享给我，可以在issue区发表或者发到我的邮箱[georgewang003@gmail.com](georgewang003@gmail.com)，这个👉[personal blog](blog.oneinbest.com)是我的个人博客，我会在上面发布一些关于WYChart技术的文章或其它的文章，谢谢！
+如果你有任何问题或者有一些建议，我很期待你分享给我，可以在issue区发表或者发到我的邮箱[georgewang003@gmail.com](georgewang003@gmail.com)，这个👉[personal blog](http://blog.oneinbest.com)是我的个人博客，我会在上面发布一些关于WYChart技术的文章或其它的文章，谢谢！
