@@ -248,7 +248,20 @@ There are several animation for chart:
     	kWYLineChartAnimationWidth,
     	kWYLineChartAnimationRise,
     	kWYLineChartAnimationSpring,
-    	kWYLineChartNoneAnimation    
+    	kWYLineChartNoneAnimation
+
+
+For example, `kWYLineChartAnimationDrawing` show as:
+<p align="center"><img width="180" src="IMG/LineAnimation_Drawing.gif"/></p> 
+<p align="center">
+<b>Drawing Animation</b>
+</p>    
+
+and `kWYLineChartAnimationSpring` show as:
+<p align="center"><img width="180" src="IMG/LineAnimation_Spring.gif"/></p> 
+<p align="center">
+<b>Spring Animation</b>
+</p>  
 
 **Junction Style**
 

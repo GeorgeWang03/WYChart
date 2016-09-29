@@ -241,6 +241,17 @@ WYLineChart 支持一下三种风格的线条:
     	kWYLineChartAnimationSpring,
     	kWYLineChartNoneAnimation    
 
+例如， `kWYLineChartAnimationDrawing` 如下：
+<p align="center"><img width="180" src="IMG/LineAnimation_Drawing.gif"/></p> 
+<p align="center">
+<b>绘制类型动画</b>
+</p>    
+
+以及 `kWYLineChartAnimationSpring` 如下：
+<p align="center"><img width="180" src="IMG/LineAnimation_Spring.gif"/></p> 
+<p align="center">
+<b>弹簧动画</b>
+</p>  
 **数据点形状**
 
 你可以选择以下数据点形状的风格：
