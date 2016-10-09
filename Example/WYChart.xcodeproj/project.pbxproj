@@ -25,6 +25,7 @@
 		C36D9DBE1D88E65300846668 /* LineChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36D9DB81D88E65300846668 /* LineChartViewController.m */; };
 		C36D9DBF1D88E65300846668 /* PieChartSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36D9DBA1D88E65300846668 /* PieChartSettingViewController.m */; };
 		C36D9DC01D88E65300846668 /* PieChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36D9DBC1D88E65300846668 /* PieChartViewController.m */; };
+		C3923CEB1DAA32FD00F559C5 /* EmptyLaunchFile.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3923CEA1DAA32FD00F559C5 /* EmptyLaunchFile.xib */; };
 		FBD01E71894203B918431BBE /* Pods_WYChart_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4763CB3E283B0C712178B70B /* Pods_WYChart_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		C36D9DBA1D88E65300846668 /* PieChartSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartSettingViewController.m; sourceTree = "<group>"; };
 		C36D9DBB1D88E65300846668 /* PieChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChartViewController.h; sourceTree = "<group>"; };
 		C36D9DBC1D88E65300846668 /* PieChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartViewController.m; sourceTree = "<group>"; };
+		C3923CEA1DAA32FD00F559C5 /* EmptyLaunchFile.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyLaunchFile.xib; sourceTree = "<group>"; };
 		DBCC2709E9947E6314F19645 /* Pods-WYChart_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYChart_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-WYChart_Example/Pods-WYChart_Example.release.xcconfig"; sourceTree = "<group>"; };
 		E0B7672EE8A611812FEAFF17 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		E48CC2B9FFB300B02E455495 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				C36D9DBC1D88E65300846668 /* PieChartViewController.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
+				C3923CEA1DAA32FD00F559C5 /* EmptyLaunchFile.xib */,
 			);
 			name = "Example for WYChart";
 			path = WYChart;
@@ -264,6 +267,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = FreedomKing;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = P3G84VNT6D;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -295,6 +301,7 @@
 			files = (
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
+				C3923CEB1DAA32FD00F559C5 /* EmptyLaunchFile.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,13 +539,13 @@
 			baseConfigurationReference = 053961723120B2A648865F07 /* Pods-WYChart_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = P3G84VNT6D;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WYChart/WYChart-Prefix.pch";
 				INFOPLIST_FILE = "WYChart/WYChart-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "WYChart-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -549,13 +556,13 @@
 			baseConfigurationReference = DBCC2709E9947E6314F19645 /* Pods-WYChart_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = P3G84VNT6D;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WYChart/WYChart-Prefix.pch";
 				INFOPLIST_FILE = "WYChart/WYChart-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "WYChart-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
