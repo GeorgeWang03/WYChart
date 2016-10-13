@@ -23,11 +23,12 @@ WYChart是一个简洁优雅的，集线性图和扇形图一体的图形库，�
 </p>
 
 ***
-如果你喜欢WYChart , 给我一个星星🌟作为奖励 , 谢谢 ！
+
+**如果你喜欢WYChart , 给我一个星星🌟作为奖励 , 谢谢 ！**
 
 README.md for English 👉 [README](README.md)
 
-另外，关于WYChart技术及其它介绍的博文已开始撰写并逐步发布，👉[点击这里](http://blog.oneinbest.com/2016/10/11/WYChart%E4%BB%8B%E7%BB%8D%E7%B3%BB%E5%88%97-%E4%B8%80-%E6%A6%82%E8%A7%88/)，希望你能给出宝贵的意见。🍻🍻
+**另外，关于WYChart技术及其它介绍的博文已开始撰写并逐步发布，👉[点击这里](http://blog.oneinbest.com/2016/10/11/WYChart%E4%BB%8B%E7%BB%8D%E7%B3%BB%E5%88%97-%E4%B8%80-%E6%A6%82%E8%A7%88/)，希望你能给出宝贵的意见。🍻🍻**
 
 ## 项目
 
