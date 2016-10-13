@@ -128,7 +128,7 @@
     _chartView.backgroundColor = par[kLineChartBackgroundColor];
     
     _chartView.drawGradient = [par[kLineChartDrawGradient] boolValue];
-    _chartView.scrollable = [par[kLineChartScrollable] boolValue];
+//    _chartView.scrollable = [par[kLineChartScrollable] boolValue];
     _chartView.pinchable = [par[kLineChartPinchable] boolValue];
     
     
