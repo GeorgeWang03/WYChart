@@ -38,7 +38,7 @@
      *	Draw Lables
      */
     NSInteger labelCount = [self.parentView.delegate numberOfLabelOnXAxisInLineChartView:self.parentView];
-    NSAssert(labelCount < self.parentView.points.count, @"WYLineChartCoordinateYAXisView : labels count can't more than line's points count");
+    NSAssert(labelCount <= self.parentView.points.count, @"WYLineChartCoordinateYAXisView : labels count can't more than line's points count");
     
     UILabel *label;
     CGFloat centerX, centerY;
@@ -120,7 +120,7 @@
      *	Draw Lables
      */
     NSInteger labelCount = [self.parentView.delegate numberOfReferenceLineHorizontalInLineChartView:self.parentView];
-    NSAssert(labelCount < self.parentView.points.count, @"WYLineChartCoordinateYAXisView : labels count can't more than line's points count");
+    NSAssert(labelCount <= self.parentView.points.count, @"WYLineChartCoordinateYAXisView : referenceLine`s count can't more than line's points count");
     
     UILabel *label;
     CGFloat centerX, centerY;

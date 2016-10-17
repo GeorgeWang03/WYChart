@@ -101,7 +101,7 @@
     
     NSInteger horizontalLineCount = 0;
     
-    if ([self.parentView.delegate respondsToSelector:@selector(numberOfReferenceLineVerticalInLineChartView:)]) {
+    if ([self.parentView.delegate respondsToSelector:@selector(numberOfReferenceLineHorizontalInLineChartView:)]) {
         horizontalLineCount = [self.parentView.delegate numberOfReferenceLineHorizontalInLineChartView:self.parentView];
     }
     
@@ -212,7 +212,7 @@
     
     NSInteger verticalLineCount = 0;
     
-    if ([self.parentView.delegate respondsToSelector:@selector(numberOfReferenceLineHorizontalInLineChartView:)]) {
+    if ([self.parentView.delegate respondsToSelector:@selector(numberOfReferenceLineVerticalInLineChartView:)]) {
         verticalLineCount = [self.parentView.delegate numberOfReferenceLineVerticalInLineChartView:self.parentView];
     }
     

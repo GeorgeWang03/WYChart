@@ -49,8 +49,6 @@ typedef NS_OPTIONS(NSUInteger, WYLineChartViewScaleOption) {
 
 - (NSInteger)numberOfLabelOnXAxisInLineChartView:(WYLineChartView *)chartView;
 
-- (NSInteger)numberOfLabelOnYAxisInLineChartView:(WYLineChartView *)chartView;
-
 - (CGFloat)gapBetweenPointsHorizontalInLineChartView:(WYLineChartView *)chartView;
 
 - (CGFloat)maxValueForPointsInLineChartView:(WYLineChartView *)chartView;

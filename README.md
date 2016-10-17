@@ -143,8 +143,6 @@ Besides, you have to implement the required methods of delegate and dataSource:
    
 		- (NSInteger)numberOfLabelOnXAxisInLineChartView:(WYLineChartView *)chartView
 		
-		- (NSInteger)numberOfLabelOnYAxisInLineChartView:(WYLineChartView *)chartView
-		
 		- (CGFloat)gapBetweenPointsHorizontalInLineChartView:(WYLineChartView *)chartView
 		
 		- (CGFloat)maxValueForPointsInLineChartView:(WYLineChartView *)chartView

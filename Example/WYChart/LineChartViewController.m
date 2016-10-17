@@ -38,8 +38,8 @@
     _settingViewController = [[LineChartSettingViewController alloc] init];
     
     
-    _points = [NSMutableArray arrayWithCapacity:10];
-    for (NSInteger idx = 0; idx < 10; ++idx) {
+    _points = [NSMutableArray arrayWithCapacity:7];
+    for (NSInteger idx = 0; idx < 7; ++idx) {
         WYLineChartPoint *point = [[WYLineChartPoint alloc] init];
         point.index = idx;
         [_points addObject:point];
@@ -59,12 +59,12 @@
     point.value = 70706.89;
     point = _points[6];
     point.value = 40446.85;
-    point = _points[7];
-    point.value = 50555.67;
-    point = _points[8];
-    point.value = 20216.48;
-    point = _points[9];
-    point.value = 60664.45;
+//    point = _points[7];
+//    point.value = 50555.67;
+//    point = _points[8];
+//    point.value = 20216.48;
+//    point = _points[9];
+//    point.value = 60664.45;
     
     
     _chartView = [[WYLineChartView alloc] initWithFrame:CGRectMake(0, 20, CGRectGetWidth(self.view.bounds), 300)];
@@ -154,7 +154,7 @@
 
 - (NSInteger)numberOfLabelOnXAxisInLineChartView:(WYLineChartView *)chartView {
     
-    return 5;
+    return _points.count;
 }
 
 - (CGFloat)gapBetweenPointsHorizontalInLineChartView:(WYLineChartView *)chartView {
@@ -173,11 +173,11 @@
 }
 
 - (NSInteger)numberOfReferenceLineVerticalInLineChartView:(WYLineChartView *)chartView {
-    return 5;
+    return _points.count;
 }
 
 - (NSInteger)numberOfReferenceLineHorizontalInLineChartView:(WYLineChartView *)chartView {
-    return 3;
+    return _points.count;
 }
 
 - (void)lineChartView:(WYLineChartView *)lineView didBeganTouchAtSegmentOfPoint:(WYLineChartPoint *)originalPoint value:(CGFloat)value {
@@ -217,30 +217,18 @@
 }
 
 - (WYLineChartPoint *)lineChartView:(WYLineChartView *)chartView pointReferToXAxisLabelAtIndex:(NSInteger)index {
-    return _points[2*index];
+    return _points[index];
 }
 
 - (WYLineChartPoint *)lineChartView:(WYLineChartView *)chartView pointReferToVerticalReferenceLineAtIndex:(NSInteger)index {
     
-    return _points[2*index];
+    return _points[index];
 }
 
+
 - (CGFloat)lineChartView:(WYLineChartView *)chartView valueReferToHorizontalReferenceLineAtIndex:(NSInteger)index {
-    CGFloat value;
-    switch (index) {
-        case 0:
-            value = 90980.f;
-            break;
-        case 1:
-            value = 50500.f;
-            break;
-        case 2:
-            value = 0;
-            break;
-        default:
-            break;
-    }
-    return value;
+    
+    return ((WYLineChartPoint *)_points[index]).value;
 }
 
 

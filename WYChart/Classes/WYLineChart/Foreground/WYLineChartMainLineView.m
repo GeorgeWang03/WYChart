@@ -260,14 +260,21 @@
             UIBezierPath *rigionPath = linePathLower;
 //            [rigionPath moveToPoint:CGPointMake(firstPoint.x, boundsHeight)];
 //            [rigionPath addLineToPoint:CGPointMake(lastPoint.x, boundsHeight)];
-            
-            CASpringAnimation *animation = [CASpringAnimation animationWithKeyPath:@"path"];
+
+            CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"path"];
             animation.duration = _animationDuration;
             animation.fromValue = (__bridge id _Nullable)(rigionPath.CGPath);
             animation.toValue = (__bridge id _Nullable)(linePath.CGPath);
-            animation.speed = 0.1;
-            animation.timingFunction = DEFAULT_TIMING_FUNCTION;
+//            animation.speed = 0.1;
+//            animation.timingFunction = DEFAULT_TIMING_FUNCTION;
             [lineLayer addAnimation:animation forKey:@"path"];
+//            CASpringAnimation *animation = [CASpringAnimation animationWithKeyPath:@"path"];
+//            animation.duration = _animationDuration;
+//            animation.fromValue = (__bridge id _Nullable)(rigionPath.CGPath);
+//            animation.toValue = (__bridge id _Nullable)(linePath.CGPath);
+//            animation.speed = 0.1;
+//            animation.timingFunction = DEFAULT_TIMING_FUNCTION;
+//            [lineLayer addAnimation:animation forKey:@"path"];
         }
         //animation for gradient
         animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
