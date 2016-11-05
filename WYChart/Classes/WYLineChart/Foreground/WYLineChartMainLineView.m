@@ -46,7 +46,41 @@
 
 - (void)drawRect:(CGRect)rect {
     
-    if (_parentView.points.count < 2) return;
+    void(^DrawJunctionShape)() = ^{
+        //* * * * * * * * * * * * * * * * * * * *//
+        //          Draw Junction Shape          //
+        //* * * * * * * * * * * * * * * * * * * *//
+        if (_junctionStyle != kWYLineChartJunctionShapeNone && _showJunctionShape) {
+            
+            [_parentView.points enumerateObjectsUsingBlock:^(WYLineChartPoint * point, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                WYLineChartJunctionShape *shape = [[WYLineChartJunctionShape alloc] initWithStyle:_junctionStyle
+                                                                                             size:_junctionSize
+                                                                                           origin:CGPointZero];
+                shape.center = CGPointMake(point.x, point.y);
+                shape.strokeColor = _junctionColor;
+                shape.fillColor = _junctionColor;
+                shape.backgroundColor = [UIColor clearColor];
+                shape.layer.opacity = 0;
+                
+                CGFloat delay;
+                delay = _animationStyle == kWYLineChartAnimationSpring ?
+                _animationDuration*idx/_parentView.points.count + _animationDuration
+                : _animationDuration*idx/_parentView.points.count;
+                
+                [self addScaleSpringAnimationForView:shape reverse:false
+                                               delay:delay
+                                          forKeyPath:@"original"];
+                [self addSubview:shape];
+            }];
+        }
+    };
+    
+    if (_parentView.points.count < 2) {
+        
+        DrawJunctionShape();
+        return;
+    }
     
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-variable"
@@ -69,7 +103,6 @@
     _movingPoint.strokeColor = _touchPointColor;
     _movingPoint.fillColor = _touchPointColor;
     _movingPoint.backgroundColor = [UIColor clearColor];
-//    [_movingPoint.layer setValue:@0.01 forKeyPath:@"transform.scale"];
     _movingPoint.hidden = true;
     [self addSubview:_movingPoint];
     
@@ -82,11 +115,6 @@
     
     firstPoint = ((WYLineChartPoint *)[_parentView.points firstObject]).point;
     lastPoint = ((WYLineChartPoint *)[_parentView.points lastObject]).point;
-//    CGPoint newPoint;
-//    CGPoint currentLowerPoint;
-//    CGPoint newLowerPoint;
-//    CGPoint currentHigherPoint;
-//    CGPoint newHigherPoint;
     
     UIBezierPath *linePath;
     UIBezierPath *linePathLower;
@@ -151,9 +179,6 @@
                     default:
                         break;
                 }
-                //            currentPoint = newPoint;
-                //            currentLowerPoint = newLowerPoint;
-                //            currentHigherPoint = newHigherPoint;
             }
             
             lineLayer.path = linePath.CGPath;
@@ -169,7 +194,6 @@
     
     UIBezierPath *gradientPath;
     UIBezierPath *gradientPathLower;
-//    UIBezierPath *gradientPathHigher = [UIBezierPath bezierPathWithCGPath:linePathHigher.CGPath];
     
     if (_parentView.drawGradient && _style != kWYLineChartMainNoneLine) {
         
@@ -230,7 +254,6 @@
         
         CABasicAnimation *animation;
         CABasicAnimation *costarAnimation;
-//        CAAnimationGroup *animationGroup;
         
         if (_animationStyle == kWYLineChartAnimationAlpha) {
             
@@ -255,26 +278,13 @@
             [lineLayer addAnimation:animation forKey:@"lineWidth"];
         } else if (_animationStyle == kWYLineChartAnimationRise) {
             
-//            WYLineChartPoint *firstPoint = [_parentView.points firstObject];
-//            WYLineChartPoint *lastPoint = [_parentView.points lastObject];
             UIBezierPath *rigionPath = linePathLower;
-//            [rigionPath moveToPoint:CGPointMake(firstPoint.x, boundsHeight)];
-//            [rigionPath addLineToPoint:CGPointMake(lastPoint.x, boundsHeight)];
 
             CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"path"];
             animation.duration = _animationDuration;
             animation.fromValue = (__bridge id _Nullable)(rigionPath.CGPath);
             animation.toValue = (__bridge id _Nullable)(linePath.CGPath);
-//            animation.speed = 0.1;
-//            animation.timingFunction = DEFAULT_TIMING_FUNCTION;
             [lineLayer addAnimation:animation forKey:@"path"];
-//            CASpringAnimation *animation = [CASpringAnimation animationWithKeyPath:@"path"];
-//            animation.duration = _animationDuration;
-//            animation.fromValue = (__bridge id _Nullable)(rigionPath.CGPath);
-//            animation.toValue = (__bridge id _Nullable)(linePath.CGPath);
-//            animation.speed = 0.1;
-//            animation.timingFunction = DEFAULT_TIMING_FUNCTION;
-//            [lineLayer addAnimation:animation forKey:@"path"];
         }
         //animation for gradient
         animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
@@ -293,37 +303,11 @@
         [maskLayer addAnimation:costarAnimation forKey:nil];
     }
     
-    if (_animationStyle == kWYLineChartAnimationSpring) {
-        
-    }
-    
     //* * * * * * * * * * * * * * * * * * * *//
     //          Draw Junction Shape          //
     //* * * * * * * * * * * * * * * * * * * *//
-    if (_junctionStyle != kWYLineChartJunctionShapeNone && _showJunctionShape) {
-        
-        [_parentView.points enumerateObjectsUsingBlock:^(WYLineChartPoint * point, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            WYLineChartJunctionShape *shape = [[WYLineChartJunctionShape alloc] initWithStyle:_junctionStyle
-                                                                                         size:_junctionSize
-                                                                                       origin:CGPointZero];
-            shape.center = CGPointMake(point.x, point.y);
-            shape.strokeColor = _junctionColor;
-            shape.fillColor = _junctionColor;
-            shape.backgroundColor = [UIColor clearColor];
-            shape.layer.opacity = 0;
-            
-            CGFloat delay;
-            delay = _animationStyle == kWYLineChartAnimationSpring ?
-            _animationDuration*idx/_parentView.points.count + _animationDuration
-            : _animationDuration*idx/_parentView.points.count;
-            
-            [self addScaleSpringAnimationForView:shape reverse:false
-                                           delay:delay
-                                      forKeyPath:@"original"];
-            [self addSubview:shape];
-        }];
-    }
+    DrawJunctionShape();
+    
     //* * * * * * * * * * * * * * * * * * * *//
     //         reset subviews' order         //
     //* * * * * * * * * * * * * * * * * * * *//

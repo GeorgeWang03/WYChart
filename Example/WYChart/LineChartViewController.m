@@ -16,11 +16,14 @@
                                        WYLineChartViewDatasource>
 
 @property (nonatomic, strong) WYLineChartView *chartView;
-@property (nonatomic, strong) NSMutableArray *points;
+@property (nonatomic, strong) NSArray *points;
 
 @property (nonatomic, strong) UILabel *touchLabel;
 
 @property (nonatomic, strong) LineChartSettingViewController *settingViewController;
+
+@property (nonatomic, assign) CGFloat maxValue;
+@property (nonatomic, assign) CGFloat minValue;
 
 @end
 
@@ -36,36 +39,6 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
     
     _settingViewController = [[LineChartSettingViewController alloc] init];
-    
-    
-    _points = [NSMutableArray arrayWithCapacity:7];
-    for (NSInteger idx = 0; idx < 7; ++idx) {
-        WYLineChartPoint *point = [[WYLineChartPoint alloc] init];
-        point.index = idx;
-        [_points addObject:point];
-    }
-    
-    WYLineChartPoint *point = _points[0];
-    point.value = 50503.134;
-    point = _points[1];
-    point.value = 60623.4;
-    point = _points[2];
-    point.value = 90980.f;
-    point = _points[3];
-    point.value = 80890.34;
-    point = _points[4];
-    point.value = 30321.2;
-    point = _points[5];
-    point.value = 70706.89;
-    point = _points[6];
-    point.value = 40446.85;
-//    point = _points[7];
-//    point.value = 50555.67;
-//    point = _points[8];
-//    point.value = 20216.48;
-//    point = _points[9];
-//    point.value = 60664.45;
-    
     
     _chartView = [[WYLineChartView alloc] initWithFrame:CGRectMake(0, 20, CGRectGetWidth(self.view.bounds), 300)];
     _chartView.delegate = self;
@@ -94,7 +67,7 @@
     _chartView.touchView = _touchLabel;
     
     [self.view addSubview:_chartView];
-//    [_chartView updateGraph];
+    
     CGFloat boundsWidth = CGRectGetWidth(self.view.bounds);
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20, CGRectGetHeight(self.view.bounds) - 180, boundsWidth/2-40, 60)];
@@ -104,7 +77,7 @@
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [button setBackgroundImage:[UIImage imageFromColor:[UIColor colorWithWhite:0.3 alpha:0.1]]
                              forState:UIControlStateNormal];
-    [button addTarget:_chartView action:@selector(updateGraph) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(updateGraph) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     
     UIButton *settingButton = [[UIButton alloc] initWithFrame:CGRectMake(boundsWidth/2+20, CGRectGetHeight(self.view.bounds) - 180, boundsWidth/2-40, 60)];
@@ -132,12 +105,79 @@
     _chartView.pinchable = [par[kLineChartPinchable] boolValue];
     
     
-    [_chartView updateGraph];
+    [self updateGraph];
 }
 
 - (void)handleSettingButton {
     
-    [self.navigationController pushViewController:_settingViewController animated:true];
+    [self.navigationController pushViewController:_settingViewController
+                                         animated:true];
+}
+
+- (void)updateGraph {
+    
+    NSArray *(^ProducePointsA)() = ^() {
+        NSMutableArray *points = [NSMutableArray arrayWithCapacity:7];
+        for (NSInteger idx = 0; idx < 7; ++idx) {
+            WYLineChartPoint *point = [[WYLineChartPoint alloc] init];
+            point.index = idx;
+            [points addObject:point];
+        }
+        WYLineChartPoint *point = points[0];
+        point = points[0];
+        point.value = 70706.89;
+        point = points[1];
+        point.value = 40446.85;
+        point = points[2];
+        point.value = 50555.67;
+        point = points[3];
+        point.value = 20216.48;
+        point = points[4];
+        point.value = 60664.45;
+        point = points[5];
+        point.value = 80890.34;
+        point = points[6];
+        point.value = 30321.2;
+        return points;
+    };
+    
+    NSArray *(^ProducePointsB)() = ^() {
+        NSMutableArray *points = [NSMutableArray arrayWithCapacity:5];
+        for (NSInteger idx = 0; idx < 5; ++idx) {
+            WYLineChartPoint *point = [[WYLineChartPoint alloc] init];
+            point.index = idx;
+            [points addObject:point];
+        }
+        WYLineChartPoint *point = points[0];
+        point.value = 50503.134;
+        point = points[1];
+        point.value = 60623.4;
+        point = points[2];
+        point.value = 90980.f;
+        point = points[3];
+        point.value = 80890.34;
+        point = points[4];
+        point.value = 30321.2;
+        return points;
+    };
+    
+    static BOOL isPointsA = false;
+    _points = isPointsA ? ProducePointsA() : ProducePointsB();
+    isPointsA = !isPointsA;
+    
+    _maxValue = -MAXFLOAT;
+    _minValue = MAXFLOAT;
+    [_points enumerateObjectsUsingBlock:^(WYLineChartPoint *point, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (point.value > _maxValue) {
+            _maxValue = point.value;
+        }
+        if (point.value < _minValue) {
+            _minValue = point.value;
+        }
+    }];
+    _chartView.points = [NSArray arrayWithArray:_points];
+    
+    [_chartView updateGraph];
 }
 
 - (void)handleGesture {
@@ -149,6 +189,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+//- (void)findMaxValueInArray
 
 #pragma mark - WYLineChartViewDelegate
 
@@ -164,12 +206,13 @@
 
 - (CGFloat)maxValueForPointsInLineChartView:(WYLineChartView *)chartView {
     
-    return 90980.f;
+    
+    return _maxValue;
 }
 
 - (CGFloat)minValueForPointsInLineChartView:(WYLineChartView *)chartView {
     
-    return 0;//321.2;
+    return _minValue;
 }
 
 - (NSInteger)numberOfReferenceLineVerticalInLineChartView:(WYLineChartView *)chartView {

@@ -77,9 +77,9 @@
         textForLabel = [_parentView.datasource pieChartView:_parentView textForLabelAtIndex:idx];
         currentLabel.text = textForLabel;
         [self addSubview:currentLabel];
-    }
+    } 
     
-    for (NSInteger idx = labelCount; labelCount < _labels.count; ++idx) {
+    for (NSInteger idx = labelCount; idx < _labels.count; ++idx) {
         [(UIView *)_labels[idx] removeFromSuperview];
     }
     [self updateWithRotateAngle:0];

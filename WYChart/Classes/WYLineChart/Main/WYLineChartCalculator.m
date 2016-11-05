@@ -134,7 +134,7 @@
     CGFloat differ = maxValue - minValue;
     CGFloat pixels = self.drawableAreaHeight - (_parentView.lineTopMargin + 30.f) - _parentView.lineBottomMargin;
     
-    y = (_parentView.lineTopMargin + 30.f) + (maxValue - value) * pixels / differ;
+    y = (_parentView.lineTopMargin + 30.f) + (differ > 0 ? ((maxValue - value) * pixels / differ) : 0);
     y = roundf(y);
     
     return y;
