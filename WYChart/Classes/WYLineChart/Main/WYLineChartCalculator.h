@@ -47,25 +47,28 @@
  */
 - (CGFloat)xLocationForPointAtIndex:(NSInteger)index;
 /**
- *	return center.y for a point in line graph
+ *	return vertical location for point`s value
  *
- *	@param index	a point index
+ *	@param value point`s value
  *
- *	@return point.center.y
+ *	@return vertical location
  */
-- (CGFloat)yLocationForPointAtIndex:(NSInteger)index;
+- (CGFloat)yLocationForPointValue:(CGFloat)value;
 /**
  *	recalculate coordinate for points when graph redraw or points updated
  ＊ 重新计算所有点在坐标轴中的位置
  */
 - (void)recaclculatePointsCoordinate;
 /**
+ *	return one of points array which contain most points
+ ＊ 返回包含最多点的数组
+ */
+- (NSArray *)arrayContainedMostPoints; // v0.2.0
+/**
  *  update all path segment for points, including quadratic formula (the coefficent A,B,C), control point
  *  @return Array with element of WYLineChartPathSegment
  */
 - (NSArray *)recalculatePathSegmentsForPoints:(NSArray *)points withLineStyle:(WYLineChartMainLineStyle)lineStyle;
-
-- (WYLineChartPoint *)maxValueOfPoints:(NSArray *)points;
 
 - (WYLineChartPathSegment *)segmentForPoint:(CGPoint)point inSegments:(NSArray *)segments;
 
@@ -88,18 +91,35 @@
 - (CGPoint)higherControlPointBetweenPoint:(CGPoint)p1 andPoint:(CGPoint)p2;
 
 ///////--------------------------------------- About Values ------------------------------------------///////
-
+/**
+ *  find max value point in point set which contained numbers of point array
+ *  在一个包含多个点数组的点集中找到最大值的点
+ */
+- (WYLineChartPoint *)maxValuePointsOfLinesPointSet:(NSArray *)pointSet;
+/**
+ *  find min value point in point set which contained numbers of point array
+ *  在一个包含多个点数组的点集中找到最小值的点
+ */
+- (WYLineChartPoint *)minValuePointsOfLinesPointSet:(NSArray *)pointSet;
 /**
  *  calculate average for WYLineChartPoints value
  *  计算给出的WYLineChartPoints类型的点的value平均值
  */
 - (CGFloat)calculateAverageForPoints:(NSArray *)points;
 /**
+ *  calculate average for WYLineChartPoints value in a point set which contained numbers of points array
+ *  计算给出的WYLineChartPoints类型的点集合的value平均值（点集合包含了多个点数组）
+ */
+- (CGFloat)calculateAverageForPointsSet:(NSArray *)pointsSet;
+/**
  *	return the y for average value on line graph
  *  返回所给出平均值在线图中的竖直方向位置
  */
 - (CGFloat)verticalLocationForValue:(CGFloat)average;
-
+/**
+ *	return the value from a given y location
+ *  返回y坐标所对应的点值
+ */
 - (CGFloat)valueReferToVerticalLocation:(CGFloat)location;
 
 @end

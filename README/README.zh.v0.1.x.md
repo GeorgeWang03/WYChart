@@ -7,7 +7,7 @@
 
 WYChart是一个简洁优雅的，集线性图和扇形图一体的图形库，有丰富的动画以及交互方式，在以后的版本会有更多类型的图形加入。
 
-<p align="center"><img width="480" src="IMG/LineChart_003.png"/></p> 
+<p align="center"><img width="240" src="../IMG/LineChart_001.png"/></p> 
 <p align="center">
 <b>WYLineChart</b>
 <p align="center">简单方便地创建可滑动、缩放、动画的线型图
@@ -15,7 +15,7 @@ WYChart是一个简洁优雅的，集线性图和扇形图一体的图形库，�
 </p>
 
 
-<p align="center"><img width="240" src="IMG/PieChart_002.png"/></p> 
+<p align="center"><img width="240" src="../IMG/PieChart_001.png"/></p> 
 <p align="center">
 <b>WYPieChart</b>
 <p align="center">简单方便地创建可旋转、可拉动、可选中以及拥有动画的扇形图
@@ -23,8 +23,6 @@ WYChart是一个简洁优雅的，集线性图和扇形图一体的图形库，�
 </p>
 
 ***
-
-**经过一段时间的改造，WYChart v0.2.0版本发布，线型图支持多线段**
 
 **如果你喜欢WYChart , 给我一个星星🌟作为奖励 , 谢谢 ！**
 
@@ -54,21 +52,17 @@ WYChart 使用 [MIT license]("LICENSE") 证书. 详情见 LICENSE 文件.
 运行项目，先克隆或下载项目，然后运行在Example目录 `pod install` 。
 例子效果图如下：
 
-<p align="center"><img width="240" src="IMG/Table_001.png"/></p> 
+<p align="center"><img width="240" src="../IMG/Table_001.png"/></p> 
 <p align="center">
 <b>主菜单</b>
 </p>
 
-<p align="center"><img width="240" src="IMG/SettingPage_001.png"/></p> 
+<p align="center"><img width="240" src="../IMG/SettingPage_001.png"/></p> 
 <p align="center">
 <b>扇形图设置页面</b>
 </p>
 
-<p align="center"><img width="240" src="IMG/SettingPage_001_1.png"/></p> 
-<p align="center">
-</p>
-
-<p align="center"><img width="240" src="IMG/SettingPage_001_2.png"/></p> 
+<p align="center"><img width="240" src="../IMG/SettingPage_002.png"/></p> 
 <p align="center">
 <b>线型图设置页面</b>
 </p>
@@ -115,29 +109,16 @@ or
     	  
 **然后**, 设置线型图的数据数组，数组包含的是WYLineChartPoint类型的点：
 		
-		NSMutableArray *mutableArray = [NSMutableArray array];
-		 // line_1
-        NSArray *points = [WYLineChartPoint pointsFromValueArray:@[@(70706.89),@(75623.4),@(90980.f),@(80890.34),@(60321.2)]];
-        [mutableArray addObject:points];
-        // line_2
-        points = [WYLineChartPoint pointsFromValueArray:@[@(50503.134),@(50446.85),@(50555.67),@(60216.48),@(50664.45),@(80890.34),@(30321.2)]];
-        [mutableArray addObject:points];
-		 // set data
-        _lineChart.points = mutableArray;
-        
-在v0.2.0版本之后，lineChart.points 属性包含了一个或多个线段的点集，因此，数据结构也做了相应的改变，如同头文件`WYLineChartView.h`所描述的：
-
-		// all the points of lines on the graph
-		// the content should be:
-		// /* points */@[
-		//                  /* line 0 */ @[
-		//                                 /* point 0 */ (WYLineChartPoint *)point0, point1, point2 ...
-		//                                 ],
-		//                  /* line 1 */ @[
-		//                                 /* point 0 */ (WYLineChartPoint *)point0, point1, point2 ...
-		//                                 ],
-		//              ]
-		// v0.2.0
+		WYLineChartPoint *point = [[WYLineChartPoint alloc] init];
+		point.value = 50503.134;
+		[container addObject:point];
+		point = [[WYLineChartPoint alloc] init];
+		point.value = 60623.4;
+		[container addObject:point];
+		
+		...
+		
+		_chartView.points = [NSArray arrayWithArray:_points];
       
 **最后**, 添加图表到控制器的视图上并更新图表：
 
@@ -149,7 +130,15 @@ or
 
 **Delegate** 
    
-		- (CGFloat)gapBetweenPointsHorizontalInLineChartView:(WYLineChartView *)chartView;
+		- (NSInteger)numberOfLabelOnXAxisInLineChartView:(WYLineChartView *)chartView
+		
+		- (NSInteger)numberOfLabelOnYAxisInLineChartView:(WYLineChartView *)chartView
+		
+		- (CGFloat)gapBetweenPointsHorizontalInLineChartView:(WYLineChartView *)chartView
+		
+		- (CGFloat)maxValueForPointsInLineChartView:(WYLineChartView *)chartView
+		
+		- (CGFloat)minValueForPointsInLineChartView:(WYLineChartView *)chartView
 
 **DataSource**  
 
@@ -158,28 +147,20 @@ or
 		- (WYLineChartPoint *)lineChartView:(WYLineChartView *)chartView pointReferToXAxisLabelAtIndex:(NSInteger)index
 
 ***
-上面的工作还不够，有很多可选择的属性可以设置线型图的外观和交互方式。顺便说一下，在v0.2.0版本之后，设置线段的属性的方式通过字典集（NSDictionary 键值对)的方式，如果你要自定义线段的属性，比如线段的类型、线段的宽度等，你要实现数据源方法`- (NSDictionary *)lineChartView:(WYLineChartView *)chartView attributesForLineAtIndex:(NSUInteger)index;` 
+上面的工作还不够，有很多可选择的属性可以设置线型图的外观和交互方式。
 
 **渐变前景**
 </br>
-**渐变前景**是一个可选的线段属性，要通过键名`kWYLineChartLineAttributeDrawGradient` 在上文提到的数据源方法中使用。
 为了使线型图更佳好看，你可以选择添加渐变前景，只需要添加下面的代码：
   
-	- (NSDictionary *)lineChartView:(WYLineChartView *)chartView attributesForLineAtIndex:(NSUInteger)index {
-	
-    NSMutableDictionary *resultAttributes = [NSMutableDictionary dictionary];
-    resultAttributes[kWYLineChartLineAttributeDrawGradient] = @YES;
-    
-    ...
-    // other line attributes config
-    ...
-    
-    return resultAttributes;
-	}
+		_chartView.gradientColors = @[[UIColor colorWithWhite:1.0 alpha:0.9],
+                                  [UIColor colorWithWhite:1.0 alpha:0.0]];
+    	_chartView.gradientColorsLocation = @[@(0.0), @(0.95)];
+    	_chartView.drawGradient = YES;
     	  
 如下图，会有渐变前景出现：
 
-<p align="center"><img width="360" src="IMG/LineGradient_001_1.png"/></p> 
+<p align="center"><img width="180" src="../IMG/Gradient_001.png"/></p> 
 <p align="center">
 <b>渐变前景</b>
 </p>
@@ -187,7 +168,7 @@ or
 
 没渐变情况:
 
-<p align="center"><img width="360" src="IMG/LineGradient_001_2.png"/></p> 
+<p align="center"><img width="180" src="../IMG/Gradient_002.png"/></p> 
 <p align="center">
 <b>没渐变</b>
 </p>
@@ -204,7 +185,7 @@ WYLineChart 支持水平滑动，只需要添加下面的代码：
 
 然后，你就可以滚动线型图：
 
-<p align="center"><img width="180" src="IMG/Scrollable_001.gif"/></p> 
+<p align="center"><img width="180" src="../IMG/Scrollable_001.gif"/></p> 
 <p align="center">
 <b>滚动线型图</b>
 </p>
@@ -220,8 +201,7 @@ WYLineChart 支持水平滑动，只需要添加下面的代码：
 
 **线条风格**
 
-线条风格是一个可选的线段属性，你可以通过数据源方法，使用键名`kWYLineChartLineAttributeLineStyle`来设置。
-WYLineChart 支持以下三种风格的线条:	  
+WYLineChart 支持一下三种风格的线条:	  
   
 		kWYLineChartMainStraightLine（直线）,
     	kWYLineChartMainBezierWaveLine（波浪状）,
@@ -229,25 +209,25 @@ WYLineChart 支持以下三种风格的线条:
 
 如果你不想要有线条而只是一些点，你可以选择`kWYLineChartMainNoneLine` 类型
 
-<p align="center"><img width="180" src="IMG/LineStyle_001.png"/></p> 
+<p align="center"><img width="180" src="../IMG/LineStyle_001.png"/></p> 
 <p align="center">
 <b>波浪壮</b>
 </p>
 </br>
 
-<p align="center"><img width="180" src="IMG/LineStyle_002.png"/></p> 
+<p align="center"><img width="180" src="../IMG/LineStyle_002.png"/></p> 
 <p align="center">
 <b>直线状</b>
 </p>
 </br>
 
-<p align="center"><img width="180" src="IMG/LineStyle_003.png"/></p> 
+<p align="center"><img width="180" src="../IMG/LineStyle_003.png"/></p> 
 <p align="center">
 <b>曲线尖状</b>
 </p>
 </br>
 
-<p align="center"><img width="180" src="IMG/LineStyle_004.png"/></p> 
+<p align="center"><img width="180" src="../IMG/LineStyle_004.png"/></p> 
 <p align="center">
 <b>没线条</b>
 </p>
@@ -255,7 +235,6 @@ WYLineChart 支持以下三种风格的线条:
 		  
 **动画风格**
 
-动画风格不是一个线段的属性，是一个线型图的全局属性，一旦设置，所有线段的动画类型都一样。
 线型图包含几种动画：
 
 		kWYLineChartAnimationDrawing,
@@ -266,13 +245,13 @@ WYLineChart 支持以下三种风格的线条:
     	kWYLineChartNoneAnimation    
 
 例如， `kWYLineChartAnimationDrawing` 如下：
-<p align="center"><img width="180" src="IMG/LineAnimation_Drawing.gif"/></p> 
+<p align="center"><img width="180" src="../IMG/LineAnimation_Drawing.gif"/></p> 
 <p align="center">
 <b>绘制类型动画</b>
 </p>    
 
 以及 `kWYLineChartAnimationSpring` 如下：
-<p align="center"><img width="180" src="IMG/LineAnimation_Spring.gif"/></p> 
+<p align="center"><img width="180" src="../IMG/LineAnimation_Spring.gif"/></p> 
 <p align="center">
 <b>弹簧动画</b>
 </p>  
@@ -292,7 +271,7 @@ WYLineChart 支持以下三种风格的线条:
   
 例如，`kWYLineChartJunctionShapeHollowRectangle`风格如下：
 
-<p align="center"><img width="180" src="IMG/Junction_001.png"/></p> 
+<p align="center"><img width="180" src="../IMG/Junction_001.png"/></p> 
 <p align="center">
 <b>空心三角形</b>
 </p>
@@ -306,17 +285,11 @@ WYLineChart 包含一个长按手势，长按时会出现线上的实时数据�
 		- (void)lineChartView:didMovedTouchToSegmentOfPoint:value:
 		- (void)lineChartView:didEndedTouchToSegmentOfPoint:value:  
   
-<p align="center"><img width="240" src="IMG/TouchPoint_001.gif"/></p> 
+<p align="center"><img width="240" src="../IMG/TouchPoint_001.gif"/></p> 
 <p align="center">
 <b>长按点</b>
 </p>
 </br>  
-
-**但是**，在v0.2.0版本之后，这个属性仅仅在图中之有一个线段的时候起作用。
-    
-**数据点标签**
-
-在v0.2.0之后，线型图可以让你为每个数据点添加自定义文本的标签，只要实现数据源方法 `- (NSString *)lineChartView:(WYLineChartView *)chartView contextTextForPointAtIndexPath:(NSIndexPath *)indexPath`，如果你返回nil，那么对应indexPath的标签不会显示。
     
 **WYLineChart**还有很多的特性，如果你有兴趣请查看[interface]("WYChart/WYLineChart/Main/WYLineChartView.h")。
 
@@ -351,13 +324,13 @@ WYLineChart 包含一个长按手势，长按时会出现线上的实时数据�
 
 你可以选择 `kWYPieChartNormalStyle` 或 `kWYPieChartGearStyle` 风格的扇形，效果如下：
 
-<p align="center"><img width="240" src="IMG/PieStyle_001.png"/></p> 
+<p align="center"><img width="240" src="../IMG/PieStyle_001.png"/></p> 
 <p align="center">
 <b>正常风格扇形</b>
 </p>
 </br>  
 
-<p align="center"><img width="240" src="IMG/PieStyle_002.png"/></p> 
+<p align="center"><img width="240" src="../IMG/PieStyle_002.png"/></p> 
 <p align="center">
 <b>齿轮状扇形</b>
 </p>
@@ -374,7 +347,7 @@ WYLineChart 包含一个长按手势，长按时会出现线上的实时数据�
 		 _pieView.rotatable = YES;  
 		 
   
-<p align="center"><img width="240" src="IMG/Rotatable_001.gif"/></p> 
+<p align="center"><img width="240" src="../IMG/Rotatable_001.gif"/></p> 
 <p align="center">
 <b>旋转扇形图</b>
 </p>
@@ -387,13 +360,13 @@ WYPieChart 有两种方式让你选中扇块，并触发代理方法`pieChartVie
 		_pieView.selectedStyle = kWYPieChartSectorSelectedExtraction;  
 
 
-<p align="center"><img width="240" src="IMG/PieSelectedStyle_001.gif"/></p> 
+<p align="center"><img width="240" src="../IMG/PieSelectedStyle_001.gif"/></p> 
 <p align="center">
 <b>弹出选中</b>
 </p>
 </br>  
 
-<p align="center"><img width="240" src="IMG/PieSelectedStyle_002.gif"/></p> 
+<p align="center"><img width="240" src="../IMG/PieSelectedStyle_002.gif"/></p> 
 <p align="center">
 <b>拉扯选中</b>
 </p>
@@ -411,7 +384,7 @@ WYPieChart 有两种方式让你选中扇块，并触发代理方法`pieChartVie
 
 例如，`kWYPieChartAnimationAllSpreading` 效果如下：
 
-<p align="center"><img width="240" src="IMG/PieAnimationStyle_001.gif"/></p> 
+<p align="center"><img width="240" src="../IMG/PieAnimationStyle_001.gif"/></p> 
 <p align="center">
 <b>一次性展开</b>
 </p>
@@ -423,7 +396,7 @@ WYPieChart 有两种方式让你选中扇块，并触发代理方法`pieChartVie
 
 属性 `showInnerCircle` 用于表面扇形是否为实心，也就是是否中心有留空圆，如果留空，你可以在上面添加一些标签，如总数标签。
 
-<p align="center"><img width="240" src="IMG/InnerCircle_001.png"/></p> 
+<p align="center"><img width="240" src="../IMG/InnerCircle_001.png"/></p> 
 <p align="center">
 <b>内嵌圆</b>
 </p>
@@ -434,7 +407,7 @@ WYPieChart 有两种方式让你选中扇块，并触发代理方法`pieChartVie
 属性`fillByGradient`默认是`NO`，如果你设置它为`YES`，每个扇块会以渐变填充。
 
 
-<p align="center"><img width="240" src="IMG/PieGradient_001.png"/></p> 
+<p align="center"><img width="240" src="../IMG/PieGradient_001.png"/></p> 
 <p align="center">
 <b>渐变填充</b>
 </p>
@@ -444,28 +417,6 @@ WYPieChart 有两种方式让你选中扇块，并触发代理方法`pieChartVie
 </br>
 </br>
 </br>
-
-##特性
-
-###v0.2.0
-* **支持同一个线图多条线段**
-* **支持每个数据点显示自定义内容高的标签**
-* **使用字典（键值对）来设置线段的外观，取代以往通过属性设置的方式**
-
-###v0.1.2
-* **修补bug：扇型图更换数据的时候刷新奔溃**
-
-###v0.1.1
-* **修补bug：线型图中X轴标签的数量未能和点的数量相同**
-
-###v0.1.0 (第一次发布)
-* **加入线型图和扇型图**
-* **线型图包含多种动画类型，如绘制，弹簧和上文介绍到的更多动画**
-* **线型图包含多种线条形状，如波浪贝塞尔、尖峰贝塞尔和直线**
-* **扇型图包含两种类型，正常圆形以及锯齿状扇形**
-* **扇型图包含多种动画类型，如弹簧、缩放以及上文介绍到的其它动画**
-* **扇型图包含两种交互方式，选择和拉动**
-
 ##联系方式
 
 如果你有任何问题或者有一些建议，我很期待你分享给我，可以在issue区发表或者发到我的邮箱[georgewang003@gmail.com](georgewang003@gmail.com)，这个👉[personal blog](http://blog.oneinbest.com)是我的个人博客，我会在上面发布一些关于WYChart技术的文章或其它的文章，谢谢！

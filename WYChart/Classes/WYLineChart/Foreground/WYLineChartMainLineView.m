@@ -13,12 +13,25 @@
 #import "WYLineChartCalculator.h"
 #import <objc/runtime.h>
 #import "WYChartCategory.h"
+#import "WYLineChartDefine.h"
 
 #define DEFAULT_LINE_WIDTH 2.5
 #define DEFAULT_WAVE_RANGE 25
 #define DEFAULT_RISE_HEIGHT 7
 #define DEFAULT_WAVE_AMPLITUDE 25
 #define DEFAULT_TIMING_FUNCTION [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]
+
+NSString * const kWYLineChartLineAttributeLineWidth = @"kWYLineChartLineAttributeLineWidth";
+NSString * const kWYLineChartLineAttributeLineStyle = @"kWYLineChartLineAttributeLineStyle";
+NSString * const kWYLineChartLineAttributeLineColor = @"kWYLineChartLineAttributeLineColor";
+NSString * const kWYLineChartLineAttributeLineDashPattern = @"kWYLineChartLineAttributeLineDashPattern";
+
+NSString * const kWYLineChartLineAttributeDrawGradient = @"kWYLineChartLineAttributeDrawGradient";
+
+NSString * const kWYLineChartLineAttributeShowJunctionShape = @"kWYLineChartLineAttributeShowJunctionShape";
+NSString * const kWYLineChartLineAttributeJunctionColor = @"kWYLineChartLineAttributeJunctionColor";
+NSString * const kWYLineChartLineAttributeJunctionStyle = @"kWYLineChartLineAttributeJunctionStyle";
+NSString * const kWYLineChartLineAttributeJunctionSize = @"kWYLineChartLineAttributeJunctionSize";
 
 @interface WYLineChartMainLineView ()
 
@@ -46,13 +59,16 @@
 
 - (void)drawRect:(CGRect)rect {
     
+    self.pathSegments = [_parentView.calculator recalculatePathSegmentsForPoints:_points
+                                                             withLineStyle:_style];
+    
     void(^DrawJunctionShape)() = ^{
         //* * * * * * * * * * * * * * * * * * * *//
         //          Draw Junction Shape          //
         //* * * * * * * * * * * * * * * * * * * *//
         if (_junctionStyle != kWYLineChartJunctionShapeNone && _showJunctionShape) {
             
-            [_parentView.points enumerateObjectsUsingBlock:^(WYLineChartPoint * point, NSUInteger idx, BOOL * _Nonnull stop) {
+            [_points enumerateObjectsUsingBlock:^(WYLineChartPoint * point, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 WYLineChartJunctionShape *shape = [[WYLineChartJunctionShape alloc] initWithStyle:_junctionStyle
                                                                                              size:_junctionSize
@@ -65,18 +81,22 @@
                 
                 CGFloat delay;
                 delay = _animationStyle == kWYLineChartAnimationSpring ?
-                _animationDuration*idx/_parentView.points.count + _animationDuration
-                : _animationDuration*idx/_parentView.points.count;
+                _animationDuration*idx/_points.count + _animationDuration
+                : _animationDuration*idx/_points.count;
+                
+                [self addSubview:shape];
                 
                 [self addScaleSpringAnimationForView:shape reverse:false
                                                delay:delay
                                           forKeyPath:@"original"];
-                [self addSubview:shape];
             }];
         }
     };
     
-    if (_parentView.points.count < 2) {
+    [[self subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [[self.layer sublayers] makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
+    
+    if (_points.count < 2) {
         
         DrawJunctionShape();
         return;
@@ -87,10 +107,7 @@
     CGFloat boundsWidth = CGRectGetWidth(self.bounds);
     CGFloat boundsHeight = CGRectGetHeight(self.bounds);
 #pragma clang diagnostic pop
-    
-    [[self subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [[self.layer sublayers] makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
-    
+
     // add touchView to self
     if (_touchView) [self addSubview:_touchView];
     
@@ -113,8 +130,8 @@
     CGPoint firstPoint, lastPoint;
     CGPoint heighestPoint;
     
-    firstPoint = ((WYLineChartPoint *)[_parentView.points firstObject]).point;
-    lastPoint = ((WYLineChartPoint *)[_parentView.points lastObject]).point;
+    firstPoint = ((WYLineChartPoint *)[_points firstObject]).point;
+    lastPoint = ((WYLineChartPoint *)[_points lastObject]).point;
     
     UIBezierPath *linePath;
     UIBezierPath *linePathLower;
@@ -129,7 +146,7 @@
         
         // 1.set up layer
         lineLayer = [CAShapeLayer layer];
-        lineLayer.strokeColor = _lineColor.CGColor;//_lineStrokeColor.CGColor;
+        lineLayer.strokeColor = _lineColor.CGColor;
         lineLayer.fillColor = [UIColor clearColor].CGColor;
         lineLayer.backgroundColor = [UIColor clearColor].CGColor;
         lineLayer.lineWidth = _lineWidth;
@@ -145,7 +162,7 @@
             linePath = [UIBezierPath bezierPath];
             linePathLower = [UIBezierPath bezierPath];
             linePathHigher = [UIBezierPath bezierPath];
-            point = _parentView.points[0];
+            point = _points[0];
             //
             //        currentPoint = CGPointMake(point.x, point.y);
             //        currentLowerPoint = CGPointMake(point.x, point.y - DEFAULT_WAVE_RANGE);
@@ -195,11 +212,14 @@
     UIBezierPath *gradientPath;
     UIBezierPath *gradientPathLower;
     
-    if (_parentView.drawGradient && _style != kWYLineChartMainNoneLine) {
+    if (_drawGradient && _style != kWYLineChartMainNoneLine) {
         
         // transfer UIColor to CGColor
-        NSMutableArray *cgColors = [NSMutableArray arrayWithCapacity:_parentView.gradientColors.count];
-        [_parentView.gradientColors enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSArray *gradientColors = @[[_lineColor colorWithAlphaComponent:0.6],
+                                    [_lineColor colorWithAlphaComponent:0.0]];
+        NSArray *gradientLocation = @[@0, @.95];
+        NSMutableArray *cgColors = [NSMutableArray arrayWithCapacity:gradientColors];
+        [gradientColors enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             CGColorRef cgColor;
             if ([obj isKindOfClass:[UIColor class]]) {
                 cgColor = ((UIColor *)obj).CGColor;
@@ -218,14 +238,14 @@
         [gradientLayer setFrame:self.bounds];
         gradientLayer.mask = maskLayer;
         gradientLayer.colors = cgColors;
-        gradientLayer.locations = _parentView.gradientColorsLocation;
+        gradientLayer.locations = gradientLocation;
         
         [self.layer addSublayer:gradientLayer];
         
         // if animation style is wave, we got to do other jobs later
         if (_animationStyle != kWYLineChartAnimationSpring) {
             
-            heighestPoint = [_parentView.calculator maxValueOfPoints:_parentView.points].point;
+            //heighestPoint = [_parentView.calculator maxValueOfPoints:_parentView.points].point;
             
             gradientPath = [UIBezierPath bezierPathWithCGPath:linePath.CGPath];
             gradientPathLower = [UIBezierPath bezierPathWithCGPath:linePathLower.CGPath];
@@ -330,7 +350,7 @@
         __block UIView *shape;
         CGFloat middleY = (firstPoint.y + lastPoint.y) / 2;
         NSMutableArray *controlPoints = [NSMutableArray array];
-        [_parentView.points enumerateObjectsUsingBlock:^(WYLineChartPoint * point, NSUInteger idx, BOOL * _Nonnull stop) {
+        [_points enumerateObjectsUsingBlock:^(WYLineChartPoint * point, NSUInteger idx, BOOL * _Nonnull stop) {
             
             shape = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 2, 2)];
             
@@ -350,7 +370,7 @@
                             options:0//UIViewAnimationOptionCurveEaseOut
                          animations:^{
                              [_animationControlPoints enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL * _Nonnull stop) {
-                                 view.center = CGPointMake(view.center.x, ((WYLineChartPoint *)_parentView.points[idx]).y);
+                                 view.center = CGPointMake(view.center.x, ((WYLineChartPoint *)_points[idx]).y);
                              }];
                          } completion:^(BOOL finished) {
                              if (finished) {
@@ -365,6 +385,11 @@
 
 
 #pragma mark - setter and getter
+
+- (void)setTouchable:(BOOL)touchable {
+    _touchable = touchable;
+    _pressGestureRecognize.enabled = _touchable;
+}
 
 - (void)setTouchView:(UIView *)touchView {
     
@@ -404,7 +429,7 @@
 
 - (void)handleWaveFrameUpdate {
     
-    [_parentView.points enumerateObjectsUsingBlock:^(WYLineChartPoint *point, NSUInteger idx, BOOL * _Nonnull stop) {
+    [_points enumerateObjectsUsingBlock:^(WYLineChartPoint *point, NSUInteger idx, BOOL * _Nonnull stop) {
         UIView *view = _animationControlPoints[idx];
         point.x = [view wy_centerForPresentationLayer:true].x;
         point.y = [view wy_centerForPresentationLayer:true].y;
@@ -413,10 +438,10 @@
     UIBezierPath *linePath = [self currentLinePathForWave];
     _lineShapeLayer.path = linePath.CGPath;
     
-    if (_parentView.drawGradient) {
+    if (_drawGradient) {
         WYLineChartPoint *firstPoint, *lastPoint;
-        firstPoint = [_parentView.points firstObject];
-        lastPoint = [_parentView.points lastObject];
+        firstPoint = [_points firstObject];
+        lastPoint = [_points lastObject];
         
         UIBezierPath *gradientPath = [UIBezierPath bezierPathWithCGPath:linePath.CGPath];
         [gradientPath addLineToPoint:CGPointMake(lastPoint.x, self.wy_boundsHeight)];
@@ -429,12 +454,12 @@
 
 - (UIBezierPath *)currentLinePathForWave {
     
-    NSArray *segments = [_parentView.calculator recalculatePathSegmentsForPoints:_parentView.points withLineStyle:_style];
+    NSArray *segments = [_parentView.calculator recalculatePathSegmentsForPoints:_points withLineStyle:_style];
     
     UIBezierPath *linePath = [UIBezierPath bezierPath];
     
     WYLineChartPathSegment *pathSegment;
-    WYLineChartPoint *point = _parentView.points[0];
+    WYLineChartPoint *point = _points[0];
     
     [linePath moveToPoint:CGPointMake(point.x, point.y)];
     
@@ -465,6 +490,7 @@
     _pressGestureRecognize = [[UILongPressGestureRecognizer alloc] init];
     [_pressGestureRecognize addTarget:self action:@selector(handleGestureRecognize:)];
     _pressGestureRecognize.minimumPressDuration = 0.7;
+    _pressGestureRecognize.enabled = _touchable;
     [self addGestureRecognizer:_pressGestureRecognize];
 }
 
@@ -474,7 +500,6 @@
     CGPoint location = [recognize locationInView:self];
     NSLog(@"location : %@", NSStringFromCGPoint(location));
     
-    
     WYLineChartPoint *originalPoint;
     WYLineChartPathSegment *segment;
     CGFloat locationOnBezierPath;
@@ -483,8 +508,8 @@
     CGFloat maxX, minX;
     SEL selector = nil;
     
-    maxX = ((WYLineChartPoint *)[_parentView.points lastObject]).x - 1;
-    minX = ((WYLineChartPoint *)[_parentView.points firstObject]).x + 1;
+    maxX = ((WYLineChartPoint *)[_points lastObject]).x - 1;
+    minX = ((WYLineChartPoint *)[_points firstObject]).x + 1;
     
     segment = [_parentView.calculator segmentForPoint:location
                                            inSegments:_pathSegments];
@@ -494,7 +519,7 @@
             && (recognize.state == UIGestureRecognizerStateEnded
                 || recognize.state == UIGestureRecognizerStateCancelled
                 || recognize.state == UIGestureRecognizerStateRecognized)) {
-            originalPoint = movingPoint.x <= minX ? [_parentView.points firstObject] : [_parentView.points lastObject];
+            originalPoint = movingPoint.x <= minX ? [_points firstObject] : [_points lastObject];
             movingPoint = originalPoint.point;
             [self addScaleSpringAnimationForView:_movingPoint reverse:true delay:0 forKeyPath:@"moving"];
             selector = @selector(mainLineView:didEndedTouchAtPoint:belongToSegmentOfPoint:);
@@ -550,8 +575,6 @@
         }
     }
     
-    
-    
     if (selector) {
         NSMethodSignature *signature = [_parentView methodSignatureForSelector:selector];
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
@@ -594,11 +617,18 @@
     [view.layer addAnimation:groundAnimation forKey:nil];
 }
 
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+- (void)animationDidStart:(CAAnimation *)anim {
     
     CALayer *layer = [anim valueForKeyPath:@"original"];
     if (layer) {
         layer.opacity = 1.0;
+    }
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    
+    CALayer *layer = [anim valueForKeyPath:@"original"];
+    if (layer) {
         [anim setValue:nil forKeyPath:@"original"];
     }
 }

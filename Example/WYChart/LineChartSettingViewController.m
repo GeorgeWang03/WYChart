@@ -16,20 +16,28 @@ NSString const *kLineChartLineStyle = @"kLineChartLineStyle";
 NSString const *kLineChartDrawGradient = @"kLineChartDrawGradient";
 NSString const *kLineChartJunctionStyle = @"kLineChartJunctionStyle";
 NSString const *kLineChartBackgroundColor = @"kLineChartBackgroundColor";
+NSString const *kLineChartLineAttributes = @"kLineChartLineAttributes";
 
 #define ANIMATION_PICKER_VIEW_TAG 100
 #define LINE_STYLE_PICKER_VIEW_TAG 200
 #define JUNCTION_STYLE_PICKER_VIEW_TAG 300
 #define BACKGROUND_COLOR_PICKER_VIEW_TAG 400
+#define LINE_INDEX_PICK_VIEW_TAG 500
 
-#define COLOR_1TH [UIColor colorWithRed:12.f/255.f green:71.f/255.f blue:98.f/255.f alpha:0.9]
+#define COLOR_1TH [UIColor whiteColor]
 #define COLOR_2ND [UIColor colorWithRed:166.f/255.f green:54.f/255.f blue:54.f/255.f alpha:0.9]
 #define COLOR_3RD [UIColor colorWithRed:249.f/255.f green:197.f/255.f blue:53.f/255.f alpha:0.9]
+#define COLOR_4TH [UIColor colorWithRed:12.f/255.f green:71.f/255.f blue:98.f/255.f alpha:0.9]
 
 @interface LineChartSettingViewController () <UIPickerViewDelegate,
                                               UIPickerViewDataSource>
 
 @property (nonatomic, strong) UILabel *animationDurationLabel;
+@property (nonatomic) NSUInteger currentLineIndex;
+
+@property (nonatomic, strong) UIPickerView *lineStylePickView;
+@property (nonatomic, strong) UISwitch *drawGradientSwitch;
+@property (nonatomic, strong) UIPickerView *junctionShapePickView;
 
 @end
 
@@ -42,13 +50,25 @@ NSString const *kLineChartBackgroundColor = @"kLineChartBackgroundColor";
                        @(kWYLineChartAnimationDrawing), kLineChartAnimationStyle,
                        @(false), kLineChartScrollable,
                        @(true), kLineChartPinchable,
-                       @(kWYLineChartMainBezierWaveLine), kLineChartLineStyle,
-                       @(true), kLineChartDrawGradient,
-                       @(kWYLineChartJunctionShapeSolidCircle), kLineChartJunctionStyle,
                        COLOR_1TH, kLineChartBackgroundColor,
+                       [NSMutableArray array], kLineChartLineAttributes,
                        nil];
     }
     return self;
+}
+
+- (NSMutableDictionary *)getLineAttributesAtIndex:(NSUInteger)index {
+    if (!_parameters[kLineChartLineAttributes]) {
+        _parameters[kLineChartLineAttributes] = [NSMutableArray array];
+    }
+    
+    NSMutableArray *lineAttributes = _parameters[kLineChartLineAttributes];
+    while (lineAttributes.count <= index) {
+        [lineAttributes addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:@(kWYLineChartMainBezierWaveLine), kLineChartLineStyle,
+                                   @(true), kLineChartDrawGradient,
+                                   @(kWYLineChartJunctionShapeSolidCircle), kLineChartJunctionStyle, nil]];
+    }
+    return lineAttributes[index];
 }
 
 - (void)viewDidLoad {
@@ -146,6 +166,29 @@ NSString const *kLineChartBackgroundColor = @"kLineChartBackgroundColor";
     height = 20;
     label = [[UILabel alloc] initWithFrame:CGRectMake(20, y, 100, height)];
     label.font = [UIFont systemFontOfSize:12.f];
+    label.text = @"Line Index";
+    [scrollView addSubview:label];
+    
+    x = 20;
+    width = boundsWidth - 40;
+    y += (10+height);
+    height = 200;
+    pickView = [[UIPickerView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    pickView.dataSource = self;
+    pickView.delegate = self;
+    pickView.tag = LINE_INDEX_PICK_VIEW_TAG;
+    //    NSLog(@"pick index = %lu", [_parameters[kLineChartLineStyle] unsignedIntegerValue]);
+    _currentLineIndex = 0;
+    [pickView selectRow:_currentLineIndex
+            inComponent:0 animated:false];
+    [scrollView addSubview:pickView];
+    
+    NSDictionary *lineAttributes = [self getLineAttributesAtIndex:_currentLineIndex];
+    
+    y = y+height+5;
+    height = 20;
+    label = [[UILabel alloc] initWithFrame:CGRectMake(20, y, 100, height)];
+    label.font = [UIFont systemFontOfSize:12.f];
     label.text = @"Line Style";
     [scrollView addSubview:label];
     
@@ -158,8 +201,9 @@ NSString const *kLineChartBackgroundColor = @"kLineChartBackgroundColor";
     pickView.delegate = self;
     pickView.tag = LINE_STYLE_PICKER_VIEW_TAG;
 //    NSLog(@"pick index = %lu", [_parameters[kLineChartLineStyle] unsignedIntegerValue]);
-    [pickView selectRow:[_parameters[kLineChartLineStyle] unsignedIntegerValue]
+    [pickView selectRow:[lineAttributes[kLineChartLineStyle] unsignedIntegerValue]
             inComponent:0 animated:false];
+    _lineStylePickView = pickView;
     [scrollView addSubview:pickView];
     
     y = y+height+5;
@@ -174,7 +218,8 @@ NSString const *kLineChartBackgroundColor = @"kLineChartBackgroundColor";
     switcher.tintColor = [UIColor cyanColor];
     [switcher addTarget:self action:@selector(gradientSwitchDidChange:)
        forControlEvents:UIControlEventValueChanged];
-    switcher.on = [_parameters[kLineChartDrawGradient] boolValue];
+    switcher.on = [lineAttributes[kLineChartDrawGradient] boolValue];
+    _drawGradientSwitch = switcher;
     [scrollView addSubview:switcher];
     
     y = y+height+5;
@@ -193,8 +238,9 @@ NSString const *kLineChartBackgroundColor = @"kLineChartBackgroundColor";
     pickView.delegate = self;
     pickView.tag = JUNCTION_STYLE_PICKER_VIEW_TAG;
 //    NSLog(@"pick index = %lu", [_parameters[kLineChartJunctionStyle] unsignedIntegerValue]);
-    [pickView selectRow:[_parameters[kLineChartJunctionStyle] unsignedIntegerValue]
+    [pickView selectRow:[lineAttributes[kLineChartJunctionStyle] unsignedIntegerValue]
             inComponent:0 animated:false];
+    _junctionShapePickView = pickView;
     [scrollView addSubview:pickView];
     
     y = y+height+5;
@@ -208,7 +254,7 @@ NSString const *kLineChartBackgroundColor = @"kLineChartBackgroundColor";
     x = 20;
     y += (10+height);
     height = 40;
-    UISegmentedControl *segmentControl = [[UISegmentedControl alloc] initWithItems:@[@"DarkBlue",@"Red",@"Yellow"]];
+    UISegmentedControl *segmentControl = [[UISegmentedControl alloc] initWithItems:@[@"White",@"DarkBlue",@"Red",@"Yellow"]];
     segmentControl.frame = CGRectMake(x, y, width, height);
     segmentControl.tintColor = [UIColor cyanColor];
     segmentControl.selectedSegmentIndex = 0;
@@ -236,6 +282,9 @@ NSString const *kLineChartBackgroundColor = @"kLineChartBackgroundColor";
         case 2:
             _parameters[kLineChartBackgroundColor] = COLOR_3RD;
             break;
+        case 3:
+            _parameters[kLineChartBackgroundColor] = COLOR_4TH;
+            break;
         default:
             break;
     }
@@ -253,7 +302,8 @@ NSString const *kLineChartBackgroundColor = @"kLineChartBackgroundColor";
 
 - (void)gradientSwitchDidChange:(UISwitch *)sender {
 //    NSLog(@"rotatable switch = %lu", sender.on);
-    _parameters[kLineChartDrawGradient] = @(sender.on);
+    NSMutableDictionary *lineAttributes = [self getLineAttributesAtIndex:_currentLineIndex];
+    lineAttributes[kLineChartDrawGradient] = @(sender.on);
 }
 
 #pragma mark - pickerView delegate and dataSource
@@ -270,6 +320,9 @@ NSString const *kLineChartBackgroundColor = @"kLineChartBackgroundColor";
     }
     if (pickerView.tag == JUNCTION_STYLE_PICKER_VIEW_TAG) {
         return 9;
+    }
+    if (pickerView.tag == LINE_INDEX_PICK_VIEW_TAG) {
+        return 10;
     }
     return 0;
 }
@@ -308,6 +361,9 @@ NSString const *kLineChartBackgroundColor = @"kLineChartBackgroundColor";
             default:
                 break;
         }
+    }
+    if (pickerView.tag == LINE_INDEX_PICK_VIEW_TAG) {
+        title = [NSString stringWithFormat:@"%lu", row];
     }
     if (pickerView.tag == LINE_STYLE_PICKER_VIEW_TAG) {
         switch (row) {
@@ -365,14 +421,28 @@ NSString const *kLineChartBackgroundColor = @"kLineChartBackgroundColor";
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     NSLog(@"animation style = %lu", row);
+    NSMutableDictionary *lineAttributes = [self getLineAttributesAtIndex:_currentLineIndex];
+    if (pickerView.tag == LINE_INDEX_PICK_VIEW_TAG) {
+        _currentLineIndex = row;
+        lineAttributes = [self getLineAttributesAtIndex:_currentLineIndex];
+        [_lineStylePickView selectRow:[lineAttributes[kLineChartLineStyle] unsignedIntegerValue]
+                          inComponent:0
+                             animated:false];
+        _drawGradientSwitch.on = [lineAttributes[kLineChartDrawGradient] boolValue];
+        [_junctionShapePickView selectRow:[lineAttributes[kLineChartJunctionStyle] unsignedIntegerValue]
+                                            inComponent:0
+                                           animated:false];
+        return;
+    }
+    
     if (pickerView.tag == ANIMATION_PICKER_VIEW_TAG) {
         _parameters[kLineChartAnimationStyle] = @(row);
     }
     if (pickerView.tag == LINE_STYLE_PICKER_VIEW_TAG) {
-        _parameters[kLineChartLineStyle] = @(row);
+        lineAttributes[kLineChartLineStyle] = @(row);
     }
     if (pickerView.tag == JUNCTION_STYLE_PICKER_VIEW_TAG) {
-        _parameters[kLineChartJunctionStyle] = @(row);
+        lineAttributes[kLineChartJunctionStyle] = @(row);
     }
     
 }

@@ -21,9 +21,9 @@
     
     CGFloat gapBetweenPoints = [_parentView.delegate gapBetweenPointsHorizontalInLineChartView:_parentView];
     
-    CGFloat width = (_parentView.points.count - 1) * gapBetweenPoints + _parentView.lineLeftMargin + _parentView.lineRightMargin;
+    CGFloat width = ([self maxPointIndex] - 1) * gapBetweenPoints + _parentView.lineLeftMargin + _parentView.lineRightMargin;
     
-    return width > self.lineGraphWindowWidth ? width : self.lineGraphWindowWidth;
+    return fmax( width , self.lineGraphWindowWidth );
 }
 
 - (CGFloat)drawableAreaHeight {
@@ -50,7 +50,7 @@
     
     maxIndex = [_parentView.delegate numberOfLabelOnXAxisInLineChartView:_parentView] - 1;
     lastLabelPoint = [_parentView.datasource lineChartView:_parentView pointReferToXAxisLabelAtIndex:maxIndex];
-    lastPoint = [_parentView.points lastObject];
+    lastPoint = [[self arrayContainedMostPoints] lastObject];
     
     p2 = [_parentView.datasource lineChartView:_parentView pointReferToXAxisLabelAtIndex:index];
     if (p2.index > 0) {
@@ -69,7 +69,7 @@
         rightWidth = leftWidth > rightAvaliableSpace ? rightAvaliableSpace : leftWidth;
     }
     
-    if (p1.index > 0 && p1.index < _parentView.points.count - 1) {
+    if (p1.index > 0 && p1.index < [self arrayContainedMostPoints].count - 1) {
         width = MIN(leftWidth, rightWidth) * 2;
     } else {
         width = leftWidth + rightWidth;
@@ -79,7 +79,7 @@
 
 - (CGFloat)yAxisLabelWidth {
     
-    CGFloat maxValueOfPoints = [_parentView.delegate maxValueForPointsInLineChartView:_parentView];
+    CGFloat maxValueOfPoints = [[self maxValuePointsOfLinesPointSet:_parentView.points] value];
     NSString *valueString = [NSString stringWithFormat:@"%.0f", maxValueOfPoints];
     
     NSDictionary *attributes = @{NSFontAttributeName:_parentView.labelsFont};
@@ -110,7 +110,7 @@
     if (_parentView.scrollable) {
         gap = [_parentView.delegate gapBetweenPointsHorizontalInLineChartView:_parentView];
     } else {
-        gap = (self.drawableAreaWidth - _parentView.lineLeftMargin - _parentView.lineRightMargin) / (_parentView.points.count - 1);
+        gap = (self.drawableAreaWidth - _parentView.lineLeftMargin - _parentView.lineRightMargin) / ([self maxPointIndex] - 1);
     }
     
     x = _parentView.lineLeftMargin + gap * index;
@@ -119,18 +119,17 @@
     return x;
 }
 
-- (CGFloat)yLocationForPointAtIndex:(NSInteger)index {
-    
-    WYLineChartPoint *point = _parentView.points[index];
-    
-    return [self yLocationForPointsValue:point.value];
-}
-
 - (CGFloat)yLocationForPointsValue:(CGFloat)value {
     
     CGFloat y;
-    CGFloat maxValue = [_parentView.delegate maxValueForPointsInLineChartView:_parentView];
-    CGFloat minValue = [_parentView.delegate minValueForPointsInLineChartView:_parentView];
+    CGFloat maxValue = [[self filterPointsOfLinesPointSet:_parentView.points
+                                         comparatorBlock:^BOOL(WYLineChartPoint *firstPoint, WYLineChartPoint *secondPoint) {
+                                             return firstPoint.value > secondPoint.value;
+                                         }] value];
+    CGFloat minValue = [[self filterPointsOfLinesPointSet:_parentView.points
+                                          comparatorBlock:^BOOL(WYLineChartPoint *firstPoint, WYLineChartPoint *secondPoint) {
+                                              return firstPoint.value < secondPoint.value;
+                                          }] value];
     CGFloat differ = maxValue - minValue;
     CGFloat pixels = self.drawableAreaHeight - (_parentView.lineTopMargin + 30.f) - _parentView.lineBottomMargin;
     
@@ -142,12 +141,19 @@
 
 - (void)recaclculatePointsCoordinate {
     
-    if (_parentView.points.count == 0) return;
+    [_parentView.points enumerateObjectsUsingBlock:^(NSArray * points, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self calculatePointsCoordinate:points];
+    }];
+}
+
+- (void)calculatePointsCoordinate:(NSArray *)points {
     
-    [_parentView.points enumerateObjectsUsingBlock:^(WYLineChartPoint * point, NSUInteger idx, BOOL * _Nonnull stop) {
+    if (points.count == 0) return;
+    
+    [points enumerateObjectsUsingBlock:^(WYLineChartPoint * point, NSUInteger idx, BOOL * _Nonnull stop) {
         
         point.index = (NSInteger)idx;
-        point.y = [self yLocationForPointAtIndex:idx];
+        point.y = [self yLocationForPointsValue:point.value];
         point.x = [self xLocationForPointAtIndex:idx];
     }];
 }
@@ -246,22 +252,47 @@
     }
 }
 
-- (WYLineChartPoint *)maxValueOfPoints:(NSArray *)points {
+- (WYLineChartPoint *)maxValuePointsOfLinesPointSet:(NSArray *)pointSet {
     
-    if (!points.count) return nil;
+    return [self filterPointsOfLinesPointSet:pointSet
+                             comparatorBlock:^BOOL(WYLineChartPoint *firstPoint, WYLineChartPoint *secondPoint) {
+                                 return firstPoint.value > secondPoint.value;
+                             }];
+}
+
+- (WYLineChartPoint *)minValuePointsOfLinesPointSet:(NSArray *)pointSet {
     
-    WYLineChartPoint *maxPoint;
+    return [self filterPointsOfLinesPointSet:pointSet
+                             comparatorBlock:^BOOL(WYLineChartPoint *firstPoint, WYLineChartPoint *secondPoint) {
+                                 return firstPoint.value < secondPoint.value;
+                             }];
+}
+
+- (WYLineChartPoint *)filterPointsOfLinesPointSet:(NSArray *)pointSet  comparatorBlock:(BOOL (^)(WYLineChartPoint *firstPoint, WYLineChartPoint *secondPoint))block {
+    
+    if (!pointSet.count) return nil;
+    
+    WYLineChartPoint *resultPoint;
     WYLineChartPoint *currentPoint;
-    maxPoint = points[0];
+    NSArray *currentSet;
     
-    for (NSInteger idx = 1; idx < points.count; ++idx) {
+    currentSet = pointSet[0];
+    NSAssert([currentSet isKindOfClass:[NSArray class]], @"object in point set should be member of NSArray class");
+    resultPoint = [WYLineChartPoint filterPointFromArray:currentSet
+                                         comparatorBlock:block];
+    
+    for (NSInteger idx = 1; idx < pointSet.count; ++idx) {
         
-        currentPoint = points[idx];
-        if (currentPoint.value > maxPoint.value) {
-            maxPoint = currentPoint;
+        currentSet = pointSet[idx];
+        NSAssert([currentSet isKindOfClass:[NSArray class]], @"object in point set should be member of NSArray class");
+        
+        currentPoint = [WYLineChartPoint filterPointFromArray:currentSet
+                                              comparatorBlock:block];
+        if (block(currentPoint, resultPoint)) {
+            resultPoint = currentPoint;
         }
     }
-    return maxPoint;
+    return resultPoint;
 }
 
 - (WYLineChartPathSegment *)segmentForPoint:(CGPoint)point inSegments:(NSArray *)segments {
@@ -277,6 +308,23 @@
         }
     }
     return segment;
+}
+
+- (NSInteger)maxPointIndex {
+    return [[self arrayContainedMostPoints] count];
+}
+
+- (NSArray *)arrayContainedMostPoints {
+    if (!_parentView.points.count) return nil;
+    
+    NSArray *resultArray = _parentView.points[0];
+    for (NSArray *array in _parentView.points) {
+        NSAssert([array isKindOfClass:[NSArray class]], @"object in points should be member of NSArray class. ");
+        if (resultArray.count < array.count) {
+            resultArray = array;
+        }
+    }
+    return resultArray;
 }
 
 ///////--------------------------------------- About Bezier Path ------------------------------------------///////
@@ -307,14 +355,21 @@
 
 - (CGFloat)calculateAverageForPoints:(NSArray *)points {
     
-    CGFloat average = 0;
+    return [self calculateAverageForPointsSet:@[points]];
+}
+
+- (CGFloat)calculateAverageForPointsSet:(NSArray *)pointsSet {
+    
     __block CGFloat sum = 0;
-    [points enumerateObjectsUsingBlock:^(WYLineChartPoint * obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        sum += obj.value;
-    }];
+    __block CGFloat count = 0;
+    for (NSArray *points in pointsSet) {
+        [points enumerateObjectsUsingBlock:^(WYLineChartPoint * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            sum += obj.value;
+            count ++;
+        }];
+    }
     
-    average = (CGFloat)sum / points.count;
-    
+    CGFloat average = (CGFloat)sum / count;
     return average;
 }
 
@@ -325,8 +380,14 @@
 - (CGFloat)valueReferToVerticalLocation:(CGFloat)location {
     
     CGFloat value;
-    CGFloat maxValue = [_parentView.delegate maxValueForPointsInLineChartView:_parentView];
-    CGFloat minValue = [_parentView.delegate minValueForPointsInLineChartView:_parentView];
+    CGFloat maxValue = [[self filterPointsOfLinesPointSet:_parentView.points
+                                          comparatorBlock:^BOOL(WYLineChartPoint *firstPoint, WYLineChartPoint *secondPoint) {
+                                              return firstPoint.value > secondPoint.value;
+                                          }] value];
+    CGFloat minValue = [[self filterPointsOfLinesPointSet:_parentView.points
+                                          comparatorBlock:^BOOL(WYLineChartPoint *firstPoint, WYLineChartPoint *secondPoint) {
+                                              return firstPoint.value < secondPoint.value;
+                                          }] value];
     CGFloat differ = maxValue - minValue;
     CGFloat pixels = self.drawableAreaHeight - (_parentView.lineTopMargin + 30.f) - _parentView.lineBottomMargin;
     

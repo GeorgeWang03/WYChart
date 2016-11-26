@@ -7,102 +7,34 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WYLineChartDefine.h"
 #import "WYLineChartJunctionShape.h"
 
-@class WYLineChartView;
-@class WYLineChartPoint;
-@class WYLineChartCalculator;
-
-typedef NS_ENUM(NSUInteger, WYLineChartAnimationStyle) {
-    
-    kWYLineChartAnimationDrawing,
-    kWYLineChartAnimationAlpha,
-    kWYLineChartAnimationWidth,
-    kWYLineChartAnimationRise,
-    kWYLineChartAnimationSpring,
-    kWYLineChartNoneAnimation
-};
-
-typedef NS_ENUM(NSUInteger, WYLineChartMainLineStyle) {
-    
-    kWYLineChartMainStraightLine,
-    
-    kWYLineChartMainBezierWaveLine,
-    
-    kWYLineChartMainBezierTaperLine,
-    
-    kWYLineChartMainNoneLine
-};
-
-typedef NS_OPTIONS(NSUInteger, WYLineChartViewScaleOption) {
-    
-    kWYLineChartViewScaleNarrow = 1 << 0,
-    
-    kWYLineChartViewScaleLarge = 1 << 1,
-    
-    kWYLineChartViewScaleNoChange = 1 << 2
-};
-
-@protocol WYLineChartViewDelegate <NSObject>
-
-@required
-
-- (NSInteger)numberOfLabelOnXAxisInLineChartView:(WYLineChartView *)chartView;
-
-- (CGFloat)gapBetweenPointsHorizontalInLineChartView:(WYLineChartView *)chartView;
-
-- (CGFloat)maxValueForPointsInLineChartView:(WYLineChartView *)chartView;
-
-- (CGFloat)minValueForPointsInLineChartView:(WYLineChartView *)chartView;
-
-@optional
-
-- (NSInteger)numberOfReferenceLineVerticalInLineChartView:(WYLineChartView *)chartView;
-
-- (NSInteger)numberOfReferenceLineHorizontalInLineChartView:(WYLineChartView *)chartView;
-
-- (void)lineChartView:(WYLineChartView *)lineView didBeganTouchAtSegmentOfPoint:(WYLineChartPoint *)originalPoint value:(CGFloat)value;
-
-- (void)lineChartView:(WYLineChartView *)lineView didMovedTouchToSegmentOfPoint:(WYLineChartPoint *)originalPoint value:(CGFloat)value;
-
-- (void)lineChartView:(WYLineChartView *)lineView didEndedTouchToSegmentOfPoint:(WYLineChartPoint *)originalPoint value:(CGFloat)value;
-
-- (void)lineChartView:(WYLineChartView *)lineView didBeganPinchWithScale:(CGFloat)scale;
-
-- (void)lineChartView:(WYLineChartView *)lineView didChangedPinchWithScale:(CGFloat)scale;
-
-- (void)lineChartView:(WYLineChartView *)lineView didEndedPinchGraphWithOption:(WYLineChartViewScaleOption)option scale:(CGFloat)scale;
-
-@end
-
-@protocol WYLineChartViewDatasource <NSObject>
-
-@required
-
-- (NSString *)lineChartView:(WYLineChartView *)chartView contentTextForXAxisLabelAtIndex:(NSInteger)index;
-
-- (WYLineChartPoint *)lineChartView:(WYLineChartView *)chartView pointReferToXAxisLabelAtIndex:(NSInteger)index;
-
-@optional
-
-- (WYLineChartPoint *)lineChartView:(WYLineChartView *)chartView pointReferToVerticalReferenceLineAtIndex:(NSInteger)index;
-
-- (CGFloat)lineChartView:(WYLineChartView *)chartView valueReferToHorizontalReferenceLineAtIndex:(NSInteger)index;
-
-@end
 
 @interface WYLineChartView : UIView
 
 ///////--------------------------------- Settable Property ------------------------------------///////
 
 @property (nonatomic, weak) id<WYLineChartViewDelegate> delegate;
-
 @property (nonatomic, weak) id<WYLineChartViewDatasource> datasource;
-//all the points on the graph
+
+// all the points of lines on the graph
+// the content should be:
+// /* points */@[
+//                  /* line 0 */ @[
+//                                 /* point 0 */ (WYLineChartPoint *)point0, point1, point2 ...
+//                                 ],
+//                  /* line 1 */ @[
+//                                 /* point 0 */ (WYLineChartPoint *)point0, point1, point2 ...
+//                                 ],
+//              ]
+// v0.2.0
 @property (nonatomic, strong) NSArray *points;
-//means if the line graph can scroll
-//default YES.
+
+// define if the line graph can scroll
+// default YES.
 @property (nonatomic) BOOL scrollable;
+
 //default NO
 @property (nonatomic) BOOL pinchable;
 
@@ -111,37 +43,28 @@ typedef NS_OPTIONS(NSUInteger, WYLineChartViewScaleOption) {
 @property (nonatomic) CGFloat lineTopMargin;
 @property (nonatomic) CGFloat lineBottomMargin;
 
-@property (nonatomic) UIColor *lineColor;
-@property (nonatomic) CGFloat lineWidth;
-@property (nonatomic, copy) NSArray *lineDashPattern;
-
+// including xAxis, yAxis, yAxis prefix and suffix
 @property (nonatomic, strong) UIFont *labelsFont;
 @property (nonatomic, strong) UIColor *labelsColor;
+// point label
+@property (nonatomic, strong) UIColor *pointsLabelsColor;
+@property (nonatomic, strong) UIColor *pointsLabelsBackgroundColor;
 
 @property (nonatomic, strong) UIColor *axisColor;
 
 @property (nonatomic, strong) NSString *yAxisHeaderPrefix;
 @property (nonatomic, strong) NSString *yAxisHeaderSuffix;
 
-// define if drawing gradient below line, default is YES.
-@property (nonatomic) BOOL drawGradient;
-@property (nonatomic, copy) NSArray *gradientColors;
-@property (nonatomic, copy) NSArray *gradientColorsLocation;
-
 @property (nonatomic) WYLineChartAnimationStyle animationStyle;
 @property (nonatomic) CGFloat animationDuration;
-
-@property (nonatomic) WYLineChartMainLineStyle lineStyle;
-
-@property (nonatomic) BOOL showJunctionShape;
-@property (nonatomic) WYLineChartJunctionShapeStyle junctionStyle;
-@property (nonatomic) WYLineChartJunctionShapeSize junctionSize;
-@property (nonatomic, copy) UIColor *junctionColor;
 
 @property (nonatomic) WYLineChartJunctionShapeStyle touchPointStyle;
 @property (nonatomic) WYLineChartJunctionShapeSize touchPointSize;
 @property (nonatomic, copy) UIColor *touchPointColor;
 
+// define if the touch point and reference line will show when longpress
+// default is YES. When line`s cout more than 1 (also means lineChartView.points.cout > 1) in the graph, it will be set to NO which means touch point and reference line will not show.
+@property (nonatomic) BOOL touchable; // v0.2.0
 @property (nonatomic) CGFloat touchReferenceLineAlpha;
 @property (nonatomic) CGFloat touchReferenceLineWidth;
 @property (nonatomic, copy) NSArray *touchReferenceLineDashPattern;

@@ -11,6 +11,7 @@
 #import "LineChartViewController.h"
 #import "WYChartCategory.h"
 #import "LineChartSettingViewController.h"
+#import "WYLineChartCalculator.h"
 
 @interface LineChartViewController () <WYLineChartViewDelegate,
                                        WYLineChartViewDatasource>
@@ -44,18 +45,18 @@
     _chartView.delegate = self;
     _chartView.datasource = self;
     _chartView.points = [NSArray arrayWithArray:_points];
-    _chartView.gradientColors = @[[UIColor colorWithWhite:1.0 alpha:0.9],
-                                  [UIColor colorWithWhite:1.0 alpha:0.0]];
-    _chartView.gradientColorsLocation = @[@(0.0), @(0.95)];
-    
     
     _chartView.touchPointColor = [UIColor redColor];
     
     _chartView.yAxisHeaderPrefix = @"消费总数";
     _chartView.yAxisHeaderSuffix = @"日期";
     
-    //    _chartView.lineLeftMargin = 100;
-    //    _chartView.lineRightMargin = 100;
+    _chartView.labelsFont = [UIFont systemFontOfSize:13];
+    
+    _chartView.verticalReferenceLineColor = [UIColor colorWithWhite:0.7 alpha:1.0];
+    _chartView.horizontalRefernenceLineColor = [UIColor colorWithWhite:0.7 alpha:1.0];
+    _chartView.axisColor = [UIColor colorWithWhite:0.7 alpha:1.0];
+    _chartView.labelsColor = [UIColor colorWithWhite:0.7 alpha:1.0];
     
     _touchLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
     _touchLabel.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.3];
@@ -96,14 +97,10 @@
     NSDictionary *par = _settingViewController.parameters;
     _chartView.animationDuration = roundf([par[kLineChartAnimationDuration] floatValue]);
     _chartView.animationStyle = [par[kLineChartAnimationStyle] unsignedIntegerValue];
-    _chartView.junctionStyle = [par[kLineChartJunctionStyle] unsignedIntegerValue];
-    _chartView.lineStyle = [par[kLineChartLineStyle] unsignedIntegerValue];
     _chartView.backgroundColor = par[kLineChartBackgroundColor];
     
-    _chartView.drawGradient = [par[kLineChartDrawGradient] boolValue];
-//    _chartView.scrollable = [par[kLineChartScrollable] boolValue];
+    _chartView.scrollable = [par[kLineChartScrollable] boolValue];
     _chartView.pinchable = [par[kLineChartPinchable] boolValue];
-    
     
     [self updateGraph];
 }
@@ -117,64 +114,28 @@
 - (void)updateGraph {
     
     NSArray *(^ProducePointsA)() = ^() {
-        NSMutableArray *points = [NSMutableArray arrayWithCapacity:7];
-        for (NSInteger idx = 0; idx < 7; ++idx) {
-            WYLineChartPoint *point = [[WYLineChartPoint alloc] init];
-            point.index = idx;
-            [points addObject:point];
-        }
-        WYLineChartPoint *point = points[0];
-        point = points[0];
-        point.value = 70706.89;
-        point = points[1];
-        point.value = 40446.85;
-        point = points[2];
-        point.value = 50555.67;
-        point = points[3];
-        point.value = 20216.48;
-        point = points[4];
-        point.value = 60664.45;
-        point = points[5];
-        point.value = 80890.34;
-        point = points[6];
-        point.value = 30321.2;
-        return points;
+        NSMutableArray *mutableArray = [NSMutableArray array];
+        NSArray *points = [WYLineChartPoint pointsFromValueArray:@[@(70706.89),@(40446.85),@(50555.67),@(20216.48),@(60664.45),@(80890.34),@(30321.2)]];
+        [mutableArray addObject:points];
+        points = [WYLineChartPoint pointsFromValueArray:@[@(50503.134)]];
+        [mutableArray addObject:points];
+        return mutableArray;
     };
     
     NSArray *(^ProducePointsB)() = ^() {
-        NSMutableArray *points = [NSMutableArray arrayWithCapacity:5];
-        for (NSInteger idx = 0; idx < 5; ++idx) {
-            WYLineChartPoint *point = [[WYLineChartPoint alloc] init];
-            point.index = idx;
-            [points addObject:point];
-        }
-        WYLineChartPoint *point = points[0];
-        point.value = 50503.134;
-        point = points[1];
-        point.value = 60623.4;
-        point = points[2];
-        point.value = 90980.f;
-        point = points[3];
-        point.value = 80890.34;
-        point = points[4];
-        point.value = 30321.2;
-        return points;
+        NSMutableArray *mutableArray = [NSMutableArray array];
+        NSArray *points = [WYLineChartPoint pointsFromValueArray:@[@(70706.89),@(75623.4),@(90980.f),@(80890.34),@(60321.2)]];
+        [mutableArray addObject:points];
+        points = [WYLineChartPoint pointsFromValueArray:@[@(50503.134),@(50446.85),@(50555.67),@(60216.48),@(50664.45),@(80890.34),@(30321.2)]];
+        [mutableArray addObject:points];
+        points = [WYLineChartPoint pointsFromValueArray:@[@(30706.89),@(40446.85),@(40555.67),@(20216.48),@(30664.45),@(20890.34),@(20321.2)]];
+        [mutableArray addObject:points];
+        return mutableArray;
     };
     
     static BOOL isPointsA = false;
-    _points = isPointsA ? ProducePointsA() : ProducePointsB();
+    _points = !isPointsA ? ProducePointsA() : ProducePointsB();
     isPointsA = !isPointsA;
-    
-    _maxValue = -MAXFLOAT;
-    _minValue = MAXFLOAT;
-    [_points enumerateObjectsUsingBlock:^(WYLineChartPoint *point, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (point.value > _maxValue) {
-            _maxValue = point.value;
-        }
-        if (point.value < _minValue) {
-            _minValue = point.value;
-        }
-    }];
     _chartView.points = [NSArray arrayWithArray:_points];
     
     [_chartView updateGraph];
@@ -196,7 +157,11 @@
 
 - (NSInteger)numberOfLabelOnXAxisInLineChartView:(WYLineChartView *)chartView {
     
-    return _points.count;
+    return [_points[0] count];
+}
+
+- (NSInteger)numberOfLabelOnYAxisInLineChartView:(WYLineChartView *)chartView {
+    return 3;
 }
 
 - (CGFloat)gapBetweenPointsHorizontalInLineChartView:(WYLineChartView *)chartView {
@@ -204,23 +169,12 @@
     return 60.f;
 }
 
-- (CGFloat)maxValueForPointsInLineChartView:(WYLineChartView *)chartView {
-    
-    
-    return _maxValue;
-}
-
-- (CGFloat)minValueForPointsInLineChartView:(WYLineChartView *)chartView {
-    
-    return _minValue;
-}
-
 - (NSInteger)numberOfReferenceLineVerticalInLineChartView:(WYLineChartView *)chartView {
-    return _points.count;
+    return [_points[0] count];
 }
 
 - (NSInteger)numberOfReferenceLineHorizontalInLineChartView:(WYLineChartView *)chartView {
-    return _points.count;
+    return 3;
 }
 
 - (void)lineChartView:(WYLineChartView *)lineView didBeganTouchAtSegmentOfPoint:(WYLineChartPoint *)originalPoint value:(CGFloat)value {
@@ -255,25 +209,114 @@
 
 #pragma mark - WYLineChartViewDatasource
 
+- (NSString *)lineChartView:(WYLineChartView *)chartView contextTextForPointAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if((indexPath.row%3 != 0 && indexPath.section%2 != 0)
+       || (indexPath.row%3 == 0 && indexPath.section%2 == 0)) return nil;
+    
+    NSArray *pointsArray = _chartView.points[indexPath.section];
+    WYLineChartPoint *point = pointsArray[indexPath.row];
+    NSString *text = [NSString stringWithFormat:@"%lu", (NSInteger)point.value];
+    return text;
+}
+
 - (NSString *)lineChartView:(WYLineChartView *)chartView contentTextForXAxisLabelAtIndex:(NSInteger)index {
-    return @"8月13日";
+    return [NSString stringWithFormat:@"%lu月", index+1];
 }
 
 - (WYLineChartPoint *)lineChartView:(WYLineChartView *)chartView pointReferToXAxisLabelAtIndex:(NSInteger)index {
-    return _points[index];
+    return _points[0][index];
 }
 
 - (WYLineChartPoint *)lineChartView:(WYLineChartView *)chartView pointReferToVerticalReferenceLineAtIndex:(NSInteger)index {
     
-    return _points[index];
+    return _points[0][index];
 }
 
+- (NSString *)lineChartView:(WYLineChartView *)chartView contentTextForYAxisLabelAtIndex:(NSInteger)index {
+    
+    CGFloat value;
+    switch (index) {
+        case 0:
+            value = [self.chartView.calculator minValuePointsOfLinesPointSet:self.chartView.points].value;
+            break;
+        case 1:
+            value = [self.chartView.calculator maxValuePointsOfLinesPointSet:self.chartView.points].value;
+            break;
+        case 2:
+            value = [self.chartView.calculator calculateAverageForPointsSet:self.chartView.points];
+            break;
+        default:
+            break;
+    }
+    return [NSString stringWithFormat:@"%lu", (NSInteger)value];
+}
+
+- (CGFloat)lineChartView:(WYLineChartView *)chartView valueReferToYAxisLabelAtIndex:(NSInteger)index {
+    
+    CGFloat value;
+    switch (index) {
+        case 0:
+            value = [self.chartView.calculator minValuePointsOfLinesPointSet:self.chartView.points].value;
+            break;
+        case 1:
+            value = [self.chartView.calculator maxValuePointsOfLinesPointSet:self.chartView.points].value;
+            break;
+        case 2:
+            value = [self.chartView.calculator calculateAverageForPointsSet:self.chartView.points];
+            break;
+        default:
+            break;
+    }
+    return value;
+}
 
 - (CGFloat)lineChartView:(WYLineChartView *)chartView valueReferToHorizontalReferenceLineAtIndex:(NSInteger)index {
     
-    return ((WYLineChartPoint *)_points[index]).value;
+    CGFloat value;
+    switch (index) {
+        case 0:
+            value = [self.chartView.calculator minValuePointsOfLinesPointSet:self.chartView.points].value;
+            break;
+        case 1:
+            value = [self.chartView.calculator maxValuePointsOfLinesPointSet:self.chartView.points].value;
+            break;
+        case 2:
+            value = [self.chartView.calculator calculateAverageForPointsSet:self.chartView.points];
+            break;
+        default:
+            break;
+    }
+    return value;
 }
 
+- (NSDictionary *)lineChartView:(WYLineChartView *)chartView attributesForLineAtIndex:(NSUInteger)index {
+    NSDictionary *attribute = [_settingViewController getLineAttributesAtIndex:index];
+    NSMutableDictionary *resultAttributes = [NSMutableDictionary dictionary];
+    resultAttributes[kWYLineChartLineAttributeLineStyle] = attribute[kLineChartLineStyle];
+    resultAttributes[kWYLineChartLineAttributeDrawGradient] = attribute[kLineChartDrawGradient];
+    resultAttributes[kWYLineChartLineAttributeJunctionStyle] = attribute[kLineChartJunctionStyle];
+    
+    UIColor *lineColor;
+    switch (index%3) {
+        case 0:
+            lineColor = [UIColor colorWithRed:165.f/255.f green:203.f/255.f blue:211.f/255.f alpha:0.9];
+            break;
+        case 1:
+            lineColor = [UIColor colorWithRed:250.f/255.f green:134.f/255.f blue:94.f/255.f alpha:0.9];
+            break;
+        case 2:
+            lineColor = [UIColor colorWithRed:242.f/255.f green:188.f/255.f blue:13.f/255.f alpha:0.9];
+            break;
+        default:
+            break;
+    }
+    
+    resultAttributes[kWYLineChartLineAttributeLineColor] = lineColor;
+    resultAttributes[kWYLineChartLineAttributeJunctionColor] = lineColor;
+    
+    return resultAttributes;
+}
 
 /*
 #pragma mark - Navigation

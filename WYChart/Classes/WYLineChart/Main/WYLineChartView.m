@@ -11,6 +11,7 @@
 #import "WYLineChartCalculator.h"
 #import "WYLineChartCoordinateView.h"
 #import "WYLineChartMainLineView.h"
+#import "WYLineChartLabelsView.h"
 #import "WYLineChartReferenceLineView.h"
 
 ///////--------------------------------------- Reference Line Default Attribute ------------------------------------------///////
@@ -20,12 +21,14 @@
 
 #define DEFAULT_LABEL_COLOR [UIColor whiteColor]
 
+#define DEFAULT_POINTS_LABEL_COLOR [UIColor blackColor]
+#define DEFAULT_POINTS_LABEL_BACKGROUNDCOLOR [UIColor whiteColor]
+
 #define DEFAULT_LINE_COLOR [UIColor whiteColor]
 #define DEFAULT_LINE_WIDTH 2.f
 #define DEFAULT_LINE_DASHPATTERN nil
 
-#define DEFAULT_GRADIENT_COLORS @[[UIColor colorWithWhite:1.0 alpha:0.9], [UIColor colorWithWhite:1.0 alpha:0.0]]
-#define DEFAULT_GRADIENT_LOCATION  @[@(0.0), @(0.95)]
+#define DEFAULT_DRAW_GRADIENT YES
 
 #define DEFAULT_VERTICAL_REFERENCELINE_COLOR [UIColor whiteColor]
 #define DEFAULT_VERTICAL_REFERENCELINE_WIDTH 1.0
@@ -42,6 +45,7 @@
 #define DEFAULT_AVERAGE_REFERENCELINE_ALPHA 0.6
 #define DEFAULT_AVERAGE_REFERENCELINE_DASHPARTTEN @[@2, @2]
 
+#define DEFAULT_TOUCH_ENABLE YES
 #define DEFAULT_TOUCH_REFERENCELINE_COLOR [UIColor brownColor]
 #define DEFAULT_TOUCH_REFERENCELINE_WIDTH 1.0
 #define DEFAULT_TOUCH_REFERENCELINE_ALPHA 0.8
@@ -72,12 +76,14 @@
 
 @property (nonatomic, strong) UIScrollView *contentScrollView;
 
-@property (nonatomic, strong) WYLineChartMainLineView *lineGraph;
+@property (nonatomic, strong) NSMutableArray *lineGraphArray;
 @property (nonatomic, strong) WYLineChartVerticalReferenceLineView *verticalReferenceLineGraph;
 @property (nonatomic, strong) WYLineChartHorizontalReferenceLineView *horizontalReferenceLineGraph;
 
 @property (nonatomic, strong) WYLineChartCoordinateXAXisView * xAxisView;
 @property (nonatomic, strong) WYLineChartCoordinateYAXisView * yAxisView;
+
+@property (nonatomic, strong) WYLineChartLabelsView *labelsView;
 
 @property (nonatomic, strong) UIView *pinchView;
 @property (nonatomic, strong) UIPinchGestureRecognizer *pinchGesture;
@@ -92,16 +98,33 @@
 
 #pragma mark - life cycle
 
+- (instancetype)init {
+    return [self initWithFrame:CGRectZero];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     
     self = [super initWithFrame:frame];
     
     if (self) {
         [self initializeProperty];
-        [self initializeComponents];
     }
     
     return self;
+}
+
+- (WYLineChartMainLineView *)getLineGraphAtIndex:(NSUInteger)index {
+    if (!_lineGraphArray) {
+        _lineGraphArray = [NSMutableArray array];
+    }
+    
+    WYLineChartMainLineView *lineGraph;
+    while (_lineGraphArray.count <= index) {
+        lineGraph = [[WYLineChartMainLineView alloc] init];
+        [_lineGraphArray addObject:lineGraph];
+    }
+    
+    return _lineGraphArray[index];
 }
 
 - (void)initializeProperty {
@@ -113,7 +136,6 @@
     //                  Value                //
     //* * * * * * * * * * * * * * * * * * * *//
     _scrollable = YES;
-    _drawGradient = YES;
     
     //* * * * * * * * * * * * * * * * * * * *//
     //                  Rect                 //
@@ -122,11 +144,8 @@
     //* * * * * * * * * * * * * * * * * * * *//
     //                Color                  //
     //* * * * * * * * * * * * * * * * * * * *//
-    self.backgroundColor = DEFAULT_BACKGROUND_COLOR;
     _labelsColor = DEFAULT_LABEL_COLOR;
     _axisColor = DEFAULT_AXIS_COLOR;
-    _gradientColors = DEFAULT_GRADIENT_COLORS;
-    _gradientColorsLocation = DEFAULT_GRADIENT_LOCATION;
     
     //* * * * * * * * * * * * * * * * * * * *//
     //                Attributes             //
@@ -137,9 +156,8 @@
     
     _labelsFont = [UIFont systemFontOfSize:11.f weight:0.5];
     
-    _lineColor = DEFAULT_LINE_COLOR;
-    _lineWidth = DEFAULT_LINE_WIDTH;
-    _lineDashPattern = DEFAULT_LINE_DASHPATTERN;
+    _pointsLabelsColor = DEFAULT_POINTS_LABEL_COLOR;
+    _pointsLabelsBackgroundColor = DEFAULT_POINTS_LABEL_BACKGROUNDCOLOR;
     
     _verticalReferenceLineColor = DEFAULT_VERTICAL_REFERENCELINE_COLOR;
     _verticalReferenceLineWidth = DEFAULT_VERTICAL_REFERENCELINE_WIDTH;
@@ -161,10 +179,7 @@
     _touchReferenceLineAlpha = DEFAULT_TOUCH_REFERENCELINE_ALPHA;
     _touchReferenceLineDashPattern = DEFAULT_TOUCH_REFERENCELINE_DASHPARTTEN;
     
-    _showJunctionShape = DEFAULT_SHOW_JUNCTION_SHAPE;
-    _junctionColor = DEFAULT_JUNCTION_COLOR;
-    _junctionStyle = DEFAULT_JUNCTION_POINT_STYLE;
-    _junctionSize = DEFAULT_JUNCTION_POINT_SIZE;
+    _touchable = DEFAULT_TOUCH_ENABLE;
     _touchPointColor = DEFAULT_TOUCH_POINT_COLOR;
     _touchPointStyle = DEFAULT_TOUCH_POINT_STYLE;
     _touchPointSize = DEFAULT_TOUCH_POINT_SIZE;
@@ -175,115 +190,44 @@
     _lineBottomMargin = DEFAULT_LINE_BOTTOM_MARGIN;
 }
 
-- (void)initializeComponents {
+- (void)updateGraph {
+    
+    // recalculate points coordinate
+    [_calculator recaclculatePointsCoordinate];
     
     CGRect frame;
     CGFloat x, y;
     CGFloat height;
     CGFloat width;
     
-    //* * * * * * * * * * * * * * * * * * * * *//
-    //             configure Y axis            //
-    //* * * * * * * * * * * * * * * * * * * * *//
-    
-    height = CGRectGetHeight(self.bounds);
-    frame = CGRectMake(0, 0, _calculator.yAxisViewWidth, height);
-    _yAxisView = [[WYLineChartCoordinateYAXisView alloc] initWithFrame:frame];
-    _yAxisView.parentView = self;
-    _yAxisView.backgroundColor = [UIColor clearColor];
-    [self addSubview:_yAxisView];
-    
-    
-    //* * * * * * * * * * * * * * * * * * * * *//
-    //             configure X axis            //
-    //* * * * * * * * * * * * * * * * * * * * *//
-    
-    height = _calculator.xAxisLabelHeight + 2;
-    y = CGRectGetHeight(self.bounds) - height;
-    x = CGRectGetMaxX(_yAxisView.frame);
-    width = _calculator.drawableAreaWidth;
-    frame = CGRectMake(x, y, width, height);
-    _xAxisView = [[WYLineChartCoordinateXAXisView alloc] initWithFrame:frame];
-    _xAxisView.parentView = self;
-    _xAxisView.backgroundColor = [UIColor clearColor];
-    
-    
     //* * * * * * * * * * * * * * * * * * * *//
-    //       configure scroll view           //
+    //           reset scroll view           //
     //* * * * * * * * * * * * * * * * * * * *//
+    if (!_contentScrollView) {
+        _contentScrollView = [[UIScrollView alloc] initWithFrame:frame];
+        _contentScrollView.delegate = self;
+        _contentScrollView.showsHorizontalScrollIndicator = false;
+        _contentScrollView.showsVerticalScrollIndicator = false;
+        [self addSubview:_contentScrollView];
+    }
     
-    x = CGRectGetMaxX(_yAxisView.frame);
+    x = _calculator.yAxisViewWidth;
     height = CGRectGetHeight(self.bounds);
     y = 0;
     width = _calculator.lineGraphWindowWidth;
     frame = CGRectMake(x, y, width, height);
-    _contentScrollView = [[UIScrollView alloc] initWithFrame:frame];
-    _contentScrollView.delegate = self;
-    _contentScrollView.showsHorizontalScrollIndicator = false;
-    _contentScrollView.showsVerticalScrollIndicator = false;
-    [self addSubview:_contentScrollView];
-    [_contentScrollView addSubview:_xAxisView];
-    
-    //* * * * * * * * * * * * * * * * * * * *//
-    //        configure reference line       //
-    //* * * * * * * * * * * * * * * * * * * *//
-    
-    frame = CGRectMake(0, 0, _contentScrollView.contentSize.width, _calculator.drawableAreaHeight);
-    _verticalReferenceLineGraph = [[WYLineChartVerticalReferenceLineView alloc] initWithFrame:frame];
-    _verticalReferenceLineGraph.backgroundColor = [UIColor clearColor];
-    _verticalReferenceLineGraph.parentView = self;
-    
-    [_contentScrollView addSubview:_verticalReferenceLineGraph];
-    
-    frame = CGRectMake(CGRectGetMaxX(_yAxisView.frame), 0, _calculator.lineGraphWindowWidth, _calculator.drawableAreaHeight);
-    _horizontalReferenceLineGraph = [[WYLineChartHorizontalReferenceLineView alloc] initWithFrame:frame];
-    _horizontalReferenceLineGraph.backgroundColor = [UIColor clearColor];
-    _horizontalReferenceLineGraph.parentView = self;
-    
-    [self insertSubview:_horizontalReferenceLineGraph belowSubview:_contentScrollView];
-    
-    //* * * * * * * * * * * * * * * * * * * * *//
-    //          configure pinch view           //
-    //* * * * * * * * * * * * * * * * * * * * *//
-    frame = CGRectZero;
-    frame.size = _contentScrollView.contentSize;
-    frame.size.height = _calculator.drawableAreaHeight;
-    _pinchView = [[UIView alloc] initWithFrame:frame];
-    _pinchView.backgroundColor = [UIColor clearColor];
-    [self setupPinchGesture];
-    
-    [_contentScrollView addSubview:_pinchView];
-    
-    //* * * * * * * * * * * * * * * * * * * *//
-    //        configure line shape           //
-    //* * * * * * * * * * * * * * * * * * * *//
-    frame = CGRectZero;
-    frame.size = _contentScrollView.contentSize;
-    frame.size.height = _calculator.drawableAreaHeight;
-    _lineGraph = [[WYLineChartMainLineView alloc] initWithFrame:frame];
-    _lineGraph.parentView = self;
-    _lineGraph.backgroundColor = [UIColor clearColor];
-    [_pinchView addSubview:_lineGraph];
-}
-
-- (void)updateGraph {
-//    
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    formatter.dateFormat = @"hh:mm:ss";
-//    NSLog(@" begin %@", [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:[NSDate timeIntervalSinceReferenceDate]]]);
-    
-    // recalculate points coordinate
-    [_calculator recaclculatePointsCoordinate];
-    _lineGraph.pathSegments = [_calculator recalculatePathSegmentsForPoints:_points withLineStyle:_lineStyle];
-    
-    CGRect frame;
-    CGFloat x, y;
-    CGFloat height;
-    CGFloat width;
+    _contentScrollView.frame = frame;
+    _contentScrollView.contentSize = CGSizeMake(_calculator.drawableAreaWidth, CGRectGetHeight(_contentScrollView.bounds));
     
     //* * * * * * * * * * * * * * * * * * * * *//
     //              reset Y axis               //
     //* * * * * * * * * * * * * * * * * * * * *//
+    if (!_yAxisView) {
+        _yAxisView = [[WYLineChartCoordinateYAXisView alloc] init];
+        _yAxisView.parentView = self;
+        _yAxisView.backgroundColor = [UIColor clearColor];
+        [self addSubview:_yAxisView];
+    }
     
     height = CGRectGetHeight(self.bounds);
     frame = CGRectMake(0, 0, _calculator.yAxisViewWidth, height);
@@ -293,6 +237,12 @@
     //* * * * * * * * * * * * * * * * * * * * *//
     //                 reset X axis            //
     //* * * * * * * * * * * * * * * * * * * * *//
+    if (!_xAxisView) {
+        _xAxisView = [[WYLineChartCoordinateXAXisView alloc] init];
+        _xAxisView.parentView = self;
+        _xAxisView.backgroundColor = [UIColor clearColor];
+        [_contentScrollView addSubview:_xAxisView];
+    }
     
     height = _calculator.xAxisLabelHeight + 2;
     y = CGRectGetHeight(self.bounds) - height;
@@ -301,23 +251,24 @@
     frame = CGRectMake(x, y, width, height);
     _xAxisView.frame = frame;
     [_xAxisView setNeedsDisplay];
-    
-    //* * * * * * * * * * * * * * * * * * * *//
-    //           reset scroll view           //
-    //* * * * * * * * * * * * * * * * * * * *//
-    
-    x = CGRectGetMaxX(_yAxisView.frame);
-    height = CGRectGetHeight(self.bounds);
-    y = 0;
-    width = _calculator.lineGraphWindowWidth;
-    frame = CGRectMake(x, y, width, height);
-    _contentScrollView.frame = frame;
-    _contentScrollView.contentSize = CGSizeMake(CGRectGetWidth(_xAxisView.frame), CGRectGetHeight(_contentScrollView.bounds));
 
     
     //* * * * * * * * * * * * * * * * * * * *//
     //           reset reference line        //
     //* * * * * * * * * * * * * * * * * * * *//
+    if (!_verticalReferenceLineGraph) {
+        _verticalReferenceLineGraph = [[WYLineChartVerticalReferenceLineView alloc] initWithFrame:CGRectZero];
+        _verticalReferenceLineGraph.backgroundColor = [UIColor clearColor];
+        _verticalReferenceLineGraph.parentView = self;
+        [_contentScrollView addSubview:_verticalReferenceLineGraph];
+    }
+    
+    if (!_horizontalReferenceLineGraph) {
+        _horizontalReferenceLineGraph = [[WYLineChartHorizontalReferenceLineView alloc] initWithFrame:CGRectZero];
+        _horizontalReferenceLineGraph.backgroundColor = [UIColor clearColor];
+        _horizontalReferenceLineGraph.parentView = self;
+        [self insertSubview:_horizontalReferenceLineGraph belowSubview:_contentScrollView];
+    }
     
     _verticalReferenceLineGraph.verticalReferenceLineColor = _verticalReferenceLineColor;
     _verticalReferenceLineGraph.verticalReferenceLineWidth = _verticalReferenceLineWidth;
@@ -361,11 +312,16 @@
     //* * * * * * * * * * * * * * * * * * * *//
     //      reset pinch view shape           //
     //* * * * * * * * * * * * * * * * * * * *//
+    if (!_pinchView) {
+        _pinchView = [[UIView alloc] initWithFrame:frame];
+        _pinchView.backgroundColor = [UIColor clearColor];
+        [self setupPinchGesture];
+        [_contentScrollView addSubview:_pinchView];
+    }
     frame = CGRectZero;
     frame.size = _contentScrollView.contentSize;
     frame.size.height = _calculator.drawableAreaHeight;
     _pinchView.frame = frame;
-    
     
     //* * * * * * * * * * * * * * * * * * * *//
     //            reset line shape           //
@@ -373,24 +329,65 @@
     frame = CGRectZero;
     frame.size = _contentScrollView.contentSize;
     frame.size.height = _calculator.drawableAreaHeight;
-    _lineGraph.frame = frame;
-    _lineGraph.style = _lineStyle;
-    _lineGraph.lineColor = _lineColor;
-    _lineGraph.lineWidth = _lineWidth;
-    _lineGraph.lineDashPattern = _lineDashPattern;
-    _lineGraph.animationStyle = _animationStyle;
-    _lineGraph.animationDuration = _animationDuration;
-    _lineGraph.junctionColor = _junctionColor;
-    _lineGraph.junctionStyle = _junctionStyle;
-    _lineGraph.junctionSize = _junctionSize;
-    _lineGraph.touchPointColor = _touchPointColor;
-    _lineGraph.touchPointStyle = _touchPointStyle;
-    _lineGraph.touchPointSize = _touchPointSize;
-    _lineGraph.touchView = _touchView;
-    _lineGraph.showJunctionShape = _showJunctionShape;
-    [_lineGraph setNeedsDisplay];
-//    
-//    NSLog(@"after %@", [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:[NSDate timeIntervalSinceReferenceDate]]]);
+    WYLineChartMainLineView *lineGraph;
+    NSDictionary *lineAttributes;
+    
+    for (NSUInteger idx = 0; idx < _points.count; ++idx) {
+        lineGraph = [self getLineGraphAtIndex:idx];
+        lineGraph.frame = frame;
+        lineGraph.parentView = self;
+        lineGraph.backgroundColor = [UIColor clearColor];
+        [_pinchView addSubview:lineGraph];
+        
+        if ([_datasource conformsToProtocol:@protocol(WYLineChartViewDatasource)]
+            && [_datasource respondsToSelector:@selector(lineChartView:attributesForLineAtIndex:)]) {
+            lineAttributes = [_datasource lineChartView:self attributesForLineAtIndex:idx];
+        }
+        
+        lineGraph.points = _points[idx];
+        lineGraph.style = lineAttributes[kWYLineChartLineAttributeLineStyle] ? [lineAttributes[kWYLineChartLineAttributeLineStyle] unsignedIntegerValue] : kWYLineChartMainBezierWaveLine;
+        lineGraph.lineColor = lineAttributes[kWYLineChartLineAttributeLineColor] ?: DEFAULT_LINE_COLOR;
+        lineGraph.lineWidth = lineAttributes[kWYLineChartLineAttributeLineWidth] ? [lineAttributes[kWYLineChartLineAttributeLineWidth] floatValue] : DEFAULT_LINE_WIDTH;
+        lineGraph.lineDashPattern = lineAttributes[kWYLineChartLineAttributeLineDashPattern] ?: DEFAULT_LINE_DASHPATTERN;
+        lineGraph.drawGradient = lineAttributes[kWYLineChartLineAttributeDrawGradient] ? [lineAttributes[kWYLineChartLineAttributeDrawGradient] boolValue] : DEFAULT_DRAW_GRADIENT;
+        
+        lineGraph.animationStyle = _animationStyle;
+        lineGraph.animationDuration = _animationDuration;
+        lineGraph.showJunctionShape = lineAttributes[kWYLineChartLineAttributeShowJunctionShape] ? [lineAttributes[kWYLineChartLineAttributeShowJunctionShape] boolValue] : DEFAULT_SHOW_JUNCTION_SHAPE;
+        lineGraph.junctionColor = lineAttributes[kWYLineChartLineAttributeJunctionColor] ?: DEFAULT_JUNCTION_COLOR;
+        lineGraph.junctionStyle = lineAttributes[kWYLineChartLineAttributeJunctionStyle] ? [lineAttributes[kWYLineChartLineAttributeJunctionStyle] unsignedIntegerValue] : DEFAULT_JUNCTION_POINT_STYLE;
+        lineGraph.junctionSize = lineAttributes[kWYLineChartLineAttributeJunctionSize] ? [lineAttributes[kWYLineChartLineAttributeJunctionSize] unsignedIntegerValue] : DEFAULT_JUNCTION_POINT_SIZE;
+        
+        lineGraph.touchable = (_points.count <= 1) && _touchable;
+        lineGraph.touchPointColor = _touchPointColor;
+        lineGraph.touchPointStyle = _touchPointStyle;
+        lineGraph.touchPointSize = _touchPointSize;
+        lineGraph.touchView = _touchView;
+        [lineGraph setNeedsDisplay];
+    }
+    
+    for (NSUInteger idx = _points.count; idx < _lineGraphArray.count; ++idx) {
+        lineGraph = _lineGraphArray[idx];
+        [lineGraph removeFromSuperview];
+    }
+    
+    //* * * * * * * * * * * * * * * * * * * *//
+    //            reset label view           //
+    //* * * * * * * * * * * * * * * * * * * *//
+    frame = CGRectZero;
+    frame.size = _contentScrollView.contentSize;
+    frame.size.height = _calculator.drawableAreaHeight;
+    
+    if (!_labelsView) {
+        _labelsView = [[WYLineChartLabelsView alloc] initWithFrame:CGRectZero];
+        _labelsView.parentView = self;
+        _labelsView.backgroundColor = [UIColor clearColor];
+        [_pinchView addSubview:_labelsView];
+    }
+    
+    _labelsView.frame = frame;
+    [_pinchView bringSubviewToFront:_labelsView];
+    [_labelsView setNeedsDisplay];
 }
 
 #pragma mark - setup and handle pinch gesture
@@ -438,8 +435,8 @@
     
     CGFloat alpha = scale * 0.3;
     
-    _lineGraph.transform = transform;
-    _lineGraph.alpha = alpha;
+    _pinchView.transform = transform;
+    _pinchView.alpha = alpha;
     
     _verticalReferenceLineGraph.transform = transform;
     _verticalReferenceLineGraph.alpha = alpha;
@@ -455,8 +452,8 @@
     
     CGAffineTransform transform = CGAffineTransformIdentity;
     transform = CGAffineTransformScale(transform, 1.0, 1.0);
-    _lineGraph.transform = transform;
-    _lineGraph.alpha = 1.0;
+    _pinchView.transform = transform;
+    _pinchView.alpha = 1.0;
     
     _verticalReferenceLineGraph.transform = transform;
     _verticalReferenceLineGraph.alpha = 1.0;
@@ -477,8 +474,8 @@
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
                          
-                         _lineGraph.transform = transform;
-                         _lineGraph.alpha = 1.0;
+                         _pinchView.transform = transform;
+                         _pinchView.alpha = 1.0;
                          
                          _verticalReferenceLineGraph.transform = transform;
                          _verticalReferenceLineGraph.alpha = 1.0;

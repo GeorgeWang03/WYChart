@@ -48,7 +48,8 @@
             cell.textLabel.text = @"PieChart(饼状图)";
             break;
         case 1:
-            cell.textLabel.text = @"LineChart(折线图)";
+            cell.textLabel.text = @"LineChart(线型图) v0.2.0";
+            break;
         default:
             break;
     }
