@@ -9,13 +9,13 @@
 #import "PieChartSettingViewController.h"
 #import "WYPieChartView.h"
 
-NSString const *kPieChartAnimationDuration = @"kPieChartAnimationDuration";
-NSString const *kPieChartStyle = @"kPieChartStyle";
-NSString const *kPieChartAnimationStyle = @"kPieChartAnimationStyle";
-NSString const *kPieChartSelectedStyle = @"kPieChartSelectedStyle";
-NSString const *kPieChartRotatable = @"kPieChartRotatable";
-NSString const *kPieChartShowInnerCircle = @"kPieChartShowInnerCircle";
-NSString const *kPieChartFillByGradient = @"kPieChartFillByGradient";
+NSString *const kPieChartAnimationDuration = @"kPieChartAnimationDuration";
+NSString *const kPieChartStyle = @"kPieChartStyle";
+NSString *const kPieChartAnimationStyle = @"kPieChartAnimationStyle";
+NSString *const kPieChartSelectedStyle = @"kPieChartSelectedStyle";
+NSString *const kPieChartRotatable = @"kPieChartRotatable";
+NSString *const kPieChartShowInnerCircle = @"kPieChartShowInnerCircle";
+NSString *const kPieChartFillByGradient = @"kPieChartFillByGradient";
 
 @interface PieChartSettingViewController () <UIPickerViewDelegate,
                                             UIPickerViewDataSource>

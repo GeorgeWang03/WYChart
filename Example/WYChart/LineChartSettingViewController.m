@@ -8,14 +8,14 @@
 #import "WYLineChartView.h"
 #import "LineChartSettingViewController.h"
 
-NSString const *kLineChartAnimationDuration = @"kLineChartAnimationDuration";
-NSString const *kLineChartAnimationStyle = @"kLineChartAnimationStyle";
-NSString const *kLineChartScrollable = @"kLineChartScrollable";
-NSString const *kLineChartPinchable = @"kLineChartPinchable";
-NSString const *kLineChartLineStyle = @"kLineChartLineStyle";
-NSString const *kLineChartDrawGradient = @"kLineChartDrawGradient";
-NSString const *kLineChartJunctionStyle = @"kLineChartJunctionStyle";
-NSString const *kLineChartBackgroundColor = @"kLineChartBackgroundColor";
+NSString *const kLineChartAnimationDuration = @"kLineChartAnimationDuration";
+NSString *const kLineChartAnimationStyle = @"kLineChartAnimationStyle";
+NSString *const kLineChartScrollable = @"kLineChartScrollable";
+NSString *const kLineChartPinchable = @"kLineChartPinchable";
+NSString *const kLineChartLineStyle = @"kLineChartLineStyle";
+NSString *const kLineChartDrawGradient = @"kLineChartDrawGradient";
+NSString *const kLineChartJunctionStyle = @"kLineChartJunctionStyle";
+NSString *const kLineChartBackgroundColor = @"kLineChartBackgroundColor";
 
 #define ANIMATION_PICKER_VIEW_TAG 100
 #define LINE_STYLE_PICKER_VIEW_TAG 200
