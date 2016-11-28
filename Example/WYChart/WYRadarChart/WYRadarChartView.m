@@ -26,7 +26,9 @@
 }
 
 - (void)setup {
-    self.radarMainView = [[WYRadarChartMainView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+    self.radarMainView = [[WYRadarChartMainView alloc] initWithFrame:self.bounds];
+    self.radarMainView.dimensionCount = 7;
+    self.radarMainView.gradient = 5;
     [self addSubview:self.radarMainView];
 }
 

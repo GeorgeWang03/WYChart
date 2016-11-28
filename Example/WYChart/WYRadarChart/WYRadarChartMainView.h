@@ -10,6 +10,9 @@
 
 @interface WYRadarChartMainView : UIView
 
+@property (nonatomic, assign) NSInteger dimensionCount;
+@property (nonatomic, assign) NSInteger gradient;
+
 - (instancetype)initWithFrame:(CGRect)frame;
 
 @end
