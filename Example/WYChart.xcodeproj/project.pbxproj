@@ -21,6 +21,9 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		9FEAB30B1DEC51D8001F55AB /* WYRadarChartMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEAB3061DEC51D8001F55AB /* WYRadarChartMainView.m */; };
+		9FEAB30C1DEC51D8001F55AB /* WYRadarChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEAB3081DEC51D8001F55AB /* WYRadarChartModel.m */; };
+		9FEAB30D1DEC51D8001F55AB /* WYRadarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEAB30A1DEC51D8001F55AB /* WYRadarChartView.m */; };
 		C36D9DBD1D88E65300846668 /* LineChartSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36D9DB61D88E65300846668 /* LineChartSettingViewController.m */; };
 		C36D9DBE1D88E65300846668 /* LineChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36D9DB81D88E65300846668 /* LineChartViewController.m */; };
 		C36D9DBF1D88E65300846668 /* PieChartSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36D9DBA1D88E65300846668 /* PieChartSettingViewController.m */; };
@@ -64,6 +67,12 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		9FEAB3051DEC51D8001F55AB /* WYRadarChartMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRadarChartMainView.h; sourceTree = "<group>"; };
+		9FEAB3061DEC51D8001F55AB /* WYRadarChartMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRadarChartMainView.m; sourceTree = "<group>"; };
+		9FEAB3071DEC51D8001F55AB /* WYRadarChartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRadarChartModel.h; sourceTree = "<group>"; };
+		9FEAB3081DEC51D8001F55AB /* WYRadarChartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRadarChartModel.m; sourceTree = "<group>"; };
+		9FEAB3091DEC51D8001F55AB /* WYRadarChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRadarChartView.h; sourceTree = "<group>"; };
+		9FEAB30A1DEC51D8001F55AB /* WYRadarChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRadarChartView.m; sourceTree = "<group>"; };
 		C36D9DB51D88E65300846668 /* LineChartSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineChartSettingViewController.h; sourceTree = "<group>"; };
 		C36D9DB61D88E65300846668 /* LineChartSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineChartSettingViewController.m; sourceTree = "<group>"; };
 		C36D9DB71D88E65300846668 /* LineChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineChartViewController.h; sourceTree = "<group>"; };
@@ -142,6 +151,7 @@
 		6003F593195388D20070C39A /* Example for WYChart */ = {
 			isa = PBXGroup;
 			children = (
+				9FEAB3041DEC51D8001F55AB /* WYRadarChart */,
 				6003F59C195388D20070C39A /* WYCAppDelegate.h */,
 				6003F59D195388D20070C39A /* WYCAppDelegate.m */,
 				6003F5A5195388D20070C39A /* WYCViewController.h */,
@@ -200,6 +210,19 @@
 				E48CC2B9FFB300B02E455495 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		9FEAB3041DEC51D8001F55AB /* WYRadarChart */ = {
+			isa = PBXGroup;
+			children = (
+				9FEAB3051DEC51D8001F55AB /* WYRadarChartMainView.h */,
+				9FEAB3061DEC51D8001F55AB /* WYRadarChartMainView.m */,
+				9FEAB3071DEC51D8001F55AB /* WYRadarChartModel.h */,
+				9FEAB3081DEC51D8001F55AB /* WYRadarChartModel.m */,
+				9FEAB3091DEC51D8001F55AB /* WYRadarChartView.h */,
+				9FEAB30A1DEC51D8001F55AB /* WYRadarChartView.m */,
+			);
+			path = WYRadarChart;
 			sourceTree = "<group>";
 		};
 		EEE303AECE27CBA1BE2C14F4 /* Pods */ = {
@@ -418,8 +441,11 @@
 				6003F59E195388D20070C39A /* WYCAppDelegate.m in Sources */,
 				C36D9DBE1D88E65300846668 /* LineChartViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* WYCViewController.m in Sources */,
+				9FEAB30B1DEC51D8001F55AB /* WYRadarChartMainView.m in Sources */,
+				9FEAB30D1DEC51D8001F55AB /* WYRadarChartView.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				C36D9DC01D88E65300846668 /* PieChartViewController.m in Sources */,
+				9FEAB30C1DEC51D8001F55AB /* WYRadarChartModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
