@@ -11,17 +11,34 @@
 
 @class WYRadarChartView;
 
+@protocol WYRadarChartViewItemDescription <NSObject>
+
+- (NSString *)title;
+
+@end
+
 @protocol WYRadarChartViewDataSource <NSObject>
 
-- (NSInteger)numberOfDimensionInRadarChartView:(WYRadarChartView *)radarChartView;
-- (WYRadarChartDimension *)radarChartView:(WYRadarChartView *)radarChartView dimensionAtIndex:(NSInteger)index;
+- (WYRadarChartDimension *)radarChartView:(WYRadarChartView *)radarChartView dimensionAtIndex:(NSUInteger)index;
+
+- (NSUInteger)numberOfItemInRadarChartView:(WYRadarChartView *)radarChartView;
+
+- (id<WYRadarChartViewItemDescription>)radarChartView:(WYRadarChartView *)radarChartView descriptionForItemAtIndex:(NSUInteger)index;
+
+- (NSArray <NSNumber *>*)radarChartView:(WYRadarChartView *)radarChartView valueForItemAtIndex:(NSUInteger)index;
 
 @end
 
 @interface WYRadarChartView : UIView
 
-//@property (nonatomic, strong) NSArray<> *data;
+@property (nonatomic, assign, readonly) NSUInteger dimensionCount;
+@property (nonatomic, assign, readonly) NSUInteger gradient;
 
-- (instancetype)initWithFrame:(CGRect)frame;
+@property (nonatomic, weak) id<WYRadarChartViewDataSource> dataSource;
+
+- (instancetype)init __attribute__((unavailable("use initWithFrame:dimensionCount:gradient instead")));
+- (instancetype)initWithFrame:(CGRect)frame __attribute__((unavailable("use initWithFrame:dimensionCount:gradient instead")));
+
+- (instancetype)initWithFrame:(CGRect)frame dimensionCount:(NSUInteger)dimensionCount gradient:(NSUInteger)gradient;
 
 @end

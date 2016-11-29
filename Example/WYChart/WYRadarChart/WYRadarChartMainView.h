@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WYRadarChartView.h"
 
 @interface WYRadarChartMainView : UIView
 
-@property (nonatomic, assign) NSInteger dimensionCount;
-@property (nonatomic, assign) NSInteger gradient;
+@property (nonatomic, assign) NSUInteger dimensionCount;
+@property (nonatomic, assign) NSUInteger gradient;
+@property (nonatomic, weak) id<WYRadarChartViewDataSource> dataSource;
+@property (nonatomic, weak) WYRadarChartView *radarChartView;
 
 - (instancetype)initWithFrame:(CGRect)frame;
 

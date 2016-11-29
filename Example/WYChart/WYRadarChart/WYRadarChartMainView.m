@@ -8,6 +8,7 @@
 
 #import "WYRadarChartMainView.h"
 #import <math.h>
+#import "NSArray+Utils.h"
 
 #define WYRadarChartViewMargin  10
 
@@ -24,9 +25,14 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor grayColor];
+        [self setupUI];
     }
     return self;
+}
+
+- (void)setupUI {
+    self.backgroundColor = [UIColor grayColor];
+    self.transform = CGAffineTransformRotate(self.transform, -M_PI_2);
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -40,24 +46,66 @@
     }
     CGContextRef context = UIGraphicsGetCurrentContext();
     for (NSInteger index = 1; index <= self.gradient; index++) {
-        CGPathRef path = [self ringPathWithDimensionLength:self.dimensionMaxLength*index/self.gradient];
+        CGPathRef path = [self ringPathWithRatios:[NSArray arrayByRepeatObject:@((CGFloat)index/self.gradient) time:self.dimensionCount]];
         CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
         CGContextAddPath(context, path);
         CGContextStrokePath(context);
         CGPathRelease(path);
     }
+    [self setupSublayer];
 }
 
-- (CGPathRef)ringPathWithDimensionLength:(CGFloat)dimensionLength {
+- (CGPathRef)ringPathWithRatios:(NSArray <NSNumber *>*) ratios {
     CGMutablePathRef path = CGPathCreateMutable();
-    CGPathMoveToPoint(path, NULL, self.radarCenter.x+dimensionLength, self.radarCenter.y);
+    CGFloat initialLength = self.dimensionMaxLength * [ratios[0] floatValue];
+    CGPathMoveToPoint(path, NULL, self.radarCenter.x+initialLength, self.radarCenter.y);
     for (NSInteger index = 1; index < self.dimensionCount; index++) {
+        CGFloat length = self.dimensionMaxLength * [ratios[index] floatValue];
         CGPoint factor = [[self.factors objectAtIndex:index] CGPointValue];
-        CGPoint temPoint = CGPointMake(self.radarCenter.x + dimensionLength*factor.x, self.radarCenter.y + dimensionLength*factor.y);
+        CGPoint temPoint = CGPointMake(self.radarCenter.x + length*factor.x, self.radarCenter.y + length*factor.y);
         CGPathAddLineToPoint(path, NULL, temPoint.x, temPoint.y);
     }
-    CGPathAddLineToPoint(path, NULL, self.radarCenter.x+dimensionLength, self.radarCenter.y);
+    CGPathAddLineToPoint(path, NULL, self.radarCenter.x+initialLength, self.radarCenter.y);
     return path;
+}
+
+- (void)setupSublayer {
+    [self.layer.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
+    NSUInteger itemCount = 0;
+    if (self.dataSource && [self.dataSource respondsToSelector:@selector(numberOfItemInRadarChartView:)]) {
+        itemCount = [self.dataSource numberOfItemInRadarChartView:self.radarChartView];
+    }
+    if (itemCount == 0) {
+        return;
+    }
+    
+    for (NSInteger index = 0; index < itemCount; index++) {
+        NSMutableArray *values = nil;
+        if (self.dataSource && [self.dataSource respondsToSelector:@selector(radarChartView:valueForItemAtIndex:)]) {
+            values = [[self.dataSource radarChartView:self.radarChartView valueForItemAtIndex:index] mutableCopy];
+        }
+        if (!values || values.count < self.dimensionCount) {
+            NSAssert(false, @"require %@ values, but only get %@", @(self.dimensionCount), @(values.count));
+            return;
+        }
+        for (NSInteger i = 0; i < values.count; i++) {
+            if ([values[i] floatValue] > 1) {
+                values[i] = @(1.0);
+                continue;
+            }
+            if ([values[i] floatValue] < 0) {
+                values[i] = @(0.0);
+            }
+            
+        }
+        CGPathRef path = [self ringPathWithRatios:values];
+        CAShapeLayer *layer = [CAShapeLayer layer];
+        layer.path = path;
+        layer.lineWidth = 0.5;
+        layer.fillColor = [UIColor colorWithWhite:arc4random()%100/100.0 alpha:0.5].CGColor;
+        [self.layer addSublayer:layer];
+        CGPathRelease(path);
+    }
 }
 
 @end
