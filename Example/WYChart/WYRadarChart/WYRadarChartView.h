@@ -25,7 +25,7 @@
 
 - (id<WYRadarChartViewItemDescription>)radarChartView:(WYRadarChartView *)radarChartView descriptionForItemAtIndex:(NSUInteger)index;
 
-- (NSArray <NSNumber *>*)radarChartView:(WYRadarChartView *)radarChartView valueForItemAtIndex:(NSUInteger)index;
+- (WYRadarChartItem *)radarChartView:(WYRadarChartView *)radarChartView itemAtIndex:(NSUInteger)index;
 
 @end
 

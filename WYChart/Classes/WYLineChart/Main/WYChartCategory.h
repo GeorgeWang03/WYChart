@@ -33,6 +33,8 @@
 
 - (NSArray *)wy_rgbValue;
 + (UIColor *)wy_colorWithHexString:(NSString *)str;
++ (UIColor *)wy_colorWithHex:(UInt32)color;
++ (UIColor *)wy_colorWithHex:(UInt32)color alpha:(CGFloat)alpha;
 
 @end
 

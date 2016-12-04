@@ -10,6 +10,26 @@
 
 @interface WYRadarChartItem : NSObject
 
+/*
+ *  Values should be between 0 and 1
+ */
+@property (nonatomic, strong) NSArray<NSNumber *> *value;
+
+/*
+ *  fillColor, default 0xffffff alpha: 0.5
+ */
+@property (nonatomic, strong) UIColor *fillColor;
+
+/*
+ *  borderColor, default [UIColor whiteColor]
+ */
+@property (nonatomic, strong) UIColor *borderColor;
+
+/*
+ *  borderWidth, default 0.5
+ */
+@property (nonatomic, assign) CGFloat borderWidth;
+
 @end
 
 @interface WYRadarChartDimension: NSObject

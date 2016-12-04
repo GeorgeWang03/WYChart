@@ -81,8 +81,10 @@
     
     for (NSInteger index = 0; index < itemCount; index++) {
         NSMutableArray *values = nil;
-        if (self.dataSource && [self.dataSource respondsToSelector:@selector(radarChartView:valueForItemAtIndex:)]) {
-            values = [[self.dataSource radarChartView:self.radarChartView valueForItemAtIndex:index] mutableCopy];
+        WYRadarChartItem *item = nil;
+        if (self.dataSource && [self.dataSource respondsToSelector:@selector(radarChartView:itemAtIndex:)]) {
+            item = [self.dataSource radarChartView:self.radarChartView itemAtIndex:index];
+            values = [item.value mutableCopy];
         }
         if (!values || values.count < self.dimensionCount) {
             NSAssert(false, @"require %@ values, but only get %@", @(self.dimensionCount), @(values.count));
@@ -101,8 +103,9 @@
         CGPathRef path = [self ringPathWithRatios:values];
         CAShapeLayer *layer = [CAShapeLayer layer];
         layer.path = path;
-        layer.lineWidth = 0.5;
-        layer.fillColor = [UIColor colorWithWhite:arc4random()%100/100.0 alpha:0.5].CGColor;
+        layer.lineWidth = item.borderWidth;
+        layer.fillColor = item.fillColor.CGColor;
+        layer.strokeColor = item.borderColor.CGColor;
         [self.layer addSublayer:layer];
         CGPathRelease(path);
     }

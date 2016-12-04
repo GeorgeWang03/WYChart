@@ -8,6 +8,8 @@
 
 #import "RadarChartViewController.h"
 #import "WYRadarChartView.h"
+#import "WYRadarChartModel.h"
+#import <WYChart/WYChartCategory.h>
 
 @interface RadarChartViewController ()
 <
@@ -15,6 +17,7 @@ WYRadarChartViewDataSource
 >
 
 @property (nonatomic, strong) WYRadarChartView *radarChartView;
+@property (nonatomic, strong) NSMutableArray <WYRadarChartItem *> *items;
 
 @end
 
@@ -23,6 +26,22 @@ WYRadarChartViewDataSource
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
+    [self initData];
+}
+
+- (void)initData {
+    self.items = [NSMutableArray new];
+    for (NSInteger index = 0; index < 1; index++) {
+        WYRadarChartItem *item = [WYRadarChartItem new];
+        NSMutableArray *value = [NSMutableArray new];
+        for (NSInteger i = 0; i < self.radarChartView.dimensionCount; i++) {
+            [value addObject:@(arc4random_uniform(100)*0.01)];
+        }
+        item.value = value;
+        item.borderColor = [UIColor wy_colorWithHex:arc4random_uniform(0xffffff)];
+        item.fillColor = [UIColor wy_colorWithHex:arc4random_uniform(0xffffff) alpha:0.5];
+        [self.items addObject:item];
+    }
 }
 
 - (void)setupUI {
@@ -41,12 +60,11 @@ WYRadarChartViewDataSource
 }
 
 - (NSUInteger)numberOfItemInRadarChartView:(WYRadarChartView *)radarChartView {
-    return 2;
+    return self.items.count;
 }
 
-- (NSArray<NSNumber *> *)radarChartView:(WYRadarChartView *)radarChartView valueForItemAtIndex:(NSUInteger)index {
-    return @[@[@(0.9),@(0.1),@(0.8),@(8.43),@(0.44)],
-             @[@(10.29),@(10.71),@(10.28),@(8.43),@(10.144)]][index];
+- (WYRadarChartItem *)radarChartView:(WYRadarChartView *)radarChartView itemAtIndex:(NSUInteger)index {
+    return self.items[index];
 }
 
 - (id<WYRadarChartViewItemDescription>)radarChartView:(WYRadarChartView *)radarChartView descriptionForItemAtIndex:(NSUInteger)index {
