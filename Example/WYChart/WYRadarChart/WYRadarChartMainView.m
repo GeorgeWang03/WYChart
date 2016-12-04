@@ -9,6 +9,7 @@
 #import "WYRadarChartMainView.h"
 #import <math.h>
 #import "NSArray+Utils.h"
+#import "YYWeakProxy.h"
 
 #define WYRadarChartViewMargin  10
 
@@ -18,6 +19,10 @@
 @property (nonatomic, strong) NSMutableArray<NSValue *> *factors;
 @property (nonatomic, assign) CGPoint radarCenter;
 
+@property (nonatomic, assign) BOOL hadDisplay;
+@property (nonatomic, assign) WYRadarChartViewAnimation animationStyle;
+@property (nonatomic, assign) NSTimeInterval animationDuration;
+
 @end
 
 @implementation WYRadarChartMainView
@@ -26,6 +31,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setupUI];
+        _hadDisplay = NO;
+        _animationStyle = WYRadarChartViewAnimationNone;
+        _animationDuration = 0.0;
     }
     return self;
 }
@@ -34,6 +42,8 @@
     self.backgroundColor = [UIColor grayColor];
     self.transform = CGAffineTransformRotate(self.transform, -M_PI_2);
 }
+
+#pragma mark - UI drawing
 
 - (void)drawRect:(CGRect)rect {
     self.dimensionMaxLength = (CGRectGetWidth(self.bounds) - WYRadarChartViewMargin)*0.5;
@@ -53,6 +63,7 @@
         CGPathRelease(path);
     }
     [self setupSublayer];
+    self.hadDisplay = YES;
 }
 
 - (CGPathRef)ringPathWithRatios:(NSArray <NSNumber *>*) ratios {
@@ -106,8 +117,50 @@
         layer.lineWidth = item.borderWidth;
         layer.fillColor = item.fillColor.CGColor;
         layer.strokeColor = item.borderColor.CGColor;
+        layer.frame = self.bounds;
         [self.layer addSublayer:layer];
         CGPathRelease(path);
+    }
+}
+
+#pragma mark - Animation
+
+- (void)reloadDataWithAnimation:(WYRadarChartViewAnimation)animation duration:(NSTimeInterval)duration {
+    self.animationStyle = animation;
+    self.animationDuration = duration;
+    if (animation == WYRadarChartViewAnimationNone) {
+        [self setNeedsDisplay];
+        return;
+    }
+    
+    self.hadDisplay = NO;
+    [self.layer.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
+    [self setNeedsDisplay];
+    CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:[YYWeakProxy proxyWithTarget:self] selector:@selector(displayLinkAction:)];
+    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+}
+
+- (void)doAnimation {
+    switch (self.animationStyle) {
+        case WYRadarChartViewAnimationScale: {
+            for (CAShapeLayer *layer in self.layer.sublayers) {
+                CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
+                animation.values = @[@(0.0),@(1.0)];
+                animation.duration = self.animationDuration;
+                [layer addAnimation:animation forKey:@"ScaleAnimation"];
+            }
+            
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+- (void)displayLinkAction:(CADisplayLink *)displayLink {
+    if (self.hadDisplay) {
+        [self doAnimation];
+        [displayLink invalidate];
     }
 }
 

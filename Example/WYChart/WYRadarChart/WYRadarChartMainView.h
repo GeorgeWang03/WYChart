@@ -18,4 +18,6 @@
 
 - (instancetype)initWithFrame:(CGRect)frame;
 
+- (void)reloadDataWithAnimation:(WYRadarChartViewAnimation)animation duration:(NSTimeInterval)duration;
+
 @end

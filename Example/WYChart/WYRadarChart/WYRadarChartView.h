@@ -11,6 +11,11 @@
 
 @class WYRadarChartView;
 
+typedef NS_ENUM(NSUInteger, WYRadarChartViewAnimation) {
+    WYRadarChartViewAnimationNone,
+    WYRadarChartViewAnimationScale
+};
+
 @protocol WYRadarChartViewItemDescription <NSObject>
 
 - (NSString *)title;
@@ -40,5 +45,9 @@
 - (instancetype)initWithFrame:(CGRect)frame __attribute__((unavailable("use initWithFrame:dimensionCount:gradient instead")));
 
 - (instancetype)initWithFrame:(CGRect)frame dimensionCount:(NSUInteger)dimensionCount gradient:(NSUInteger)gradient;
+
+- (void)reloadData;
+
+- (void)reloadDataWithAnimation:(WYRadarChartViewAnimation)animation duration:(NSTimeInterval)duration;
 
 @end

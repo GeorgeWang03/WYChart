@@ -47,4 +47,12 @@
     [self.radarMainView setNeedsDisplay];
 }
 
+- (void)reloadDataWithAnimation:(WYRadarChartViewAnimation)animation {
+    [self.radarMainView reloadDataWithAnimation:WYRadarChartViewAnimationNone duration:0.0];
+}
+
+- (void)reloadDataWithAnimation:(WYRadarChartViewAnimation)animation duration:(NSTimeInterval)duration {
+    [self.radarMainView reloadDataWithAnimation:animation duration:duration];
+}
+
 @end

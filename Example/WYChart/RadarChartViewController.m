@@ -27,6 +27,7 @@ WYRadarChartViewDataSource
     [super viewDidLoad];
     [self setupUI];
     [self initData];
+    [self.radarChartView reloadDataWithAnimation:WYRadarChartViewAnimationScale duration:1];
 }
 
 - (void)initData {
