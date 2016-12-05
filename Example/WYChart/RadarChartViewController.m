@@ -49,7 +49,7 @@ WYRadarChartViewDataSource
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.radarChartView = [[WYRadarChartView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetWidth(self.view.bounds))
                                                    dimensionCount:5
-                                                         gradient:5];
+                                                         gradient:1];
     self.radarChartView.dataSource = self;
     self.radarChartView.lineWidth = 0.5;
     self.radarChartView.lineColor = [UIColor redColor];
