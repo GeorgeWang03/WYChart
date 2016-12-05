@@ -47,7 +47,21 @@
     [self.radarMainView setNeedsDisplay];
 }
 
-- (void)reloadDataWithAnimation:(WYRadarChartViewAnimation)animation {
+- (void)setLineWidth:(CGFloat)lineWidth {
+    _lineWidth = lineWidth;
+    self.radarMainView.lineWidth = lineWidth;
+    [self reloadData];
+}
+
+- (void)setLineColor:(UIColor *)lineColor {
+    _lineColor = lineColor;
+    self.radarMainView.lineColor = lineColor;
+    [self reloadData];
+}
+
+#pragma mark - data
+
+- (void)reloadData {
     [self.radarMainView reloadDataWithAnimation:WYRadarChartViewAnimationNone duration:0.0];
 }
 

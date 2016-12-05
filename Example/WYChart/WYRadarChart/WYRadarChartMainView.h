@@ -16,6 +16,9 @@
 @property (nonatomic, weak) id<WYRadarChartViewDataSource> dataSource;
 @property (nonatomic, weak) WYRadarChartView *radarChartView;
 
+@property (nonatomic, assign) CGFloat lineWidth;
+@property (nonatomic, strong) UIColor *lineColor;
+
 - (instancetype)initWithFrame:(CGRect)frame;
 
 - (void)reloadDataWithAnimation:(WYRadarChartViewAnimation)animation duration:(NSTimeInterval)duration;

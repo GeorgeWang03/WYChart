@@ -34,6 +34,8 @@
         _hadDisplay = NO;
         _animationStyle = WYRadarChartViewAnimationNone;
         _animationDuration = 0.0;
+        _lineWidth = 0.5;
+        _lineColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -57,7 +59,8 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     for (NSInteger index = 1; index <= self.gradient; index++) {
         CGPathRef path = [self ringPathWithRatios:[NSArray arrayByRepeatObject:@((CGFloat)index/self.gradient) time:self.dimensionCount]];
-        CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
+        CGContextSetStrokeColorWithColor(context, self.lineColor.CGColor);
+        CGContextSetLineWidth(context, self.lineWidth);
         CGContextAddPath(context, path);
         CGContextStrokePath(context);
         CGPathRelease(path);

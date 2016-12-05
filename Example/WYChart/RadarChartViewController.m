@@ -51,6 +51,8 @@ WYRadarChartViewDataSource
                                                    dimensionCount:5
                                                          gradient:5];
     self.radarChartView.dataSource = self;
+    self.radarChartView.lineWidth = 0.5;
+    self.radarChartView.lineColor = [UIColor redColor];
     [self.view addSubview:self.radarChartView];
 }
 
