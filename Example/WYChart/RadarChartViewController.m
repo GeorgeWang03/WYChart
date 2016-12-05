@@ -39,8 +39,8 @@ WYRadarChartViewDataSource
             [value addObject:@(arc4random_uniform(100)*0.01)];
         }
         item.value = value;
-        item.borderColor = [UIColor wy_colorWithHex:arc4random_uniform(0xffffff)];
-        item.fillColor = [UIColor wy_colorWithHex:arc4random_uniform(0xffffff) alpha:0.5];
+        item.borderColor = [UIColor wy_colorWithHex:0xffffff];
+        item.fillColor = [UIColor wy_colorWithHex:0xffffff alpha:0.5];
         [self.items addObject:item];
     }
 }
@@ -49,10 +49,11 @@ WYRadarChartViewDataSource
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.radarChartView = [[WYRadarChartView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetWidth(self.view.bounds))
                                                    dimensionCount:5
-                                                         gradient:1];
+                                                         gradient:0];
     self.radarChartView.dataSource = self;
     self.radarChartView.lineWidth = 0.5;
-    self.radarChartView.lineColor = [UIColor redColor];
+    self.radarChartView.lineColor = [UIColor wy_colorWithHex:0xffffff alpha:0.5];
+    self.radarChartView.backgroundColor = [UIColor wy_colorWithHex:0x245971];
     [self.view addSubview:self.radarChartView];
 }
 

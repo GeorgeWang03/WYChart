@@ -30,8 +30,9 @@
 - (instancetype)initWithFrame:(CGRect)frame dimensionCount:(NSUInteger)dimensionCount gradient:(NSUInteger)gradient {
     self = [super initWithFrame:frame];
     if (self) {
+        NSAssert(dimensionCount >= 3, @"dimensionCount must be at least 3");
         _dimensionCount = dimensionCount;
-        _gradient = gradient;
+        _gradient = gradient < 1 ? 1 : gradient;
         _hadDisplay = NO;
         _animationStyle = WYRadarChartViewAnimationNone;
         _animationDuration = 0.0;
@@ -44,8 +45,7 @@
 }
 
 - (void)setupUI {
-    self.backgroundColor = [UIColor grayColor];
-    self.transform = CGAffineTransformRotate(self.transform, -M_PI_2);
+    self.backgroundColor = [UIColor clearColor];
 }
 
 - (void)initData {
@@ -54,7 +54,7 @@
     double degress = M_PI * 2 / self.dimensionCount;
     self.factors = [NSMutableArray new];
     for (NSInteger index = 0; index < self.dimensionCount; index++) {
-        CGPoint temPoint = CGPointMake(cos(degress*index), sin(degress*index));
+        CGPoint temPoint = CGPointMake(cos(degress*index - M_PI_2), sin(degress*index - M_PI_2));
         [self.factors addObject:[NSValue valueWithCGPoint:temPoint]];
     }
 }
@@ -93,15 +93,17 @@
 
 - (CGPathRef)ringPathWithRatios:(NSArray <NSNumber *>*) ratios {
     CGMutablePathRef path = CGPathCreateMutable();
-    CGFloat initialLength = self.dimensionMaxLength * [ratios[0] floatValue];
-    CGPathMoveToPoint(path, NULL, self.radarCenter.x+initialLength, self.radarCenter.y);
+    CGPoint initialFactor = [self.factors[0] CGPointValue];
+    CGPoint initialPoint = CGPointMake(self.radarCenter.x + self.dimensionMaxLength * [ratios[0] floatValue] * initialFactor.x,
+                                       self.radarCenter.y + self.dimensionMaxLength * [ratios[0] floatValue] * initialFactor.y);
+    CGPathMoveToPoint(path, NULL, initialPoint.x, initialPoint.y);
     for (NSInteger index = 1; index < self.dimensionCount; index++) {
         CGFloat length = self.dimensionMaxLength * [ratios[index] floatValue];
         CGPoint factor = [[self.factors objectAtIndex:index] CGPointValue];
         CGPoint temPoint = CGPointMake(self.radarCenter.x + length*factor.x, self.radarCenter.y + length*factor.y);
         CGPathAddLineToPoint(path, NULL, temPoint.x, temPoint.y);
     }
-    CGPathAddLineToPoint(path, NULL, self.radarCenter.x+initialLength, self.radarCenter.y);
+    CGPathAddLineToPoint(path, NULL, initialPoint.x, initialPoint.y);
     return path;
 }
 
