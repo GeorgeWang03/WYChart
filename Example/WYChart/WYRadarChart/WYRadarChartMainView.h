@@ -18,6 +18,7 @@
 
 @property (nonatomic, assign) CGFloat lineWidth;
 @property (nonatomic, strong) UIColor *lineColor;
+@property (nonatomic, strong) NSArray *dimensions;
 
 - (instancetype)initWithFrame:(CGRect)frame dimensionCount:(NSUInteger)dimensionCount gradient:(NSUInteger)gradient;
 

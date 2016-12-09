@@ -10,6 +10,7 @@
 #import <math.h>
 #import "NSArray+Utils.h"
 #import "YYWeakProxy.h"
+#import "WYRadarChartDimensionView.h"
 
 #define WYRadarChartViewMargin  10
 
@@ -49,7 +50,7 @@
 }
 
 - (void)initData {
-    self.dimensionMaxLength = (CGRectGetWidth(self.bounds) - WYRadarChartViewMargin)*0.5;
+    self.dimensionMaxLength = (CGRectGetWidth(self.bounds) - WYRadarChartViewMargin)*0.3;
     self.radarCenter = self.center;
     double degress = M_PI * 2 / self.dimensionCount;
     self.factors = [NSMutableArray new];
@@ -88,6 +89,7 @@
     CGPathRelease(path);
     
     [self setupSublayer];
+    [self setupDimensions];
     self.hadDisplay = YES;
 }
 
@@ -147,6 +149,17 @@
         layer.frame = self.bounds;
         [self.layer addSublayer:layer];
         CGPathRelease(path);
+    }
+}
+
+- (void)setupDimensions {
+    [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    for (NSInteger index = 0; index < self.dimensionCount && index < self.dimensions.count; index++) {
+        WYRadarChartDimensionView *dimensionView = [[WYRadarChartDimensionView alloc] initWithDimension:self.dimensions[index]];
+        CGPoint factor = [self.factors[index] CGPointValue];
+        CGFloat length = self.dimensionMaxLength + sqrt(CGRectGetHeight(dimensionView.bounds)*CGRectGetHeight(dimensionView.bounds)*0.25 + CGRectGetWidth(dimensionView.bounds)*CGRectGetWidth(dimensionView.bounds)*0.25);
+        dimensionView.center = CGPointMake(self.radarCenter.x+length*factor.x, self.radarCenter.y+length*factor.y);
+        [self addSubview:dimensionView];
     }
 }
 

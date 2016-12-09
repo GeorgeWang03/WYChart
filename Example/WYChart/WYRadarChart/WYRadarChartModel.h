@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol WYRadarChartViewItemDescription <NSObject>
+
+- (NSString *)title;
+
+@end
+
 @interface WYRadarChartItem : NSObject
 
 /*
@@ -35,6 +41,8 @@
 @interface WYRadarChartDimension: NSObject
 
 @property (nonatomic, copy) NSString *title;
+@property (nonatomic, strong) UIColor *titleColor;
+@property (nonatomic, strong) UIFont *titleFont;
 @property (nonatomic, strong) UIImage *icon;
 
 @end

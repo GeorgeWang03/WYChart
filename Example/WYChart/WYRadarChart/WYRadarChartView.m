@@ -57,6 +57,12 @@
     [self reloadData];
 }
 
+- (void)setDimensions:(NSArray<WYRadarChartDimension *> *)dimensions {
+    _dimensions = dimensions;
+    self.radarMainView.dimensions = dimensions;
+    [self reloadData];
+}
+
 #pragma mark - data
 
 - (void)reloadData {

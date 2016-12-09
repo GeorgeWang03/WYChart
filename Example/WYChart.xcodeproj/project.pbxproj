@@ -21,6 +21,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		9F69DE491DFAE25700836B47 /* WYRadarChartDimensionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F69DE481DFAE25700836B47 /* WYRadarChartDimensionView.m */; };
 		9FA99FE51DEDC54700B70368 /* NSArray+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA99FE41DEDC54700B70368 /* NSArray+Utils.m */; };
 		9FA99FEB1DF4686C00B70368 /* YYWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA99FEA1DF4686C00B70368 /* YYWeakProxy.m */; };
 		9FEAB30B1DEC51D8001F55AB /* WYRadarChartMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEAB3061DEC51D8001F55AB /* WYRadarChartMainView.m */; };
@@ -70,6 +71,8 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		9F69DE471DFAE25700836B47 /* WYRadarChartDimensionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRadarChartDimensionView.h; sourceTree = "<group>"; };
+		9F69DE481DFAE25700836B47 /* WYRadarChartDimensionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRadarChartDimensionView.m; sourceTree = "<group>"; };
 		9FA99FE31DEDC54700B70368 /* NSArray+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+Utils.h"; path = "Utils/NSArray+Utils.h"; sourceTree = "<group>"; };
 		9FA99FE41DEDC54700B70368 /* NSArray+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Utils.m"; path = "Utils/NSArray+Utils.m"; sourceTree = "<group>"; };
 		9FA99FE91DF4686C00B70368 /* YYWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YYWeakProxy.h; path = Utils/YYWeakProxy.h; sourceTree = "<group>"; };
@@ -244,6 +247,8 @@
 				9FEAB3081DEC51D8001F55AB /* WYRadarChartModel.m */,
 				9FEAB3091DEC51D8001F55AB /* WYRadarChartView.h */,
 				9FEAB30A1DEC51D8001F55AB /* WYRadarChartView.m */,
+				9F69DE471DFAE25700836B47 /* WYRadarChartDimensionView.h */,
+				9F69DE481DFAE25700836B47 /* WYRadarChartDimensionView.m */,
 			);
 			path = WYRadarChart;
 			sourceTree = "<group>";
@@ -466,6 +471,7 @@
 				C36D9DBE1D88E65300846668 /* LineChartViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* WYCViewController.m in Sources */,
 				9FA99FE51DEDC54700B70368 /* NSArray+Utils.m in Sources */,
+				9F69DE491DFAE25700836B47 /* WYRadarChartDimensionView.m in Sources */,
 				9FA99FEB1DF4686C00B70368 /* YYWeakProxy.m in Sources */,
 				9FEAB30B1DEC51D8001F55AB /* WYRadarChartMainView.m in Sources */,
 				9FEAB30D1DEC51D8001F55AB /* WYRadarChartView.m in Sources */,

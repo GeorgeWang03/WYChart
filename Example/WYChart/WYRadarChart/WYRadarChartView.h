@@ -16,12 +16,6 @@ typedef NS_ENUM(NSUInteger, WYRadarChartViewAnimation) {
     WYRadarChartViewAnimationScale
 };
 
-@protocol WYRadarChartViewItemDescription <NSObject>
-
-- (NSString *)title;
-
-@end
-
 @protocol WYRadarChartViewDataSource <NSObject>
 
 - (WYRadarChartDimension *)radarChartView:(WYRadarChartView *)radarChartView dimensionAtIndex:(NSUInteger)index;
@@ -38,6 +32,8 @@ typedef NS_ENUM(NSUInteger, WYRadarChartViewAnimation) {
 
 @property (nonatomic, assign, readonly) NSUInteger dimensionCount;
 @property (nonatomic, assign, readonly) NSUInteger gradient;
+
+@property (nonatomic, strong) NSArray <WYRadarChartDimension *>* dimensions;
 
 @property (nonatomic, assign) CGFloat lineWidth;
 @property (nonatomic, strong) UIColor *lineColor;
