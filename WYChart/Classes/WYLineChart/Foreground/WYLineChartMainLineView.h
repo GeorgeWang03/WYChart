@@ -27,6 +27,7 @@
 @interface WYLineChartMainLineView : UIView
 
 @property (nonatomic, weak) WYLineChartView<WYLineChartMainLineViewDelegate> *parentView;
+@property (nonatomic, strong) NSArray *points;
 
 @property (nonatomic) WYLineChartMainLineStyle style;
 
@@ -37,11 +38,15 @@
 @property (nonatomic) WYLineChartAnimationStyle animationStyle;
 @property (nonatomic) CGFloat animationDuration;
 
+// define if drawing gradient below line, default is YES.
+@property (nonatomic) BOOL drawGradient;
+
 @property (nonatomic) BOOL showJunctionShape;
 @property (nonatomic, copy) UIColor *junctionColor;
 @property (nonatomic) WYLineChartJunctionShapeStyle junctionStyle;
 @property (nonatomic) WYLineChartJunctionShapeSize junctionSize;
 
+@property (nonatomic) BOOL touchable; // v0.2.0
 @property (nonatomic, copy) UIColor *touchPointColor;
 @property (nonatomic) WYLineChartJunctionShapeStyle touchPointStyle;
 @property (nonatomic) WYLineChartJunctionShapeSize touchPointSize;
@@ -49,10 +54,5 @@
 @property (nonatomic, strong) NSArray *pathSegments;
 
 @property (nonatomic, strong) UIView *touchView;
-
-///////--------------------------------------- Color ------------------------------------------///////
-
-@property (nonatomic, strong) UIColor *lineStrokeColor;
-
 
 @end

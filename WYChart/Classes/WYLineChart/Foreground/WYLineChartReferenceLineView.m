@@ -50,8 +50,8 @@
     CGFloat boundsHeight = CGRectGetHeight(self.bounds);
     
     
-    CGFloat average = [self.parentView.calculator calculateAverageForPoints:self.parentView.points];
-    CGFloat verticalLocation = [self.parentView.calculator verticalLocationForValue:average];
+    //CGFloat average = [self.parentView.calculator calculateAverageForPoints:self.parentView.points];
+    //CGFloat verticalLocation = [self.parentView.calculator verticalLocationForValue:average];
     
     //remove sublayer
     [[self subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -78,6 +78,7 @@
     //* * * * * * * * * * * * * * * * * * * *//
     //         Draw Average Line             //
     //* * * * * * * * * * * * * * * * * * * *//
+    /*
     CAShapeLayer *averageLineLayer;
     UIBezierPath *averageLinePath;
     
@@ -93,7 +94,7 @@
     
     if (self.averageLineDashPattern) averageLineLayer.lineDashPattern = self.averageLineDashPattern;
     
-    [self.layer addSublayer:averageLineLayer];
+    [self.layer addSublayer:averageLineLayer];*/
     
     //* * * * * * * * * * * * * * * * * * * *//
     //         Draw Reference Line           //
@@ -155,33 +156,32 @@
     if (self.animationStyle != kWYLineChartNoneAnimation) {
         
         CGFloat averageToValue;
-        CGFloat verticalToValue;
+        CGFloat horizontalToValue;
         NSString *keyPath;
         
         averageToValue = 0;
-        verticalToValue = 0;
+        horizontalToValue = 0;
         
-        if (self.animationStyle == kWYLineChartAnimationAlpha) {
-            
-            keyPath = @"opacity";
-            averageToValue = self.averageLineAlpha;
-            verticalToValue = self.verticalReferenceLineAlpha;
-        } else if (self.animationStyle == kWYLineChartAnimationDrawing) {
+        if (self.animationStyle == kWYLineChartAnimationDrawing) {
             
             keyPath = @"strokeEnd";
             averageToValue = 1;
-            verticalToValue = 1;
+            horizontalToValue = 1;
         } else if (self.animationStyle == kWYLineChartAnimationWidth) {
             
             keyPath = @"lineWidth";
             averageToValue = self.averageLineWidth;
-            verticalToValue = self.verticalReferenceLineWidth;
+            horizontalToValue = self.horizontalReferenceLineAlpha;
+        } else {
+            keyPath = @"opacity";
+            averageToValue = self.averageLineAlpha;
+            horizontalToValue = self.horizontalReferenceLineAlpha;
         }
         
-        [self shapeLayer:averageLineLayer addAnimationForKeyPath:keyPath
-               fromValue:0.0 toValue:averageToValue];
+        //[self shapeLayer:averageLineLayer addAnimationForKeyPath:keyPath
+        //       fromValue:0.0 toValue:averageToValue];
         [self shapeLayer:horizontalReferenceLineLayer addAnimationForKeyPath:keyPath
-               fromValue:0.0 toValue:verticalToValue];
+               fromValue:0.0 toValue:horizontalToValue];
     }
 }
 
@@ -264,28 +264,28 @@
     
     if (self.animationStyle != kWYLineChartNoneAnimation) {
         
-        CGFloat horizontalToValue;
+        CGFloat verticalToValue;
         NSString *keyPath;
         
-        horizontalToValue = 0;
+        verticalToValue = 0;
         
-        if (self.animationStyle == kWYLineChartAnimationAlpha) {
-            
-            keyPath = @"opacity";
-            horizontalToValue = self.horizontalReferenceLineAlpha;
-        } else if (self.animationStyle == kWYLineChartAnimationDrawing) {
+        if (self.animationStyle == kWYLineChartAnimationDrawing) {
             
             keyPath = @"strokeEnd";
-            horizontalToValue = 1;
+            verticalToValue = 1;
         } else if (self.animationStyle == kWYLineChartAnimationWidth) {
             
             keyPath = @"lineWidth";
-            horizontalToValue = self.horizontalReferenceLineWidth;
+            verticalToValue = self.verticalReferenceLineWidth;
+        } else {
+            
+            keyPath = @"opacity";
+            verticalToValue = self.verticalReferenceLineAlpha;
         }
         
         
         [self shapeLayer:verticalReferenceLineLayer addAnimationForKeyPath:keyPath
-               fromValue:0.0 toValue:horizontalToValue];
+               fromValue:0.0 toValue:verticalToValue];
     }
 }
 

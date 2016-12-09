@@ -1,14 +1,14 @@
 # WYChart
 
 [![Wercker](https://img.shields.io/badge/build-pass-brightgreen.svg?style=flat-square)](http://cocoapods.org/pods/WYChart)
-[![Version](https://img.shields.io/badge/Version-v0.2.0-orange.svg?style=flat-square)](http://cocoapods.org/pods/WYChart)
+[![Version](https://img.shields.io/badge/Version-v0.1.0-orange.svg?style=flat-square)](http://cocoapods.org/pods/WYChart)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](http://cocoapods.org/pods/WYChart)
 [![Platform](https://img.shields.io/badge/platform-iOS-ff69b4.svg?style=flat-square)](http://cocoapods.org/pods/WYChart)
 
 A simple and elegant LineChart and pieChart library with rich animations.
 More type of charts will come not long after.
 
-<p align="center"><img width="480" src="IMG/LineChart_003.png"/></p> 
+<p align="center"><img width="240" src="../IMG/LineChart_001.png"/></p> 
 <p align="center">
 <b>WYLineChart</b>
 <p align="center">Make it easy to create a line chart, Scrollable, Pinchable, Animatable
@@ -16,7 +16,7 @@ More type of charts will come not long after.
 </p>
 
 
-<p align="center"><img width="240" src="IMG/PieChart_002.png"/></p> 
+<p align="center"><img width="240" src="../IMG/PieChart_001.png"/></p> 
 <p align="center">
 <b>WYPieChart</b>
 <p align="center">Make it easy to create a Pie chart, Rotatable, Draggable, Selectable, Animatable
@@ -24,8 +24,6 @@ More type of charts will come not long after.
 </p>
 
 ***
-
-**With a period of time, WYChart version 0.2.0 has been released, it support mutiple lien in lineChart.**
 
 **If you love WYChart , encourage me with a star 🌟 , thanks!**
 
@@ -56,21 +54,17 @@ WYChart is available under the [MIT license](LICENSE). See the LICENSE file for 
 The Project included a demo showing the tow chart and the code that how to use the chart with properties and methods.In perticalculer, there are setting pages for  two charts which you can change the property and see what changed. 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 The demo page shows follow:
-<p align="center"><img width="240" src="IMG/Table_001.png"/></p> 
+<p align="center"><img width="240" src="../IMG/Table_001.png"/></p> 
 <p align="center">
 <b>Main Table</b>
 </p>
 
-<p align="center"><img width="240" src="IMG/SettingPage_001.png"/></p> 
+<p align="center"><img width="240" src="../IMG/SettingPage_001.png"/></p> 
 <p align="center">
 <b>Pie Chart Setting Page</b>
 </p>
 
-<p align="center"><img width="240" src="IMG/SettingPage_001_1.png"/></p> 
-<p align="center">
-</p>
-
-<p align="center"><img width="240" src="IMG/SettingPage_001_2.png"/></p> 
+<p align="center"><img width="240" src="../IMG/SettingPage_002.png"/></p> 
 <p align="center">
 <b>Line Chart Setting Page</b>
 </p>
@@ -126,29 +120,16 @@ The follow lines will show you how to initialize WYLineChart and WYPieChart in d
     	  
 **Third**, set the line chart data array, which contained numbers of WYLineChartPoint:  
 		
-		 NSMutableArray *mutableArray = [NSMutableArray array];
-		 // line_1
-        NSArray *points = [WYLineChartPoint pointsFromValueArray:@[@(70706.89),@(75623.4),@(90980.f),@(80890.34),@(60321.2)]];
-        [mutableArray addObject:points];
-        // line_2
-        points = [WYLineChartPoint pointsFromValueArray:@[@(50503.134),@(50446.85),@(50555.67),@(60216.48),@(50664.45),@(80890.34),@(30321.2)]];
-        [mutableArray addObject:points];
-		 // set data
-        _lineChart.points = mutableArray;
-        
-after v0.2.0, lineChart.points containt mutiple lines\` point, so data struct did changed, as describing in Headerfile `WYLineChartView.h` :
-
-		// all the points of lines on the graph
-		// the content should be:
-		// /* points */@[
-		//                  /* line 0 */ @[
-		//                                 /* point 0 */ (WYLineChartPoint *)point0, point1, point2 ...
-		//                                 ],
-		//                  /* line 1 */ @[
-		//                                 /* point 0 */ (WYLineChartPoint *)point0, point1, point2 ...
-		//                                 ],
-		//              ]
-		// v0.2.0
+		WYLineChartPoint *point = [[WYLineChartPoint alloc] init];
+		point.value = 50503.134;
+		[container addObject:point];
+		point = [[WYLineChartPoint alloc] init];
+		point.value = 60623.4;
+		[container addObject:point];
+		
+		...
+		
+		_chartView.points = [NSArray arrayWithArray:_points];
       
 **Finally**, add chart to controller`s view and update line chart:  
 
@@ -160,7 +141,13 @@ Besides, you have to implement the required methods of delegate and dataSource:
 
 **Delegate** 
    
-		- (CGFloat)gapBetweenPointsHorizontalInLineChartView:(WYLineChartView *)chartView;
+		- (NSInteger)numberOfLabelOnXAxisInLineChartView:(WYLineChartView *)chartView
+		
+		- (CGFloat)gapBetweenPointsHorizontalInLineChartView:(WYLineChartView *)chartView
+		
+		- (CGFloat)maxValueForPointsInLineChartView:(WYLineChartView *)chartView
+		
+		- (CGFloat)minValueForPointsInLineChartView:(WYLineChartView *)chartView
 
 **DataSource**  
 
@@ -169,29 +156,20 @@ Besides, you have to implement the required methods of delegate and dataSource:
 		- (WYLineChartPoint *)lineChartView:(WYLineChartView *)chartView pointReferToXAxisLabelAtIndex:(NSInteger)index
 
 ***
-The jobs above is not enough, there are a lot of optional property for you to config the appearence and interaction of line chart. By the way, after v0.2.0, we used dictionary(key-value pairs) to config lines\` attributes through dataSrouce methor `- (NSDictionary *)lineChartView:(WYLineChartView *)chartView attributesForLineAtIndex:(NSUInteger)index;` , so, some attribute such as line style if you plan to config it you have to implement the dataSource methor above.
+The jobs above is not enough, there are a lot of optional property for you to config the appearence and interaction of line chart.  
 
 **Gradient Foreground**
 </br>
-`Gradient Foreground` is a optional line attibute, you should use it by `kWYLineChartLineAttributeDrawGradient` key in dataSource methor.
 To make the line chart more elegant, you can choose to add gradient foreground for it, add the following lines:  
   
-	- (NSDictionary *)lineChartView:(WYLineChartView *)chartView attributesForLineAtIndex:(NSUInteger)index {
-    NSMutableDictionary *resultAttributes = [NSMutableDictionary dictionary];
-    resultAttributes[kWYLineChartLineAttributeDrawGradient] = @YES;
-    
-    ...
-    // other line attributes config
-    ...
-    
-    return resultAttributes;
-}
-
-After v0.2.0, there\`s no need to set gradient color, because it is coincident with line`s color, so we just decide weather the gradient should showing. 
+		_chartView.gradientColors = @[[UIColor colorWithWhite:1.0 alpha:0.9],
+                                  [UIColor colorWithWhite:1.0 alpha:0.0]];
+    	_chartView.gradientColorsLocation = @[@(0.0), @(0.95)];
+    	_chartView.drawGradient = YES;
     	  
 That will show you a gradient foreground as following:
 
-<p align="center"><img width="360" src="IMG/LineGradient_001_1.png"/></p> 
+<p align="center"><img width="180" src="../IMG/Gradient_001.png"/></p> 
 <p align="center">
 <b>Gradient Foreground</b>
 </p>
@@ -199,7 +177,7 @@ That will show you a gradient foreground as following:
 
 Otherwise:
 
-<p align="center"><img width="360" src="IMG/LineGradient_001_2.png"/></p> 
+<p align="center"><img width="180" src="../IMG/Gradient_002.png"/></p> 
 <p align="center">
 <b>Without Gradient Foreground</b>
 </p>
@@ -216,7 +194,7 @@ WYLineChart support you to scroll to chart horizontally, just add the simple lin
 
 Then, you can scroll the chart:
 
-<p align="center"><img width="180" src="IMG/Scrollable_001.gif"/></p> 
+<p align="center"><img width="180" src="../IMG/Scrollable_001.gif"/></p> 
 <p align="center">
 <b>Scroll Chart</b>
 </p>
@@ -228,53 +206,44 @@ You can also add the following line:
 
 		_chartView.pinchable = YES;
 		  
-to make the chart pinchable, that\`s useful when you want to scale the data grade for chart to show, you can pinch out or pinch in to reload data, and the method `- (void)lineChartView:didEndedPinchGraphWithOption:` will be notified, in which you can reset the data array and update the chart. 
+to make the chart pinchable, that\`s useful when you want to scale the data grade for chart to show, you can pinch out or pinch in to reload data, and the method `- (void)lineChartView:didEndedPinchGraphWithOption:` will be notified, in which you can reset the data array and update the chart.
 
 **Line Style**
 
-LineStyle is a optional lines\` attribute, you should use it by `kWYLineChartLineAttributeLineStyle` key in dataSource methor.
 WYLineChart supports three line style:	  
   
 		kWYLineChartMainStraightLine,
     	kWYLineChartMainBezierWaveLine,
     	kWYLineChartMainBezierTaperLine  
 
-and if you do not want a line while just some point, you can choose `kWYLineChartMainNoneLine` for the `kWYLineChartLineAttributeLineStyle` key in the dataRouce methor.
+and if you do not want a line while just some point, you can choose `kWYLineChartMainNoneLine` 
 
-<p align="center"><img width="180" src="IMG/LineStyle_001.png"/></p> 
+<p align="center"><img width="180" src="../IMG/LineStyle_001.png"/></p> 
 <p align="center">
 <b>Wave Style</b>
 </p>
 </br>
 
-<p align="center"><img width="180" src="IMG/LineStyle_002.png"/></p> 
+<p align="center"><img width="180" src="../IMG/LineStyle_002.png"/></p> 
 <p align="center">
 <b>Straight Style</b>
 </p>
 </br>
 
-<p align="center"><img width="180" src="IMG/LineStyle_003.png"/></p> 
+<p align="center"><img width="180" src="../IMG/LineStyle_003.png"/></p> 
 <p align="center">
 <b>Tapper Style</b>
 </p>
 </br>
 
-<p align="center"><img width="180" src="IMG/LineStyle_mix.png"/></p> 
-<p align="center">
-<b>Wave, straight, tapper Style</b>
-</p>
-</br>
-
-<p align="center"><img width="180" src="IMG/LineStyle_004.png"/></p> 
+<p align="center"><img width="180" src="../IMG/LineStyle_004.png"/></p> 
 <p align="center">
 <b>None Line</b>
 </p>
 </br>
 		  
-
 **Animation Style**
 
-Animation is not a line attribute, it\`s a lineChart attribute, once be setted, all line are coincident.
 There are several animation for chart:  
 
 		kWYLineChartAnimationDrawing,
@@ -286,20 +255,19 @@ There are several animation for chart:
 
 
 For example, `kWYLineChartAnimationDrawing` show as:
-<p align="center"><img width="180" src="IMG/LineAnimation_Drawing.gif"/></p> 
+<p align="center"><img width="180" src="../IMG/LineAnimation_Drawing.gif"/></p> 
 <p align="center">
 <b>Drawing Animation</b>
 </p>    
 
 and `kWYLineChartAnimationSpring` show as:
-<p align="center"><img width="180" src="IMG/LineAnimation_Spring.gif"/></p> 
+<p align="center"><img width="180" src="../IMG/LineAnimation_Spring.gif"/></p> 
 <p align="center">
 <b>Spring Animation</b>
 </p>  
 
 **Junction Style**
 
-JunctionStyle is a optional line attribute, you should use it by `kWYLineChartLineAttributeJunctionStyle` key in dataSource methor.
 You can choose a junction style bellowing:
 
 		kWYLineChartJunctionShapeNone,
@@ -314,7 +282,7 @@ You can choose a junction style bellowing:
   
 For example, `kWYLineChartJunctionShapeHollowRectangle` will show as:
 
-<p align="center"><img width="180" src="IMG/Junction_001.png"/></p> 
+<p align="center"><img width="180" src="../IMG/Junction_001.png"/></p> 
 <p align="center">
 <b>Hollow Rectangle</b>
 </p>
@@ -328,20 +296,13 @@ WYLineChart containe a long press gesture for a point to show where you touch on
 		- (void)lineChartView:didMovedTouchToSegmentOfPoint:value:
 		- (void)lineChartView:didEndedTouchToSegmentOfPoint:value:  
   
-<p align="center"><img width="240" src="IMG/TouchPoint_001.gif"/></p> 
+<p align="center"><img width="240" src="../IMG/TouchPoint_001.gif"/></p> 
 <p align="center">
 <b>Touch Point</b>
 </p>
 </br>  
-
-**But**, after v0.2.0, this property work only if there just a single line in lineChartView.
     
-**Points` Label**
-
-After v0.2.0, it support you to customized a label to show nearby a point.
-Just implement dataSource metohr `- (NSString *)lineChartView:(WYLineChartView *)chartView contextTextForPointAtIndexPath:(NSIndexPath *)indexPath`, if you return nil, the label at indexPath will no show.
-  
-There`re numbers of feature in WYLineChart, if you are intrested in it, see the [interface]("WYChart/WYLineChart/Main/WYLineChartView.h") and [define file]("WYChart/WYLineChart/Main/WYLineChartDefine.h").
+There`re numbers of feature in WYLineChart, if you are intrested in it, see the [interface]("WYChart/WYLineChart/Main/WYLineChartView.h").
 
 #### WYPieChart  
 
@@ -373,13 +334,13 @@ Like WYLineChart, there are also number of optional property for you to config t
 
 You can choose style between `kWYPieChartNormalStyle` and `kWYPieChartGearStyle`, as showing below:
 
-<p align="center"><img width="240" src="IMG/PieStyle_001.png"/></p> 
+<p align="center"><img width="240" src="../IMG/PieStyle_001.png"/></p> 
 <p align="center">
 <b>Normal Pie Style</b>
 </p>
 </br>  
 
-<p align="center"><img width="240" src="IMG/PieStyle_002.png"/></p> 
+<p align="center"><img width="240" src="../IMG/PieStyle_002.png"/></p> 
 <p align="center">
 <b>Gear Pie Style</b>
 </p>
@@ -397,7 +358,7 @@ If you want the pie chart to be more interactable, you can add the code below:
 		 
 to make it rotatable.  
   
-<p align="center"><img width="240" src="IMG/Rotatable_001.gif"/></p> 
+<p align="center"><img width="240" src="../IMG/Rotatable_001.gif"/></p> 
 <p align="center">
 <b>Pie Chart Rotatable</b>
 </p>
@@ -410,13 +371,13 @@ WYPieChart support you to select the sectors with two types of animation, and wi
 		_pieView.selectedStyle = kWYPieChartSectorSelectedExtraction;  
 
 
-<p align="center"><img width="240" src="IMG/PieSelectedStyle_001.gif"/></p> 
+<p align="center"><img width="240" src="../IMG/PieSelectedStyle_001.gif"/></p> 
 <p align="center">
 <b>Extraction Style</b>
 </p>
 </br>  
 
-<p align="center"><img width="240" src="IMG/PieSelectedStyle_002.gif"/></p> 
+<p align="center"><img width="240" src="../IMG/PieSelectedStyle_002.gif"/></p> 
 <p align="center">
 <b>Pull Style</b>
 </p>
@@ -434,7 +395,7 @@ Six styles of animation you can choose to animation the pie chart when reloading
 
 For example, `kWYPieChartAnimationAllSpreading` style will show as below:
 
-<p align="center"><img width="240" src="IMG/PieAnimationStyle_001.gif"/></p> 
+<p align="center"><img width="240" src="../IMG/PieAnimationStyle_001.gif"/></p> 
 <p align="center">
 <b>All Spreading Style</b>
 </p>
@@ -446,7 +407,7 @@ You can select the other animation styles to see what it perform in the demo.
 
 The property `showInnerCircle` is define should a empty circle draw in the chart, which you can add a label on it, such as a sum label.
 
-<p align="center"><img width="240" src="IMG/InnerCircle_001.png"/></p> 
+<p align="center"><img width="240" src="../IMG/InnerCircle_001.png"/></p> 
 <p align="center">
 <b>Inner Circle</b>
 </p>
@@ -457,7 +418,7 @@ The property `showInnerCircle` is define should a empty circle draw in the chart
 The `fillByGradient` property default is NO, if you set it to YES, every sector will fill by gradient.
 
 
-<p align="center"><img width="240" src="IMG/PieGradient_001.png"/></p> 
+<p align="center"><img width="240" src="../IMG/PieGradient_001.png"/></p> 
 <p align="center">
 <b>Gradient Fill</b>
 </p>
@@ -467,29 +428,6 @@ Some other feature also include in WYPieChart, you can find them in [PieChartVie
 </br>
 </br>
 </br>
-
-##Features
-
-###v0.2.0
-* **Support multiple lines in a lineChart.**
-* **Support label with custom text to show on every point nearby.**
-* **Using Dictionary(key-value) to set lines` attribute instead of property.**
-
-###v0.1.2
-* **Fix bug : WYPieChartView change values and update crash.**
-
-###v0.1.1
-* **Fix bug : WYLineChartView, count of labels on X axis can\`t be same to points` count.**
-
-###v0.1.0 (First Release)
-* **Including line chart (with a single line) and pie chart.**
-* **Line chart including various animation such as Drawing and Spring and more as above introduction.**
-* **Line char including various line style such as bezierWaveLine, bezierTapLine and straightLine.**
-* **Pie chart including tow pie style : normal round and gear.**
-* **Pie chart including various animation such spring and scale and more as above introduction.**
-* **Pie chart including tow interaction : rotate and drag.**
-
-
 ##Contact
 
 If you have any problem or got an idear, i will be glad if share them to me by a `#issue` or [georgewang003@gmail.com](georgewang003@gmail.com), and this my [personal blog](http://blog.oneinbest.com) where you can find some technology about WYChart or any other topics.

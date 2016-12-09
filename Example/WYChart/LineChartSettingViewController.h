@@ -16,9 +16,12 @@ FOUNDATION_EXTERN NSString *const kLineChartLineStyle;
 FOUNDATION_EXTERN NSString *const kLineChartDrawGradient;
 FOUNDATION_EXTERN NSString *const kLineChartJunctionStyle;
 FOUNDATION_EXTERN NSString *const kLineChartBackgroundColor;
+FOUNDATION_EXTERN NSString *const kLineChartLineAttributes;
 
 @interface LineChartSettingViewController : UIViewController
 
 @property (nonatomic) NSMutableDictionary *parameters;
+
+- (NSMutableDictionary *)getLineAttributesAtIndex:(NSUInteger)index;
 
 @end

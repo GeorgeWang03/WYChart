@@ -23,6 +23,10 @@
 + (instancetype)point;
 + (instancetype)makePointWithX:(CGFloat)x y:(CGFloat)y;
 + (instancetype)pointWithCGPoint:(CGPoint)point;
++ (NSArray *)pointsFromValueArray:(NSArray *)valueArray; // v0.2.0
++ (WYLineChartPoint *)maxValuePointFromArray:(NSArray *)points; // v0.2.0
++ (WYLineChartPoint *)minValuePointFromArray:(NSArray *)points; // v0.2.0
++ (WYLineChartPoint *)filterPointFromArray:(NSArray *)points comparatorBlock:(BOOL (^)(WYLineChartPoint *p1, WYLineChartPoint *p2))comparator; // v0.2.0
 
 @end
 

@@ -50,7 +50,7 @@
             break;
         }
         case 1: {
-            cell.textLabel.text = @"LineChart(折线图)";
+            cell.textLabel.text = @"LineChart(线型图) v0.2.0";
             break;
         }
         case 2: {
