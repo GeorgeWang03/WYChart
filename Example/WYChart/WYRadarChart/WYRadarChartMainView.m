@@ -12,15 +12,28 @@
 #import "YYWeakProxy.h"
 #import "WYRadarChartDimensionView.h"
 
-#define WYRadarChartViewMargin  10
+#define WYRadarChartViewMargin              10
+#define WYRadarChartViewAnimationLayerKey   @"WYRadarChartViewAnimationLayerKey"
+
+@interface WYRadarShapeLayer : CAShapeLayer
+
+@property (nonatomic, strong) WYRadarChartItem *item;
+
+@end
+
+@implementation WYRadarShapeLayer
+
+@end
 
 @interface WYRadarChartMainView()
+<
+CAAnimationDelegate
+>
 
 @property (nonatomic, assign) CGFloat dimensionMaxLength;
 @property (nonatomic, strong) NSMutableArray<NSValue *> *factors;
 @property (nonatomic, assign) CGPoint radarCenter;
 
-@property (nonatomic, assign) BOOL hadDisplay;
 @property (nonatomic, assign) WYRadarChartViewAnimation animationStyle;
 @property (nonatomic, assign) NSTimeInterval animationDuration;
 
@@ -36,7 +49,6 @@
         NSAssert(dimensionCount >= 3, @"dimensionCount must be at least 3");
         _dimensionCount = dimensionCount;
         _gradient = gradient < 1 ? 1 : gradient;
-        _hadDisplay = NO;
         _animationStyle = WYRadarChartViewAnimationNone;
         _animationDuration = 0.0;
         _lineWidth = 0.5;
@@ -92,8 +104,6 @@
     CGContextAddPath(context, path);
     CGContextStrokePath(context);
     CGPathRelease(path);
-    
-    self.hadDisplay = YES;
 }
 
 - (CGPathRef)ringPathWithRatios:(NSArray <NSNumber *>*) ratios {
@@ -145,7 +155,8 @@
             
         }
         CGPathRef path = [self ringPathWithRatios:values];
-        CAShapeLayer *layer = [CAShapeLayer layer];
+        WYRadarShapeLayer *layer = [WYRadarShapeLayer layer];
+        layer.item = item;
         layer.path = path;
         layer.lineWidth = item.borderWidth;
         layer.fillColor = item.fillColor.CGColor;
@@ -173,11 +184,11 @@
 - (void)reloadDataWithAnimation:(WYRadarChartViewAnimation)animation duration:(NSTimeInterval)duration {
     self.animationStyle = animation;
     self.animationDuration = duration;
-    self.hadDisplay = NO;
-    [self.layer.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
     [self setNeedsDisplay];
-    CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:[YYWeakProxy proxyWithTarget:self] selector:@selector(displayLinkAction:)];
-    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    
+    [self setupSublayer];
+    [self setupDimensions];
+    [self doAnimation];
 }
 
 - (void)doAnimation {
@@ -186,7 +197,7 @@
             break;
         }
         case WYRadarChartViewAnimationScale: {
-            for (CAShapeLayer *layer in self.itemLayers) {
+            for (WYRadarShapeLayer *layer in self.itemLayers) {
                 CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
                 animation.values = @[@(0.0),@(1.0)];
                 animation.duration = self.animationDuration;
@@ -195,17 +206,40 @@
             
             break;
         }
+        case WYRadarChartViewAnimationStrokePath: {
+            CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+            animation.fromValue = @(0.0);
+            animation.toValue = @(1.0);
+            animation.duration = self.animationDuration;
+            
+            for (WYRadarShapeLayer *layer in self.itemLayers) {
+                layer.fillColor = [UIColor clearColor].CGColor;
+                [animation setValue:layer forKey:WYRadarChartViewAnimationLayerKey];
+                animation.delegate = self;
+                [layer addAnimation:animation forKey:@"StrokeEndAnimation"];
+            }
+            break;
+        }
         default:
             break;
     }
 }
 
-- (void)displayLinkAction:(CADisplayLink *)displayLink {
-    if (self.hadDisplay) {
-        [self setupSublayer];
-        [self setupDimensions];
-        [self doAnimation];
-        [displayLink invalidate];
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    switch (self.animationStyle) {
+        case WYRadarChartViewAnimationNone: {
+            break;
+        }
+        case WYRadarChartViewAnimationScale: {
+            break;
+        }
+        case WYRadarChartViewAnimationStrokePath: {
+            WYRadarShapeLayer *layer = [anim valueForKey:WYRadarChartViewAnimationLayerKey];
+            layer.fillColor = layer.item.fillColor.CGColor;
+            break;
+        }
+        default:
+            break;
     }
 }
 

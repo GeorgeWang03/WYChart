@@ -50,9 +50,11 @@ WYRadarChartViewDataSource
 
 @property (nonatomic, assign) NSInteger dimensionCount;
 @property (nonatomic, assign) NSInteger itemCount;
+@property (nonatomic, assign) WYRadarChartViewAnimation animation;
 
 @property (nonatomic, strong) SliderView *dimensionCountSliderView;
 @property (nonatomic, strong) SliderView *itemCountSliderView;
+@property (nonatomic, strong) UISegmentedControl *animationSegmentedControl;
 
 @end
 
@@ -60,14 +62,19 @@ WYRadarChartViewDataSource
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.dimensionCount = 5;
-    self.itemCount = 1;
     [self initData];
+    [self setupData];
     [self setupUI];
-    [self.radarChartView reloadDataWithAnimation:WYRadarChartViewAnimationScale duration:1];
+    [self.radarChartView reloadDataWithAnimation:self.animation duration:1];
 }
 
 - (void)initData {
+    self.dimensionCount = 5;
+    self.itemCount = 1;
+    self.animation = WYRadarChartViewAnimationStrokePath;
+}
+
+- (void)setupData {
     self.items = [NSMutableArray new];
     for (NSInteger index = 0; index < self.itemCount; index++) {
         WYRadarChartItem *item = [WYRadarChartItem new];
@@ -96,7 +103,7 @@ WYRadarChartViewDataSource
     [self setupRadarView];
     
     //
-    self.dimensionCountSliderView = [[SliderView alloc] initWithFrame:CGRectMake(0, self.radarChartView.wy_maxY + 10, self.view.wy_boundsWidth, 50)];
+    self.dimensionCountSliderView = [[SliderView alloc] initWithFrame:CGRectMake(0, self.radarChartView.wy_maxY + 10, self.view.wy_boundsWidth, 40)];
     self.dimensionCountSliderView.slider.minimumValue = 3;
     self.dimensionCountSliderView.slider.maximumValue = 10;
     self.dimensionCountSliderView.slider.value = self.dimensionCount;
@@ -104,7 +111,7 @@ WYRadarChartViewDataSource
     [self.dimensionCountSliderView.slider addTarget:self action:@selector(sliderValueDidChange:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.dimensionCountSliderView];
     
-    self.itemCountSliderView = [[SliderView alloc] initWithFrame:CGRectMake(0, self.dimensionCountSliderView.wy_maxY, self.view.wy_boundsWidth, 50)];
+    self.itemCountSliderView = [[SliderView alloc] initWithFrame:CGRectMake(0, self.dimensionCountSliderView.wy_maxY, self.view.wy_boundsWidth, 40)];
     self.itemCountSliderView.slider.maximumValue = 10;
     self.itemCountSliderView.slider.minimumValue = 0;
     self.itemCountSliderView.slider.value = self.itemCount;
@@ -112,6 +119,11 @@ WYRadarChartViewDataSource
     [self.itemCountSliderView.slider addTarget:self action:@selector(sliderValueDidChange:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.itemCountSliderView];
     
+    self.animationSegmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"none", @"scale", @"storkePath"]];
+    self.animationSegmentedControl.frame = CGRectMake(0, self.itemCountSliderView.wy_maxY, self.view.wy_boundsWidth, 40);
+    [self.animationSegmentedControl addTarget:self action:@selector(animationSegmentedControlValueDidChange:) forControlEvents:UIControlEventValueChanged];
+    self.animationSegmentedControl.selectedSegmentIndex = self.animation;
+    [self.view addSubview:self.animationSegmentedControl];
 }
 
 - (void)setupRadarView {
@@ -159,9 +171,14 @@ WYRadarChartViewDataSource
         self.itemCountSliderView.label.text = [NSString stringWithFormat:@"itemCount :%@", @(self.itemCount)];
     }
     
-    [self initData];
+    [self setupData];
     [self setupRadarView];
-    [self.radarChartView reloadDataWithAnimation:WYRadarChartViewAnimationScale duration:1];
+    [self.radarChartView reloadDataWithAnimation:self.animation duration:1];
+}
+
+- (void)animationSegmentedControlValueDidChange:(UISegmentedControl *)control {
+    self.animation = (WYRadarChartViewAnimation)control.selectedSegmentIndex;
+    [self.radarChartView reloadDataWithAnimation:self.animation duration:1.0];
 }
 
 @end

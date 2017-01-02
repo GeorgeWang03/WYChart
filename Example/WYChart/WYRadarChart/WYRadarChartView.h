@@ -13,7 +13,8 @@
 
 typedef NS_ENUM(NSUInteger, WYRadarChartViewAnimation) {
     WYRadarChartViewAnimationNone,
-    WYRadarChartViewAnimationScale
+    WYRadarChartViewAnimationScale,
+    WYRadarChartViewAnimationStrokePath
 };
 
 @protocol WYRadarChartViewDataSource <NSObject>
