@@ -47,6 +47,14 @@
     return CGPointMake(self.wy_boundsWidth/2, self.wy_boundsHeight/2);
 }
 
+- (CGFloat)wy_maxX {
+    return CGRectGetMaxX(self.frame);
+}
+
+- (CGFloat)wy_maxY {
+    return CGRectGetMaxY(self.frame);
+}
+
 @end
 
 @implementation CALayer (WYChart)

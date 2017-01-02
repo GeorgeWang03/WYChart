@@ -24,6 +24,8 @@
 @property (nonatomic, assign) WYRadarChartViewAnimation animationStyle;
 @property (nonatomic, assign) NSTimeInterval animationDuration;
 
+@property (nonatomic, strong) NSMutableArray<CAShapeLayer *> *itemLayers;
+
 @end
 
 @implementation WYRadarChartMainView
@@ -41,6 +43,8 @@
         _lineColor = [UIColor whiteColor];
         [self initData];
         [self setupUI];
+        [self setupSublayer];
+        [self setupDimensions];
     }
     return self;
 }
@@ -58,6 +62,7 @@
         CGPoint temPoint = CGPointMake(cos(degress*index - M_PI_2), sin(degress*index - M_PI_2));
         [self.factors addObject:[NSValue valueWithCGPoint:temPoint]];
     }
+    self.itemLayers = [NSMutableArray new];
 }
 
 #pragma mark - UI drawing
@@ -88,8 +93,6 @@
     CGContextStrokePath(context);
     CGPathRelease(path);
     
-    [self setupSublayer];
-    [self setupDimensions];
     self.hadDisplay = YES;
 }
 
@@ -119,6 +122,7 @@
         return;
     }
     
+    [self.itemLayers removeAllObjects];
     for (NSInteger index = 0; index < itemCount; index++) {
         NSMutableArray *values = nil;
         WYRadarChartItem *item = nil;
@@ -148,6 +152,7 @@
         layer.strokeColor = item.borderColor.CGColor;
         layer.frame = self.bounds;
         [self.layer addSublayer:layer];
+        [self.itemLayers addObject:layer];
         CGPathRelease(path);
     }
 }
@@ -168,11 +173,6 @@
 - (void)reloadDataWithAnimation:(WYRadarChartViewAnimation)animation duration:(NSTimeInterval)duration {
     self.animationStyle = animation;
     self.animationDuration = duration;
-    if (animation == WYRadarChartViewAnimationNone) {
-        [self setNeedsDisplay];
-        return;
-    }
-    
     self.hadDisplay = NO;
     [self.layer.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
     [self setNeedsDisplay];
@@ -182,8 +182,11 @@
 
 - (void)doAnimation {
     switch (self.animationStyle) {
+        case WYRadarChartViewAnimationNone: {
+            break;
+        }
         case WYRadarChartViewAnimationScale: {
-            for (CAShapeLayer *layer in self.layer.sublayers) {
+            for (CAShapeLayer *layer in self.itemLayers) {
                 CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
                 animation.values = @[@(0.0),@(1.0)];
                 animation.duration = self.animationDuration;
@@ -199,6 +202,8 @@
 
 - (void)displayLinkAction:(CADisplayLink *)displayLink {
     if (self.hadDisplay) {
+        [self setupSublayer];
+        [self setupDimensions];
         [self doAnimation];
         [displayLink invalidate];
     }

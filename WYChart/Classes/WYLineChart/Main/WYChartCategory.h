@@ -17,6 +17,8 @@
 @property (nonatomic, readonly) CGFloat wy_originX;
 @property (nonatomic, readonly) CGFloat wy_originY;
 @property (nonatomic, readonly) CGPoint wy_boundsCenter;
+@property (nonatomic, readonly) CGFloat wy_maxX;
+@property (nonatomic, readonly) CGFloat wy_maxY;
 
 - (CGPoint)wy_centerForPresentationLayer:(BOOL)isPresentationLayer;
 - (CGFloat)wy_rotateAngleForPresentationLayer:(BOOL)isPresentationLayer;

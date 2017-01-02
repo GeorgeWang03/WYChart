@@ -22,19 +22,22 @@ WYRadarChartViewDataSource
 
 @property (nonatomic, assign) NSInteger dimensionCount;
 
+@property (nonatomic, strong) UILabel *dimensionCountLabel;
+@property (nonatomic, strong) UISlider *dimensionCountSlider;
+
 @end
 
 @implementation RadarChartViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.dimensionCount = 5;
     [self initData];
     [self setupUI];
     [self.radarChartView reloadDataWithAnimation:WYRadarChartViewAnimationScale duration:1];
 }
 
 - (void)initData {
-    self.dimensionCount = 5;
     
     self.items = [NSMutableArray new];
     for (NSInteger index = 0; index < 1; index++) {
@@ -59,7 +62,30 @@ WYRadarChartViewDataSource
 }
 
 - (void)setupUI {
+    //  RadarChartView
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self setupRadarView];
+    
+    //
+    self.dimensionCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.radarChartView.wy_boundsHeight + 10, 100, 50)];
+    self.dimensionCountLabel.adjustsFontSizeToFitWidth = YES;
+    self.dimensionCountLabel.text = [NSString stringWithFormat:@"dimension: %@", @(self.dimensionCount)];
+    [self.view addSubview:self.dimensionCountLabel];
+    
+    self.dimensionCountSlider = [[UISlider alloc] initWithFrame:CGRectMake(self.dimensionCountLabel.wy_maxX, CGRectGetMaxY(self.radarChartView.frame) + 10, self.view.wy_boundsWidth - 10 - self.dimensionCountLabel.wy_maxX, 50)];
+    self.dimensionCountSlider.minimumValue = 3;
+    self.dimensionCountSlider.maximumValue = 10;
+    self.dimensionCountSlider.value = self.dimensionCount;
+    self.dimensionCountSlider.continuous = NO;
+    [self.dimensionCountSlider addTarget:self action:@selector(dimensionCountSliderValueDidChange:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:self.dimensionCountSlider];
+
+}
+
+- (void)setupRadarView {
+    if (self.radarChartView.superview == self.view) {
+        [self.radarChartView removeFromSuperview];
+    }
     self.radarChartView = [[WYRadarChartView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetWidth(self.view.bounds))
                                                    dimensionCount:self.dimensionCount
                                                          gradient:0];
@@ -87,6 +113,16 @@ WYRadarChartViewDataSource
 
 - (id<WYRadarChartViewItemDescription>)radarChartView:(WYRadarChartView *)radarChartView descriptionForItemAtIndex:(NSUInteger)index {
     return nil;
+}
+
+#pragma mark - Actions
+
+- (void)dimensionCountSliderValueDidChange:(UISlider *)slider {
+    self.dimensionCount = slider.value;
+    self.dimensionCountLabel.text = [NSString stringWithFormat:@"dimension: %@",@(self.dimensionCount)];
+    [self initData];
+    [self setupRadarView];
+    [self.radarChartView reloadDataWithAnimation:WYRadarChartViewAnimationScale duration:1];
 }
 
 @end
