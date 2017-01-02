@@ -14,17 +14,16 @@
 
 @property (nonatomic, strong) WYRadarChartMainView *radarMainView;
 
-@property (nonatomic, assign) NSUInteger dimensionCount;
-@property (nonatomic, assign) NSUInteger gradient;
+@property (nonatomic, strong) NSArray <WYRadarChartDimension *>* dimensions;
 
 @end
 
 @implementation WYRadarChartView
 
-- (instancetype)initWithFrame:(CGRect)frame dimensionCount:(NSUInteger)dimensionCount gradient:(NSUInteger)gradient {
+- (instancetype)initWithFrame:(CGRect)frame dimensions:(NSArray<WYRadarChartDimension *> *)dimensions gradient:(NSUInteger)gradient {
     self = [super initWithFrame:frame];
     if (self) {
-        _dimensionCount = dimensionCount;
+        _dimensions = dimensions;
         _gradient = gradient;
         [self setup];
     }
@@ -32,7 +31,7 @@
 }
 
 - (void)setup {
-    self.radarMainView = [[WYRadarChartMainView alloc] initWithFrame:self.bounds dimensionCount:self.dimensionCount gradient:self.gradient];
+    self.radarMainView = [[WYRadarChartMainView alloc] initWithFrame:self.bounds dimensions:self.dimensions gradient:self.gradient];
     [self addSubview:self.radarMainView];
 }
 
@@ -57,9 +56,10 @@
     [self reloadData];
 }
 
-- (void)setDimensions:(NSArray<WYRadarChartDimension *> *)dimensions {
-    _dimensions = dimensions;
-    self.radarMainView.dimensions = dimensions;
+- (void)setGradient:(NSUInteger)gradient {
+    gradient = (gradient < 1 ? 1 : gradient);
+    _gradient = gradient;
+    self.radarMainView.gradient = gradient;
     [self reloadData];
 }
 

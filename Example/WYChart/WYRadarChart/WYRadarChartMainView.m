@@ -38,16 +38,18 @@ CAAnimationDelegate
 @property (nonatomic, assign) NSTimeInterval animationDuration;
 
 @property (nonatomic, strong) NSMutableArray<CAShapeLayer *> *itemLayers;
+@property (nonatomic, assign) NSUInteger dimensionCount;
 
 @end
 
 @implementation WYRadarChartMainView
 
-- (instancetype)initWithFrame:(CGRect)frame dimensionCount:(NSUInteger)dimensionCount gradient:(NSUInteger)gradient {
+- (instancetype)initWithFrame:(CGRect)frame dimensions:(NSArray<WYRadarChartDimension *> *)dimensions gradient:(NSUInteger)gradient {
     self = [super initWithFrame:frame];
     if (self) {
-        NSAssert(dimensionCount >= 3, @"dimensionCount must be at least 3");
-        _dimensionCount = dimensionCount;
+        NSAssert(dimensions.count >= 3, @"dimensionCount must be at least 3");
+        _dimensionCount = dimensions.count;
+        _dimensions = dimensions;
         _gradient = gradient < 1 ? 1 : gradient;
         _animationStyle = WYRadarChartViewAnimationNone;
         _animationDuration = 0.0;
@@ -68,7 +70,7 @@ CAAnimationDelegate
 - (void)initData {
     self.dimensionMaxLength = (CGRectGetWidth(self.bounds) - WYRadarChartViewMargin)*0.3;
     self.radarCenter = self.center;
-    double degress = M_PI * 2 / self.dimensionCount;
+    double degress = M_PI * 2 / self.dimensions.count;
     self.factors = [NSMutableArray new];
     for (NSInteger index = 0; index < self.dimensionCount; index++) {
         CGPoint temPoint = CGPointMake(cos(degress*index - M_PI_2), sin(degress*index - M_PI_2));

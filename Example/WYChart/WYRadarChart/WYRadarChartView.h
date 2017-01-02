@@ -31,10 +31,9 @@ typedef NS_ENUM(NSUInteger, WYRadarChartViewAnimation) {
 
 @interface WYRadarChartView : UIView
 
-@property (nonatomic, assign, readonly) NSUInteger dimensionCount;
-@property (nonatomic, assign, readonly) NSUInteger gradient;
+@property (nonatomic, strong, readonly) NSArray <WYRadarChartDimension *>* dimensions;
 
-@property (nonatomic, strong) NSArray <WYRadarChartDimension *>* dimensions;
+@property (nonatomic, assign) NSUInteger gradient;
 
 @property (nonatomic, assign) CGFloat lineWidth;
 @property (nonatomic, strong) UIColor *lineColor;
@@ -44,7 +43,7 @@ typedef NS_ENUM(NSUInteger, WYRadarChartViewAnimation) {
 - (instancetype)init __attribute__((unavailable("use initWithFrame:dimensionCount:gradient instead")));
 - (instancetype)initWithFrame:(CGRect)frame __attribute__((unavailable("use initWithFrame:dimensionCount:gradient instead")));
 
-- (instancetype)initWithFrame:(CGRect)frame dimensionCount:(NSUInteger)dimensionCount gradient:(NSUInteger)gradient;
+- (instancetype)initWithFrame:(CGRect)frame dimensions:(NSArray <WYRadarChartDimension *> *)dimensions gradient:(NSUInteger)gradient;
 
 - (void)reloadData;
 

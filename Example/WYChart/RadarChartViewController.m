@@ -50,10 +50,12 @@ WYRadarChartViewDataSource
 
 @property (nonatomic, assign) NSInteger dimensionCount;
 @property (nonatomic, assign) NSInteger itemCount;
+@property (nonatomic, assign) NSInteger gradient;
 @property (nonatomic, assign) WYRadarChartViewAnimation animation;
 
 @property (nonatomic, strong) SliderView *dimensionCountSliderView;
 @property (nonatomic, strong) SliderView *itemCountSliderView;
+@property (nonatomic, strong) SliderView *gradientSliderView;
 @property (nonatomic, strong) UISegmentedControl *animationSegmentedControl;
 
 @end
@@ -71,6 +73,7 @@ WYRadarChartViewDataSource
 - (void)initData {
     self.dimensionCount = 5;
     self.itemCount = 1;
+    self.gradient = 1;
     self.animation = WYRadarChartViewAnimationStrokePath;
 }
 
@@ -119,8 +122,16 @@ WYRadarChartViewDataSource
     [self.itemCountSliderView.slider addTarget:self action:@selector(sliderValueDidChange:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.itemCountSliderView];
     
+    self.gradientSliderView = [[SliderView alloc] initWithFrame:CGRectMake(0, self.itemCountSliderView.wy_maxY, self.view.wy_boundsWidth, 40)];
+    self.gradientSliderView.slider.maximumValue = 10;
+    self.gradientSliderView.slider.minimumValue = 1;
+    self.gradientSliderView.slider.value = self.itemCount;
+    self.gradientSliderView.label.text = [NSString stringWithFormat:@"gradient: %@", @(self.itemCount)];
+    [self.gradientSliderView.slider addTarget:self action:@selector(sliderValueDidChange:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:self.gradientSliderView];
+    
     self.animationSegmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"none", @"scale", @"storkePath"]];
-    self.animationSegmentedControl.frame = CGRectMake(0, self.itemCountSliderView.wy_maxY, self.view.wy_boundsWidth, 40);
+    self.animationSegmentedControl.frame = CGRectMake(0, self.gradientSliderView.wy_maxY, self.view.wy_boundsWidth, 40);
     [self.animationSegmentedControl addTarget:self action:@selector(animationSegmentedControlValueDidChange:) forControlEvents:UIControlEventValueChanged];
     self.animationSegmentedControl.selectedSegmentIndex = self.animation;
     [self.view addSubview:self.animationSegmentedControl];
@@ -131,12 +142,12 @@ WYRadarChartViewDataSource
         [self.radarChartView removeFromSuperview];
     }
     self.radarChartView = [[WYRadarChartView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetWidth(self.view.bounds))
-                                                   dimensionCount:self.dimensionCount
+                                                       dimensions:self.dimensions
                                                          gradient:0];
     self.radarChartView.dataSource = self;
     self.radarChartView.lineWidth = 0.5;
     self.radarChartView.lineColor = [UIColor wy_colorWithHex:0xffffff alpha:0.5];
-    self.radarChartView.dimensions = self.dimensions;
+    self.radarChartView.gradient = self.gradient;
     self.radarChartView.backgroundColor = [UIColor wy_colorWithHex:0x245971];
     [self.view addSubview:self.radarChartView];
 }
@@ -165,14 +176,20 @@ WYRadarChartViewDataSource
     if (slider == self.dimensionCountSliderView.slider) {
         self.dimensionCount = slider.value;
         self.dimensionCountSliderView.label.text = [NSString stringWithFormat:@"dimension: %@",@(self.dimensionCount)];
+        [self setupData];
+        [self setupRadarView];
     }
     else if (slider == self.itemCountSliderView.slider) {
         self.itemCount = slider.value;
         self.itemCountSliderView.label.text = [NSString stringWithFormat:@"itemCount :%@", @(self.itemCount)];
+        [self setupData];
     }
-    
-    [self setupData];
-    [self setupRadarView];
+    else if (slider == self.gradientSliderView.slider) {
+        self.gradient = slider.value;
+        self.gradientSliderView.label.text = [NSString stringWithFormat:@"gradient :%@", @(self.gradient)];
+        self.radarChartView.gradient = self.gradient;
+    }
+
     [self.radarChartView reloadDataWithAnimation:self.animation duration:1];
 }
 

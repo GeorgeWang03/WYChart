@@ -11,7 +11,6 @@
 
 @interface WYRadarChartMainView : UIView
 
-@property (nonatomic, assign) NSUInteger dimensionCount;
 @property (nonatomic, assign) NSUInteger gradient;
 @property (nonatomic, weak) id<WYRadarChartViewDataSource> dataSource;
 @property (nonatomic, weak) WYRadarChartView *radarChartView;
@@ -20,7 +19,7 @@
 @property (nonatomic, strong) UIColor *lineColor;
 @property (nonatomic, strong) NSArray *dimensions;
 
-- (instancetype)initWithFrame:(CGRect)frame dimensionCount:(NSUInteger)dimensionCount gradient:(NSUInteger)gradient;
+- (instancetype)initWithFrame:(CGRect)frame dimensions:(NSArray<WYRadarChartDimension *> *)dimensions gradient:(NSUInteger)gradient;
 
 - (void)reloadDataWithAnimation:(WYRadarChartViewAnimation)animation duration:(NSTimeInterval)duration;
 
