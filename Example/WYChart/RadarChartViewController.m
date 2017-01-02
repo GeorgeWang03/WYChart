@@ -11,6 +11,34 @@
 #import "WYRadarChartModel.h"
 #import <WYChart/WYChartCategory.h>
 
+@interface SliderView : UIView
+
+@property (nonatomic, strong) UILabel *label;
+@property (nonatomic, strong) UISlider *slider;
+
+@end
+
+@implementation SliderView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self setupUI];
+    }
+    return self;
+}
+
+- (void)setupUI {
+    self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, self.wy_boundsHeight)];
+    self.label.adjustsFontSizeToFitWidth = YES;
+    [self addSubview:self.label];
+    
+    self.slider = [[UISlider alloc] initWithFrame:CGRectMake(self.label.wy_maxX, 0 , self.wy_boundsWidth - 10 - self.label.wy_maxX, self.wy_boundsHeight)];
+    self.slider.continuous = NO;
+    [self addSubview:self.slider];
+}
+
+@end
+
 @interface RadarChartViewController ()
 <
 WYRadarChartViewDataSource
@@ -21,9 +49,10 @@ WYRadarChartViewDataSource
 @property (nonatomic, strong) NSMutableArray <WYRadarChartDimension *> *dimensions;
 
 @property (nonatomic, assign) NSInteger dimensionCount;
+@property (nonatomic, assign) NSInteger itemCount;
 
-@property (nonatomic, strong) UILabel *dimensionCountLabel;
-@property (nonatomic, strong) UISlider *dimensionCountSlider;
+@property (nonatomic, strong) SliderView *dimensionCountSliderView;
+@property (nonatomic, strong) SliderView *itemCountSliderView;
 
 @end
 
@@ -32,15 +61,15 @@ WYRadarChartViewDataSource
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.dimensionCount = 5;
+    self.itemCount = 1;
     [self initData];
     [self setupUI];
     [self.radarChartView reloadDataWithAnimation:WYRadarChartViewAnimationScale duration:1];
 }
 
 - (void)initData {
-    
     self.items = [NSMutableArray new];
-    for (NSInteger index = 0; index < 1; index++) {
+    for (NSInteger index = 0; index < self.itemCount; index++) {
         WYRadarChartItem *item = [WYRadarChartItem new];
         NSMutableArray *value = [NSMutableArray new];
         for (NSInteger i = 0; i < self.dimensionCount; i++) {
@@ -48,7 +77,7 @@ WYRadarChartViewDataSource
         }
         item.value = value;
         item.borderColor = [UIColor wy_colorWithHex:0xffffff];
-        item.fillColor = [UIColor wy_colorWithHex:0xffffff alpha:0.5];
+        item.fillColor = [UIColor wy_colorWithHex:arc4random_uniform(0xffffff) alpha:0.5];
         [self.items addObject:item];
     }
     
@@ -67,19 +96,22 @@ WYRadarChartViewDataSource
     [self setupRadarView];
     
     //
-    self.dimensionCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.radarChartView.wy_boundsHeight + 10, 100, 50)];
-    self.dimensionCountLabel.adjustsFontSizeToFitWidth = YES;
-    self.dimensionCountLabel.text = [NSString stringWithFormat:@"dimension: %@", @(self.dimensionCount)];
-    [self.view addSubview:self.dimensionCountLabel];
+    self.dimensionCountSliderView = [[SliderView alloc] initWithFrame:CGRectMake(0, self.radarChartView.wy_maxY + 10, self.view.wy_boundsWidth, 50)];
+    self.dimensionCountSliderView.slider.minimumValue = 3;
+    self.dimensionCountSliderView.slider.maximumValue = 10;
+    self.dimensionCountSliderView.slider.value = self.dimensionCount;
+    self.dimensionCountSliderView.label.text = [NSString stringWithFormat:@"dimension: %@", @(self.dimensionCount)];
+    [self.dimensionCountSliderView.slider addTarget:self action:@selector(sliderValueDidChange:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:self.dimensionCountSliderView];
     
-    self.dimensionCountSlider = [[UISlider alloc] initWithFrame:CGRectMake(self.dimensionCountLabel.wy_maxX, CGRectGetMaxY(self.radarChartView.frame) + 10, self.view.wy_boundsWidth - 10 - self.dimensionCountLabel.wy_maxX, 50)];
-    self.dimensionCountSlider.minimumValue = 3;
-    self.dimensionCountSlider.maximumValue = 10;
-    self.dimensionCountSlider.value = self.dimensionCount;
-    self.dimensionCountSlider.continuous = NO;
-    [self.dimensionCountSlider addTarget:self action:@selector(dimensionCountSliderValueDidChange:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:self.dimensionCountSlider];
-
+    self.itemCountSliderView = [[SliderView alloc] initWithFrame:CGRectMake(0, self.dimensionCountSliderView.wy_maxY, self.view.wy_boundsWidth, 50)];
+    self.itemCountSliderView.slider.maximumValue = 10;
+    self.itemCountSliderView.slider.minimumValue = 0;
+    self.itemCountSliderView.slider.value = self.itemCount;
+    self.itemCountSliderView.label.text = [NSString stringWithFormat:@"itemCount: %@", @(self.itemCount)];
+    [self.itemCountSliderView.slider addTarget:self action:@selector(sliderValueDidChange:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:self.itemCountSliderView];
+    
 }
 
 - (void)setupRadarView {
@@ -117,9 +149,16 @@ WYRadarChartViewDataSource
 
 #pragma mark - Actions
 
-- (void)dimensionCountSliderValueDidChange:(UISlider *)slider {
-    self.dimensionCount = slider.value;
-    self.dimensionCountLabel.text = [NSString stringWithFormat:@"dimension: %@",@(self.dimensionCount)];
+- (void)sliderValueDidChange:(UISlider *)slider {
+    if (slider == self.dimensionCountSliderView.slider) {
+        self.dimensionCount = slider.value;
+        self.dimensionCountSliderView.label.text = [NSString stringWithFormat:@"dimension: %@",@(self.dimensionCount)];
+    }
+    else if (slider == self.itemCountSliderView.slider) {
+        self.itemCount = slider.value;
+        self.itemCountSliderView.label.text = [NSString stringWithFormat:@"itemCount :%@", @(self.itemCount)];
+    }
+    
     [self initData];
     [self setupRadarView];
     [self.radarChartView reloadDataWithAnimation:WYRadarChartViewAnimationScale duration:1];
