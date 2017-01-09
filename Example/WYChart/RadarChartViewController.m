@@ -11,6 +11,8 @@
 #import "WYRadarChartModel.h"
 #import <WYChart/WYChartCategory.h>
 
+#define kAnimationDuration 2
+
 @interface SliderView : UIView
 
 @property (nonatomic, strong) UILabel *label;
@@ -67,7 +69,7 @@ WYRadarChartViewDataSource
     [self initData];
     [self setupData];
     [self setupUI];
-    [self.radarChartView reloadDataWithAnimation:self.animation duration:1];
+    [self.radarChartView reloadDataWithAnimation:self.animation duration:kAnimationDuration];
 }
 
 - (void)initData {
@@ -88,6 +90,7 @@ WYRadarChartViewDataSource
         item.value = value;
         item.borderColor = [UIColor wy_colorWithHex:0xffffff];
         item.fillColor = [UIColor wy_colorWithHex:arc4random_uniform(0xffffff) alpha:0.5];
+        item.junctionShape = kWYLineChartJunctionShapeSolidCircle;
         [self.items addObject:item];
     }
     
@@ -190,12 +193,12 @@ WYRadarChartViewDataSource
         self.radarChartView.gradient = self.gradient;
     }
 
-    [self.radarChartView reloadDataWithAnimation:self.animation duration:1];
+    [self.radarChartView reloadDataWithAnimation:self.animation duration:kAnimationDuration];
 }
 
 - (void)animationSegmentedControlValueDidChange:(UISegmentedControl *)control {
     self.animation = (WYRadarChartViewAnimation)control.selectedSegmentIndex;
-    [self.radarChartView reloadDataWithAnimation:self.animation duration:1.0];
+    [self.radarChartView reloadDataWithAnimation:self.animation duration:kAnimationDuration];
 }
 
 @end

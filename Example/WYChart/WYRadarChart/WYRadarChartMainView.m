@@ -11,19 +11,11 @@
 #import "NSArray+Utils.h"
 #import "YYWeakProxy.h"
 #import "WYRadarChartDimensionView.h"
+#import "WYRadarChartItemView.h"
+#import "UIView+WYAnimation.h"
 
 #define WYRadarChartViewMargin              10
-#define WYRadarChartViewAnimationLayerKey   @"WYRadarChartViewAnimationLayerKey"
-
-@interface WYRadarShapeLayer : CAShapeLayer
-
-@property (nonatomic, strong) WYRadarChartItem *item;
-
-@end
-
-@implementation WYRadarShapeLayer
-
-@end
+#define WYRadarChartViewAnimationItemKey   @"WYRadarChartViewAnimationItemKey"
 
 @interface WYRadarChartMainView()
 <
@@ -37,7 +29,8 @@ CAAnimationDelegate
 @property (nonatomic, assign) WYRadarChartViewAnimation animationStyle;
 @property (nonatomic, assign) NSTimeInterval animationDuration;
 
-@property (nonatomic, strong) NSMutableArray<CAShapeLayer *> *itemLayers;
+@property (nonatomic, strong) NSMutableArray <WYRadarChartItemView *> *itemViews;
+@property (nonatomic, strong) NSMutableArray <WYRadarChartDimensionView *> *dimensionViews;
 @property (nonatomic, assign) NSUInteger dimensionCount;
 
 @end
@@ -57,7 +50,7 @@ CAAnimationDelegate
         _lineColor = [UIColor whiteColor];
         [self initData];
         [self setupUI];
-        [self setupSublayer];
+        [self setupItemViews];
         [self setupDimensions];
     }
     return self;
@@ -76,7 +69,8 @@ CAAnimationDelegate
         CGPoint temPoint = CGPointMake(cos(degress*index - M_PI_2), sin(degress*index - M_PI_2));
         [self.factors addObject:[NSValue valueWithCGPoint:temPoint]];
     }
-    self.itemLayers = [NSMutableArray new];
+    self.itemViews = [NSMutableArray new];
+    self.dimensionViews = [NSMutableArray new];
 }
 
 #pragma mark - UI drawing
@@ -86,7 +80,8 @@ CAAnimationDelegate
     
     // draw ring
     for (NSInteger index = 1; index <= self.gradient; index++) {
-        CGPathRef path = [self ringPathWithRatios:[NSArray arrayByRepeatObject:@((CGFloat)index/self.gradient) time:self.dimensionCount]];
+        NSArray *breakPoints = [self breakPointWithRatios:[NSArray arrayByRepeatObject:@((CGFloat)index/self.gradient) time:self.dimensionCount]];
+        CGPathRef path = [[self class] ringPathWithBreakPoint:breakPoints];
         CGContextSetStrokeColorWithColor(context, self.lineColor.CGColor);
         CGContextSetLineWidth(context, self.lineWidth);
         CGContextAddPath(context, path);
@@ -108,24 +103,39 @@ CAAnimationDelegate
     CGPathRelease(path);
 }
 
-- (CGPathRef)ringPathWithRatios:(NSArray <NSNumber *>*) ratios {
-    CGMutablePathRef path = CGPathCreateMutable();
+- (NSArray <NSValue *> *)breakPointWithRatios:(NSArray <NSNumber *>*) ratios {
+    NSMutableArray *breakPoints = [NSMutableArray new];
     CGPoint initialFactor = [self.factors[0] CGPointValue];
     CGPoint initialPoint = CGPointMake(self.radarCenter.x + self.dimensionMaxLength * [ratios[0] floatValue] * initialFactor.x,
                                        self.radarCenter.y + self.dimensionMaxLength * [ratios[0] floatValue] * initialFactor.y);
-    CGPathMoveToPoint(path, NULL, initialPoint.x, initialPoint.y);
+    [breakPoints addObject:[NSValue valueWithCGPoint:initialPoint]];
     for (NSInteger index = 1; index < self.dimensionCount; index++) {
         CGFloat length = self.dimensionMaxLength * [ratios[index] floatValue];
         CGPoint factor = [[self.factors objectAtIndex:index] CGPointValue];
         CGPoint temPoint = CGPointMake(self.radarCenter.x + length*factor.x, self.radarCenter.y + length*factor.y);
-        CGPathAddLineToPoint(path, NULL, temPoint.x, temPoint.y);
+        [breakPoints addObject:[NSValue valueWithCGPoint:temPoint]];
+    }
+    return breakPoints;
+}
+
++ (CGPathRef)ringPathWithBreakPoint:(NSArray <NSValue *> *)breakPoint {
+    if (breakPoint.count <= 0) {
+        return NULL;
+    }
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPoint initialPoint = [breakPoint[0] CGPointValue];
+    CGPathMoveToPoint(path, NULL, initialPoint.x, initialPoint.y);
+    for (NSInteger index = 1; index < breakPoint.count; index++) {
+        CGPoint currentPoint = [breakPoint[index] CGPointValue];
+        CGPathAddLineToPoint(path, NULL, currentPoint.x, currentPoint.y);
     }
     CGPathAddLineToPoint(path, NULL, initialPoint.x, initialPoint.y);
     return path;
 }
 
-- (void)setupSublayer {
-    [self.layer.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
+- (void)setupItemViews {
+    [self.itemViews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.itemViews removeAllObjects];
     NSUInteger itemCount = 0;
     if (self.dataSource && [self.dataSource respondsToSelector:@selector(numberOfItemInRadarChartView:)]) {
         itemCount = [self.dataSource numberOfItemInRadarChartView:self.radarChartView];
@@ -134,7 +144,6 @@ CAAnimationDelegate
         return;
     }
     
-    [self.itemLayers removeAllObjects];
     for (NSInteger index = 0; index < itemCount; index++) {
         NSMutableArray *values = nil;
         WYRadarChartItem *item = nil;
@@ -156,27 +165,26 @@ CAAnimationDelegate
             }
             
         }
-        CGPathRef path = [self ringPathWithRatios:values];
-        WYRadarShapeLayer *layer = [WYRadarShapeLayer layer];
-        layer.item = item;
-        layer.path = path;
-        layer.lineWidth = item.borderWidth;
-        layer.fillColor = item.fillColor.CGColor;
-        layer.strokeColor = item.borderColor.CGColor;
-        layer.frame = self.bounds;
-        [self.layer addSublayer:layer];
-        [self.itemLayers addObject:layer];
+        NSArray <NSValue *> *breakPoints = [self breakPointWithRatios:values];
+        CGPathRef path = [[self class] ringPathWithBreakPoint:breakPoints];
+        WYRadarChartItemView *itemView = [[WYRadarChartItemView alloc] initWithFrame:self.bounds item:item];
+        itemView.shapeLayer.path = path;
+        itemView.breakPoints = breakPoints;
+        [self addSubview:itemView];
+        [self.itemViews addObject:itemView];
         CGPathRelease(path);
     }
 }
 
 - (void)setupDimensions {
-    [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.dimensionViews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.dimensionViews removeAllObjects];
     for (NSInteger index = 0; index < self.dimensionCount && index < self.dimensions.count; index++) {
         WYRadarChartDimensionView *dimensionView = [[WYRadarChartDimensionView alloc] initWithDimension:self.dimensions[index]];
         CGPoint factor = [self.factors[index] CGPointValue];
         CGFloat length = self.dimensionMaxLength + sqrt(CGRectGetHeight(dimensionView.bounds)*CGRectGetHeight(dimensionView.bounds)*0.25 + CGRectGetWidth(dimensionView.bounds)*CGRectGetWidth(dimensionView.bounds)*0.25);
         dimensionView.center = CGPointMake(self.radarCenter.x+length*factor.x, self.radarCenter.y+length*factor.y);
+        [self.dimensionViews addObject:dimensionView];
         [self addSubview:dimensionView];
     }
 }
@@ -188,7 +196,7 @@ CAAnimationDelegate
     self.animationDuration = duration;
     [self setNeedsDisplay];
     
-    [self setupSublayer];
+    [self setupItemViews];
     [self setupDimensions];
     [self doAnimation];
 }
@@ -199,11 +207,11 @@ CAAnimationDelegate
             break;
         }
         case WYRadarChartViewAnimationScale: {
-            for (WYRadarShapeLayer *layer in self.itemLayers) {
+            for (WYRadarChartItemView *itemView in self.itemViews) {
                 CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
                 animation.values = @[@(0.0),@(1.0)];
                 animation.duration = self.animationDuration;
-                [layer addAnimation:animation forKey:@"ScaleAnimation"];
+                [itemView.layer addAnimation:animation forKey:@"ScaleAnimation"];
             }
             
             break;
@@ -214,11 +222,13 @@ CAAnimationDelegate
             animation.toValue = @(1.0);
             animation.duration = self.animationDuration;
             
-            for (WYRadarShapeLayer *layer in self.itemLayers) {
-                layer.fillColor = [UIColor clearColor].CGColor;
-                [animation setValue:layer forKey:WYRadarChartViewAnimationLayerKey];
+            for (WYRadarChartItemView *itemView in self.itemViews) {
+                [itemView startJunctionAnimationWithDuration:self.animationDuration];
+                itemView.shapeLayer.fillColor = [UIColor clearColor].CGColor;
+                [animation setValue:itemView forKey:WYRadarChartViewAnimationItemKey];
                 animation.delegate = self;
-                [layer addAnimation:animation forKey:@"StrokeEndAnimation"];
+                [itemView.shapeLayer addAnimation:animation forKey:@"StrokeEndAnimation"];
+                
             }
             break;
         }
@@ -236,8 +246,8 @@ CAAnimationDelegate
             break;
         }
         case WYRadarChartViewAnimationStrokePath: {
-            WYRadarShapeLayer *layer = [anim valueForKey:WYRadarChartViewAnimationLayerKey];
-            layer.fillColor = layer.item.fillColor.CGColor;
+            WYRadarChartItemView *itemView = [anim valueForKey:WYRadarChartViewAnimationItemKey];
+            itemView.shapeLayer.fillColor = itemView.item.fillColor.CGColor;
             break;
         }
         default:

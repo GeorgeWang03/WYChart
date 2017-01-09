@@ -22,6 +22,8 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		9F69DE491DFAE25700836B47 /* WYRadarChartDimensionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F69DE481DFAE25700836B47 /* WYRadarChartDimensionView.m */; };
+		9F9826FA1E22290E0082528B /* WYRadarChartItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9826F91E22290E0082528B /* WYRadarChartItemView.m */; };
+		9F9826FD1E22934A0082528B /* UIView+WYAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9826FC1E22934A0082528B /* UIView+WYAnimation.m */; };
 		9FA99FE51DEDC54700B70368 /* NSArray+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA99FE41DEDC54700B70368 /* NSArray+Utils.m */; };
 		9FA99FEB1DF4686C00B70368 /* YYWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA99FEA1DF4686C00B70368 /* YYWeakProxy.m */; };
 		9FEAB30B1DEC51D8001F55AB /* WYRadarChartMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEAB3061DEC51D8001F55AB /* WYRadarChartMainView.m */; };
@@ -73,6 +75,10 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		9F69DE471DFAE25700836B47 /* WYRadarChartDimensionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRadarChartDimensionView.h; sourceTree = "<group>"; };
 		9F69DE481DFAE25700836B47 /* WYRadarChartDimensionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRadarChartDimensionView.m; sourceTree = "<group>"; };
+		9F9826F81E22290E0082528B /* WYRadarChartItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYRadarChartItemView.h; sourceTree = "<group>"; };
+		9F9826F91E22290E0082528B /* WYRadarChartItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYRadarChartItemView.m; sourceTree = "<group>"; };
+		9F9826FB1E22934A0082528B /* UIView+WYAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+WYAnimation.h"; path = "Utils/UIView+WYAnimation.h"; sourceTree = "<group>"; };
+		9F9826FC1E22934A0082528B /* UIView+WYAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+WYAnimation.m"; path = "Utils/UIView+WYAnimation.m"; sourceTree = "<group>"; };
 		9FA99FE31DEDC54700B70368 /* NSArray+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+Utils.h"; path = "Utils/NSArray+Utils.h"; sourceTree = "<group>"; };
 		9FA99FE41DEDC54700B70368 /* NSArray+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Utils.m"; path = "Utils/NSArray+Utils.m"; sourceTree = "<group>"; };
 		9FA99FE91DF4686C00B70368 /* YYWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YYWeakProxy.h; path = Utils/YYWeakProxy.h; sourceTree = "<group>"; };
@@ -233,6 +239,8 @@
 				9FA99FEA1DF4686C00B70368 /* YYWeakProxy.m */,
 				9FA99FE31DEDC54700B70368 /* NSArray+Utils.h */,
 				9FA99FE41DEDC54700B70368 /* NSArray+Utils.m */,
+				9F9826FB1E22934A0082528B /* UIView+WYAnimation.h */,
+				9F9826FC1E22934A0082528B /* UIView+WYAnimation.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -243,6 +251,8 @@
 				9FA99FE21DEDC50A00B70368 /* Utils */,
 				9FEAB3051DEC51D8001F55AB /* WYRadarChartMainView.h */,
 				9FEAB3061DEC51D8001F55AB /* WYRadarChartMainView.m */,
+				9F9826F81E22290E0082528B /* WYRadarChartItemView.h */,
+				9F9826F91E22290E0082528B /* WYRadarChartItemView.m */,
 				9FEAB3071DEC51D8001F55AB /* WYRadarChartModel.h */,
 				9FEAB3081DEC51D8001F55AB /* WYRadarChartModel.m */,
 				9FEAB3091DEC51D8001F55AB /* WYRadarChartView.h */,
@@ -467,6 +477,7 @@
 				C36D9DBD1D88E65300846668 /* LineChartSettingViewController.m in Sources */,
 				C36D9DBF1D88E65300846668 /* PieChartSettingViewController.m in Sources */,
 				6003F59E195388D20070C39A /* WYCAppDelegate.m in Sources */,
+				9F9826FD1E22934A0082528B /* UIView+WYAnimation.m in Sources */,
 				9FEAB3101DEC5243001F55AB /* RadarChartViewController.m in Sources */,
 				C36D9DBE1D88E65300846668 /* LineChartViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* WYCViewController.m in Sources */,
@@ -478,6 +489,7 @@
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				C36D9DC01D88E65300846668 /* PieChartViewController.m in Sources */,
 				9FEAB30C1DEC51D8001F55AB /* WYRadarChartModel.m in Sources */,
+				9F9826FA1E22290E0082528B /* WYRadarChartItemView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

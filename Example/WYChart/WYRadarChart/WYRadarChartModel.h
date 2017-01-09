@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WYLineChartJunctionShape.h"
 
 @protocol WYRadarChartViewItemDescription <NSObject>
 
@@ -35,6 +36,11 @@
  *  borderWidth, default 0.5
  */
 @property (nonatomic, assign) CGFloat borderWidth;
+
+/*
+ *  default is kWYLineChartJunctionShapeNone
+ */
+@property (nonatomic, assign) WYLineChartJunctionShapeStyle junctionShape;
 
 @end
 
