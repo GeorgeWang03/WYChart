@@ -8,6 +8,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "WYRadarChartModel.h"
+#import "WYRadarChartView.h"
 
 @interface WYRadarChartItemView : UIView
 
@@ -17,6 +18,8 @@
 @property (nonatomic, strong, readonly) CAShapeLayer *shapeLayer;
 @property (nonatomic, strong) NSArray <NSValue *> *breakPoints;
 
-- (void)startJunctionAnimationWithDuration:(NSTimeInterval)duration;
+- (void)startJunctionAnimationWithStyle:(WYRadarChartViewAnimation)animationStyle
+                                  delay:(NSTimeInterval)delay
+                               duration:(NSTimeInterval)duration;
 
 @end

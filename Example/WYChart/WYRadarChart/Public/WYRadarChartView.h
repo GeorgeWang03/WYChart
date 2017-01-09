@@ -19,8 +19,6 @@ typedef NS_ENUM(NSUInteger, WYRadarChartViewAnimation) {
 
 @protocol WYRadarChartViewDataSource <NSObject>
 
-- (WYRadarChartDimension *)radarChartView:(WYRadarChartView *)radarChartView dimensionAtIndex:(NSUInteger)index;
-
 - (NSUInteger)numberOfItemInRadarChartView:(WYRadarChartView *)radarChartView;
 
 - (id<WYRadarChartViewItemDescription>)radarChartView:(WYRadarChartView *)radarChartView descriptionForItemAtIndex:(NSUInteger)index;
@@ -31,8 +29,17 @@ typedef NS_ENUM(NSUInteger, WYRadarChartViewAnimation) {
 
 @interface WYRadarChartView : UIView
 
+/*
+ *  dimensions of data, which determines the corner amount of the polygon in WYRadarChartView
+ *
+ *  统计数据的维度，决定了WYRadarChartView中多边形的角的个数
+ */
 @property (nonatomic, strong, readonly) NSArray <WYRadarChartDimension *>* dimensions;
 
+/*  determines the circle amount, default (at least) is 1, the outermost circle
+ *  
+ *  数据的变化梯度，决定WYRadarChartView中环形的个数，默认是1，即最外围的环形
+ */
 @property (nonatomic, assign) NSUInteger gradient;
 
 @property (nonatomic, assign) CGFloat lineWidth;

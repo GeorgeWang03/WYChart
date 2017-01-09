@@ -212,6 +212,8 @@ CAAnimationDelegate
                 animation.values = @[@(0.0),@(1.0)];
                 animation.duration = self.animationDuration;
                 [itemView.layer addAnimation:animation forKey:@"ScaleAnimation"];
+//                [itemView wy_addScaleSpringWithDelay:0 reverse:NO];
+                [itemView startJunctionAnimationWithStyle:self.animationStyle delay:self.animationDuration duration:self.animationDuration];
             }
             
             break;
@@ -223,7 +225,9 @@ CAAnimationDelegate
             animation.duration = self.animationDuration;
             
             for (WYRadarChartItemView *itemView in self.itemViews) {
-                [itemView startJunctionAnimationWithDuration:self.animationDuration];
+                [itemView  startJunctionAnimationWithStyle:self.animationStyle
+                                                     delay:0
+                                                  duration:self.animationDuration];
                 itemView.shapeLayer.fillColor = [UIColor clearColor].CGColor;
                 [animation setValue:itemView forKey:WYRadarChartViewAnimationItemKey];
                 animation.delegate = self;

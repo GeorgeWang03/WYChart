@@ -86,15 +86,20 @@
     }
 }
 
-- (void)startJunctionAnimationWithDuration:(NSTimeInterval)duration {
+- (void)startJunctionAnimationWithStyle:(WYRadarChartViewAnimation)animationStyle
+                                  delay:(NSTimeInterval)delay
+                               duration:(NSTimeInterval)duration {
     if (self.item.junctionShape == kWYLineChartJunctionShapeNone) {
         return;
     }
-    NSTimeInterval delay = 0;
+    NSTimeInterval actualDelay = 0;
+    if (animationStyle != WYRadarChartViewAnimationStrokePath) {
+        actualDelay = delay;
+    }
     for (NSInteger index = 0; index < self.junctions.count; index++) {
-        delay += ((index == 0) ? 0 : [(NSNumber *)self.subPathRatio[index - 1] floatValue]*duration);
+        actualDelay += ((index == 0) ? 0 : [(NSNumber *)self.subPathRatio[index - 1] floatValue]*duration);
         [(WYLineChartJunctionShape *)self.junctions[index] setAlpha:0];
-        [(WYLineChartJunctionShape *)self.junctions[index] wy_addScaleSpringWithDelay:delay reverse:NO];
+        [(WYLineChartJunctionShape *)self.junctions[index] wy_addScaleSpringWithDelay:actualDelay reverse:NO];
     }
 }
 
