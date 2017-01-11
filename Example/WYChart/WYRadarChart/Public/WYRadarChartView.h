@@ -14,6 +14,7 @@
 typedef NS_ENUM(NSUInteger, WYRadarChartViewAnimation) {
     WYRadarChartViewAnimationNone,
     WYRadarChartViewAnimationScale,
+    WYRadarChartViewAnimationScaleSpring,
     WYRadarChartViewAnimationStrokePath
 };
 

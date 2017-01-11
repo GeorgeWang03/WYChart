@@ -133,7 +133,7 @@ WYRadarChartViewDataSource
     [self.gradientSliderView.slider addTarget:self action:@selector(sliderValueDidChange:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:self.gradientSliderView];
     
-    self.animationSegmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"none", @"scale", @"storkePath"]];
+    self.animationSegmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"none", @"scale",@"scaleSpring", @"storkePath"]];
     self.animationSegmentedControl.frame = CGRectMake(0, self.gradientSliderView.wy_maxY, self.view.wy_boundsWidth, 40);
     [self.animationSegmentedControl addTarget:self action:@selector(animationSegmentedControlValueDidChange:) forControlEvents:UIControlEventValueChanged];
     self.animationSegmentedControl.selectedSegmentIndex = self.animation;

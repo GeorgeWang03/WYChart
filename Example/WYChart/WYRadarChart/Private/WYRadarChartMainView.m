@@ -212,10 +212,28 @@ CAAnimationDelegate
                 animation.values = @[@(0.0),@(1.0)];
                 animation.duration = self.animationDuration;
                 [itemView.layer addAnimation:animation forKey:@"ScaleAnimation"];
-//                [itemView wy_addScaleSpringWithDelay:0 reverse:NO];
                 [itemView startJunctionAnimationWithStyle:self.animationStyle delay:self.animationDuration duration:self.animationDuration];
             }
             
+            break;
+        }
+        case WYRadarChartViewAnimationScaleSpring: {
+            for (WYRadarChartItemView *itemView  in self.itemViews) {
+                itemView.transform = CGAffineTransformMakeScale(0.8, 0.8);
+                [itemView  startJunctionAnimationWithStyle:self.animationStyle
+                                                     delay:self.animationDuration*0.5
+                                                  duration:self.animationDuration];
+                [UIView animateWithDuration:self.animationDuration
+                                      delay:0
+                     usingSpringWithDamping:0.5
+                      initialSpringVelocity:50
+                                    options:0
+                                 animations:^{
+                                     itemView.transform = CGAffineTransformIdentity;
+                                 }
+                                 completion:nil];
+            }
+
             break;
         }
         case WYRadarChartViewAnimationStrokePath: {
@@ -232,7 +250,6 @@ CAAnimationDelegate
                 [animation setValue:itemView forKey:WYRadarChartViewAnimationItemKey];
                 animation.delegate = self;
                 [itemView.shapeLayer addAnimation:animation forKey:@"StrokeEndAnimation"];
-                
             }
             break;
         }
