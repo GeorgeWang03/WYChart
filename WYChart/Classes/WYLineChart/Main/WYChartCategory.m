@@ -47,6 +47,14 @@
     return CGPointMake(self.wy_boundsWidth/2, self.wy_boundsHeight/2);
 }
 
+- (CGFloat)wy_maxX {
+    return CGRectGetMaxX(self.frame);
+}
+
+- (CGFloat)wy_maxY {
+    return CGRectGetMaxY(self.frame);
+}
+
 @end
 
 @implementation CALayer (WYChart)
@@ -84,12 +92,16 @@
 }
 
 // takes 0x123456
-+ (UIColor *)wy_colorWithHex:(UInt32)col {
++ (UIColor *)wy_colorWithHex:(UInt32)color alpha:(CGFloat)alpha {
     unsigned char r, g, b;
-    b = col & 0xFF;
-    g = (col >> 8) & 0xFF;
-    r = (col >> 16) & 0xFF;
-    return [UIColor colorWithRed:(float)r/255.0f green:(float)g/255.0f blue:(float)b/255.0f alpha:1];
+    b = color & 0xFF;
+    g = (color >> 8) & 0xFF;
+    r = (color >> 16) & 0xFF;
+    return [UIColor colorWithRed:(float)r/255.0f green:(float)g/255.0f blue:(float)b/255.0f alpha:alpha];
+}
+
++ (UIColor *)wy_colorWithHex:(UInt32)col {
+    return [UIColor wy_colorWithHex:col alpha:1];
 }
 
 

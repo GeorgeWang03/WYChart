@@ -9,6 +9,7 @@
 #import "WYCViewController.h"
 #import "PieChartViewController.h"
 #import "LineChartViewController.h"
+#import "RadarChartViewController.h"
 
 @interface WYCViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -19,8 +20,8 @@
     
     [super viewDidLoad];
     self.title = @"WYChart";
-//    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
-//        self.edgesForExtendedLayout = UIRectEdgeNone;
+    //    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+    //        self.edgesForExtendedLayout = UIRectEdgeNone;
     UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
     [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     tableView.tableFooterView = [[UIView alloc] init];
@@ -35,7 +36,7 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -44,12 +45,18 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
     switch (indexPath.row) {
-        case 0:
+        case 0: {
             cell.textLabel.text = @"PieChart(饼状图)";
             break;
-        case 1:
+        }
+        case 1: {
             cell.textLabel.text = @"LineChart(线型图) v0.2.0";
             break;
+        }
+        case 2: {
+            cell.textLabel.text = @"RadarChart";
+            break;
+        }
         default:
             break;
     }
@@ -63,11 +70,18 @@
     UIViewController *vc;
     
     switch (indexPath.row) {
-        case 0:
+        case 0: {
             vc = [[PieChartViewController alloc] init];
             break;
-        case 1:
+        }
+        case 1: {
             vc = [[LineChartViewController alloc] init];
+            break;
+        }
+        case 2: {
+            vc = [[RadarChartViewController alloc] init];
+            break;
+        }
         default:
             break;
     }

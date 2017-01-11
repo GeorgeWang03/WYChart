@@ -17,6 +17,8 @@
 @property (nonatomic, readonly) CGFloat wy_originX;
 @property (nonatomic, readonly) CGFloat wy_originY;
 @property (nonatomic, readonly) CGPoint wy_boundsCenter;
+@property (nonatomic, readonly) CGFloat wy_maxX;
+@property (nonatomic, readonly) CGFloat wy_maxY;
 
 - (CGPoint)wy_centerForPresentationLayer:(BOOL)isPresentationLayer;
 - (CGFloat)wy_rotateAngleForPresentationLayer:(BOOL)isPresentationLayer;
@@ -33,6 +35,8 @@
 
 - (NSArray *)wy_rgbValue;
 + (UIColor *)wy_colorWithHexString:(NSString *)str;
++ (UIColor *)wy_colorWithHex:(UInt32)color;
++ (UIColor *)wy_colorWithHex:(UInt32)color alpha:(CGFloat)alpha;
 
 @end
 

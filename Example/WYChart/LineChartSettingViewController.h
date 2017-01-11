@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-FOUNDATION_EXTERN NSString const *kLineChartAnimationDuration;
-FOUNDATION_EXTERN NSString const *kLineChartAnimationStyle;
-FOUNDATION_EXTERN NSString const *kLineChartScrollable;
-FOUNDATION_EXTERN NSString const *kLineChartPinchable;
-FOUNDATION_EXTERN NSString const *kLineChartLineStyle;
-FOUNDATION_EXTERN NSString const *kLineChartDrawGradient;
-FOUNDATION_EXTERN NSString const *kLineChartJunctionStyle;
-FOUNDATION_EXTERN NSString const *kLineChartBackgroundColor;
-FOUNDATION_EXTERN NSString const *kLineChartLineAttributes;
+FOUNDATION_EXTERN NSString *const kLineChartAnimationDuration;
+FOUNDATION_EXTERN NSString *const kLineChartAnimationStyle;
+FOUNDATION_EXTERN NSString *const kLineChartScrollable;
+FOUNDATION_EXTERN NSString *const kLineChartPinchable;
+FOUNDATION_EXTERN NSString *const kLineChartLineStyle;
+FOUNDATION_EXTERN NSString *const kLineChartDrawGradient;
+FOUNDATION_EXTERN NSString *const kLineChartJunctionStyle;
+FOUNDATION_EXTERN NSString *const kLineChartBackgroundColor;
+FOUNDATION_EXTERN NSString *const kLineChartLineAttributes;
 
 @interface LineChartSettingViewController : UIViewController
 
