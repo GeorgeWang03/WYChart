@@ -98,6 +98,7 @@ WYRadarChartViewDataSource
     for (NSInteger index = 0; index < self.dimensionCount; index++) {
         WYRadarChartDimension *dimension = [WYRadarChartDimension new];
         dimension.title = @"title";
+//        dimension.viewSize = CGSizeMake(100, 50);
         dimension.titleColor = [UIColor whiteColor];
         [self.dimensions addObject:dimension];
     }

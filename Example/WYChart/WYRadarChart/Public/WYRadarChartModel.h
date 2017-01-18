@@ -51,4 +51,9 @@
 @property (nonatomic, strong) UIFont *titleFont;
 @property (nonatomic, strong) UIImage *icon;
 
+/*
+ *  如果不指定，则用title的大小
+ */
+@property (nonatomic, assign) CGSize viewSize;
+
 @end

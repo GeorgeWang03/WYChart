@@ -25,4 +25,14 @@
 
 @implementation WYRadarChartDimension
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _titleColor = [UIColor whiteColor];
+        _titleFont = [UIFont systemFontOfSize:12];
+        _viewSize = CGSizeMake(-1, -1);
+    }
+    return self;
+}
+
 @end
