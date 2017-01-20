@@ -589,7 +589,15 @@ typedef NS_ENUM(NSUInteger, WYRadarChartViewAnimation) {
 
 **Junction Style**
 
-You can config junction style for `WYRadarChartItem` with the same style in [JunctionStyle of WYLineChart](#JunctionStyle)
+You can config the `junctionShape ` property of `WYRadarChartItem` with the same style in [JunctionStyle of WYLineChart](#JunctionStyle)
+
+```objc
+/*
+ *  default is kWYLineChartJunctionShapeNone
+ */
+@property (nonatomic, assign) WYLineChartJunctionShapeStyle junctionShape;
+```
+
 
 ##Features
 
