@@ -11,7 +11,7 @@
 #import "WYRadarChartModel.h"
 #import <WYChart/WYChartCategory.h>
 
-#define kAnimationDuration 2
+#define kAnimationDuration 1
 
 @interface SliderView : UIView
 
@@ -97,7 +97,8 @@ WYRadarChartViewDataSource
     self.dimensions = [NSMutableArray new];
     for (NSInteger index = 0; index < self.dimensionCount; index++) {
         WYRadarChartDimension *dimension = [WYRadarChartDimension new];
-        dimension.title = @"title";
+        char c = 'A' + index;
+        dimension.title = [NSString stringWithFormat:@"%c", c];
 //        dimension.viewSize = CGSizeMake(100, 50);
         dimension.titleColor = [UIColor whiteColor];
         [self.dimensions addObject:dimension];
@@ -146,8 +147,7 @@ WYRadarChartViewDataSource
         [self.radarChartView removeFromSuperview];
     }
     self.radarChartView = [[WYRadarChartView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetWidth(self.view.bounds))
-                                                       dimensions:self.dimensions
-                                                         gradient:0];
+                                                       dimensions:self.dimensions];
     self.radarChartView.dataSource = self;
     self.radarChartView.lineWidth = 0.5;
     self.radarChartView.lineColor = [UIColor wy_colorWithHex:0xffffff alpha:0.5];
@@ -157,10 +157,6 @@ WYRadarChartViewDataSource
 }
 
 #pragma mark - WYRadarChartViewDataSource
-
-- (WYRadarChartDimension *)radarChartView:(WYRadarChartView *)radarChartView dimensionAtIndex:(NSUInteger)index {
-    return nil;
-}
 
 - (NSUInteger)numberOfItemInRadarChartView:(WYRadarChartView *)radarChartView {
     return self.items.count;

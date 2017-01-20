@@ -20,11 +20,11 @@
 
 @implementation WYRadarChartView
 
-- (instancetype)initWithFrame:(CGRect)frame dimensions:(NSArray<WYRadarChartDimension *> *)dimensions gradient:(NSUInteger)gradient {
+- (instancetype)initWithFrame:(CGRect)frame dimensions:(NSArray<WYRadarChartDimension *> *)dimensions {
     self = [super initWithFrame:frame];
     if (self) {
         _dimensions = dimensions;
-        _gradient = gradient;
+        _gradient = 1;
         [self setup];
     }
     return self;

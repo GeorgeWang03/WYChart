@@ -51,7 +51,7 @@ typedef NS_ENUM(NSUInteger, WYRadarChartViewAnimation) {
 - (instancetype)init __attribute__((unavailable("use initWithFrame:dimensionCount:gradient instead")));
 - (instancetype)initWithFrame:(CGRect)frame __attribute__((unavailable("use initWithFrame:dimensionCount:gradient instead")));
 
-- (instancetype)initWithFrame:(CGRect)frame dimensions:(NSArray <WYRadarChartDimension *> *)dimensions gradient:(NSUInteger)gradient;
+- (instancetype)initWithFrame:(CGRect)frame dimensions:(NSArray <WYRadarChartDimension *> *)dimensions;
 
 - (void)reloadData;
 
