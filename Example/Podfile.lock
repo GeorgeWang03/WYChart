@@ -1,5 +1,5 @@
 PODS:
-  - WYChart (0.1.2)
+  - WYChart (0.2.0)
 
 DEPENDENCIES:
   - WYChart (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  WYChart: 674fae0ebc3422760a816552f0e22df0f60a5f34
+  WYChart: a80423bd9cfa800fa32870444668d8eb5038f124
 
 PODFILE CHECKSUM: 12132ca0771cc71a20852f152ddc6b3397589e23
 

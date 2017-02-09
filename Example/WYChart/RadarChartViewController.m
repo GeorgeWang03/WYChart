@@ -7,8 +7,8 @@
 //
 
 #import "RadarChartViewController.h"
-#import "WYRadarChartView.h"
-#import "WYRadarChartModel.h"
+#import <WYChart/WYRadarChartView.h>
+#import <WYChart/WYRadarChartModel.h>
 #import <WYChart/WYChartCategory.h>
 
 #define kAnimationDuration 1
