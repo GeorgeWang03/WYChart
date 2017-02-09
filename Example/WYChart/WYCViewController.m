@@ -54,7 +54,7 @@
             break;
         }
         case 2: {
-            cell.textLabel.text = @"RadarChart";
+            cell.textLabel.text = @"RadarChart(雷达图) v0.3.0";
             break;
         }
         default:

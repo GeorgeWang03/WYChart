@@ -77,6 +77,7 @@ WYRadarChartViewDataSource
     self.itemCount = 1;
     self.gradient = 1;
     self.animation = WYRadarChartViewAnimationStrokePath;
+    self.title = @"WYRadarChart";
 }
 
 - (void)setupData {

@@ -601,6 +601,11 @@ You can config the `junctionShape ` property of `WYRadarChartItem` with the same
 
 ##Features
 
+###v0.3.0
+* **Including radar chart.**
+* **Radar chart support mutiple dimensions and mutiple items.**
+* **Radar chart including various animation such scale and stroke and so on.**
+
 ###v0.2.0
 * **Support multiple lines in a lineChart.**
 * **Support label with custom text to show on every point nearby.**
