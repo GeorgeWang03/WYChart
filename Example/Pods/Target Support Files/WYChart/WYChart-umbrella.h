@@ -20,6 +20,14 @@
 #import "WYPieChartCalculator.h"
 #import "WYPieChartView.h"
 #import "WYPieSector.h"
+#import "WYRadarChartDimensionView.h"
+#import "WYRadarChartItemView.h"
+#import "WYRadarChartMainView.h"
+#import "WYRadarChartModel.h"
+#import "WYRadarChartView.h"
+#import "NSArray+Utils.h"
+#import "UIView+WYAnimation.h"
+#import "YYWeakProxy.h"
 
 FOUNDATION_EXPORT double WYChartVersionNumber;
 FOUNDATION_EXPORT const unsigned char WYChartVersionString[];

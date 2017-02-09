@@ -21,6 +21,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		9FEAB3101DEC5243001F55AB /* RadarChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEAB30F1DEC5243001F55AB /* RadarChartViewController.m */; };
 		C36D9DBD1D88E65300846668 /* LineChartSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36D9DB61D88E65300846668 /* LineChartSettingViewController.m */; };
 		C36D9DBE1D88E65300846668 /* LineChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36D9DB81D88E65300846668 /* LineChartViewController.m */; };
 		C36D9DBF1D88E65300846668 /* PieChartSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36D9DBA1D88E65300846668 /* PieChartSettingViewController.m */; };
@@ -64,6 +65,8 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		9FEAB30E1DEC5243001F55AB /* RadarChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarChartViewController.h; sourceTree = "<group>"; };
+		9FEAB30F1DEC5243001F55AB /* RadarChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarChartViewController.m; sourceTree = "<group>"; };
 		C36D9DB51D88E65300846668 /* LineChartSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineChartSettingViewController.h; sourceTree = "<group>"; };
 		C36D9DB61D88E65300846668 /* LineChartSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineChartSettingViewController.m; sourceTree = "<group>"; };
 		C36D9DB71D88E65300846668 /* LineChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineChartViewController.h; sourceTree = "<group>"; };
@@ -154,6 +157,8 @@
 				C36D9DBA1D88E65300846668 /* PieChartSettingViewController.m */,
 				C36D9DBB1D88E65300846668 /* PieChartViewController.h */,
 				C36D9DBC1D88E65300846668 /* PieChartViewController.m */,
+				9FEAB30E1DEC5243001F55AB /* RadarChartViewController.h */,
+				9FEAB30F1DEC5243001F55AB /* RadarChartViewController.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 				C3923CEA1DAA32FD00F559C5 /* EmptyLaunchFile.xib */,
@@ -416,6 +421,7 @@
 				C36D9DBD1D88E65300846668 /* LineChartSettingViewController.m in Sources */,
 				C36D9DBF1D88E65300846668 /* PieChartSettingViewController.m in Sources */,
 				6003F59E195388D20070C39A /* WYCAppDelegate.m in Sources */,
+				9FEAB3101DEC5243001F55AB /* RadarChartViewController.m in Sources */,
 				C36D9DBE1D88E65300846668 /* LineChartViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* WYCViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,

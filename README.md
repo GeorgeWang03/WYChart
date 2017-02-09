@@ -23,6 +23,13 @@ More type of charts will come not long after.
 </p>
 </p>
 
+<p align="center"><img width="240" src="IMG/RadarChart_001.png"/></p> 
+<p align="center">
+<b>WYRadarChart</b>
+<p align="center">Make it easy to create a Radar chart, Animatable
+</p>
+</p>
+
 ***
 
 **With a period of time, WYChart version 0.2.0 has been released, it support mutiple lien in lineChart.**
@@ -297,7 +304,7 @@ and `kWYLineChartAnimationSpring` show as:
 <b>Spring Animation</b>
 </p>  
 
-**Junction Style**
+**<a name="JunctionStyle"></a>Junction Style**
 
 JunctionStyle is a optional line attribute, you should use it by `kWYLineChartLineAttributeJunctionStyle` key in dataSource methor.
 You can choose a junction style bellowing:
@@ -467,6 +474,130 @@ Some other feature also include in WYPieChart, you can find them in [PieChartVie
 </br>
 </br>
 </br>
+
+####WYRadarChart
+
+**First,** make a class confirm to protocal `WYRadarChartViewDataSource `
+
+```objc
+@interface SomeClass <WYRadarChartViewDataSource>
+```
+**Second,** construct an array of `WYRadarChartDimension`, which descript the corner of the polygon in WYRadarChartView.
+
+```objc
+self.dimensions = [NSMutableArray new];
+for (NSInteger index = 0; index < self.dimensionCount; index++) {
+    WYRadarChartDimension *dimension = [WYRadarChartDimension new];
+    dimension.title = @"title";
+    dimension.titleColor = [UIColor whiteColor];
+    [self.dimensions addObject:dimension];
+}
+```
+
+**Third** create the `WYRadarChartView` with dimension array and set the dataSource.
+
+```objc
+self.radarChartView = [[WYRadarChartView alloc] initWithFrame:CGRectMake(0, 0, 100,100)
+                                                   dimensions:self.dimensions
+                                                     gradient:1];
+self.radarChartView.dataSource = self;
+```
+
+**Final,** you can change the UI of `WYRadarChartView`, such as 
+`gradient `(determines the circle amount, 1 at least), `lineWidth `, `lineColor `. Then reload with `reloadData` or `reloadDataWithAnimation:duration:`
+
+----------
+**dimension**
+
+Radar chart view must be created with dimension array.
+<p align="center"><img width="240" src="IMG/RadarChartDimension.gif"/></p> 
+<p align="center">
+<b>dimension</b>
+</p>
+</br>  
+
+**Item**
+
+Get item data from datasource and config UI style for `WYRadarChartItem `
+
+```objc
+self.items = [NSMutableArray new];
+for (NSInteger index = 0; index < self.itemCount; index++) {
+    WYRadarChartItem *item = [WYRadarChartItem new];
+    NSMutableArray *value = [NSMutableArray new];
+    for (NSInteger i = 0; i < self.dimensionCount; i++) {
+        [value addObject:@(arc4random_uniform(100)*0.01)];
+    }
+    item.value = value;
+    item.borderColor = [UIColor wy_colorWithHex:0xffffff];
+    item.fillColor = [UIColor wy_colorWithHex:arc4random_uniform(0xffffff) alpha:0.5];
+    item.junctionShape = kWYLineChartJunctionShapeSolidCircle;
+    [self.items addObject:item];
+}
+
+#pragma mark - WYRadarChartViewDataSource
+
+- (NSUInteger)numberOfItemInRadarChartView:(WYRadarChartView *)radarChartView {
+    return self.items.count;
+}
+
+- (WYRadarChartItem *)radarChartView:(WYRadarChartView *)radarChartView itemAtIndex:(NSUInteger)index {
+    return self.items[index];
+}
+
+- (id<WYRadarChartViewItemDescription>)radarChartView:(WYRadarChartView *)radarChartView descriptionForItemAtIndex:(NSUInteger)index {
+    return nil;
+}
+```
+<p align="center"><img width="240" src="IMG/RadarChartItem.gif"/></p> 
+<p align="center">
+<b>Item</b>
+</p>
+</br>  
+
+**Gradient**
+
+```objc
+self.radarChartView.gradient = self.gradient;
+[self.radarChartView reloadDataWithAnimation:self.animation duration:kAnimationDuration];
+```
+<p align="center"><img width="240" src="IMG/RadarChartGradient.gif"/></p> 
+<p align="center">
+<b>Gradient</b>
+</p>
+</br>  
+
+**Animation**
+
+reload with aniamtion and animation duration.
+
+```objc
+typedef NS_ENUM(NSUInteger, WYRadarChartViewAnimation) {
+    WYRadarChartViewAnimationNone,
+    WYRadarChartViewAnimationScale,
+    WYRadarChartViewAnimationScaleSpring,
+    WYRadarChartViewAnimationStrokePath
+};
+
+[self.radarChartView reloadDataWithAnimation:self.animation duration:kAnimationDuration];
+```
+<p align="center"><img width="240" src="IMG/RadarChartAnimation.gif"/></p> 
+<p align="center">
+<b>All Spreading Style</b>
+</p>
+</br>  
+
+**Junction Style**
+
+You can config the `junctionShape ` property of `WYRadarChartItem` with the same style in [JunctionStyle of WYLineChart](#JunctionStyle)
+
+```objc
+/*
+ *  default is kWYLineChartJunctionShapeNone
+ */
+@property (nonatomic, assign) WYLineChartJunctionShapeStyle junctionShape;
+```
+
 
 ##Features
 

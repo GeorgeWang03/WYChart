@@ -7,50 +7,66 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0AB62905135639090F789CEED9176C67 /* WYPieChartCalculator.h in Headers */ = {isa = PBXBuildFile; fileRef = A49B902D7ECF6B46BEF9562AB90696A5 /* WYPieChartCalculator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		172700318D0BF27751AB62887DC46468 /* WYPieChartView.h in Headers */ = {isa = PBXBuildFile; fileRef = DCDDC10AD82B16578BDC734B3759266A /* WYPieChartView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03F39207CC5A71B16845D5C7CAB9606D /* WYLineChartCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F68CDA9FA34070B111DA7AC0A5909F /* WYLineChartCalculator.m */; };
+		0E04476F0D6373FFF6F89E2E65BCFAD0 /* WYPieSector.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC95EA0015591D3FD64ED0E887B06CD /* WYPieSector.m */; };
+		0E42D0CC3B4F7A7C8005B139EB517A1E /* WYLineChartMainLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CD1FDE23DE760FC2B989D1DB63E35AD /* WYLineChartMainLineView.m */; };
+		12A9052189E70F5AE12837DB46A0B52D /* WYChart-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BD597914B2A745EB72AD0E707C4021F7 /* WYChart-dummy.m */; };
+		14EE197250F66ED419C0C8CA487AB659 /* WYPieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA25E766D6DD76EF4A498BE6F1C39232 /* WYPieChartView.m */; };
 		19F9BF52BF2388B9FD3A6DE4FB949A4E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		1B355D8A8B9BC1DE05FCB5EC7FBBC1F5 /* WYLineChartCoordinateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3173174B648D8419035E8A0E5E6DA915 /* WYLineChartCoordinateView.m */; };
-		1EE4649832004C5F5F4B575ED12876F6 /* WYPieChartForegroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = B27A179A1986F44B43AF7FCD11E103EB /* WYPieChartForegroundView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		264D23B900994246EF2F2016DDC9DA9B /* WYPieSector.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BA584A4EF3B9EDC97E3AA6214100A0 /* WYPieSector.m */; };
-		2A12D1D3696246F10ED5092BF71268EB /* WYChartCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E589B3BDE5027FF410F569E1D3BF0EA /* WYChartCategory.m */; };
-		2F7985949355C89D4DD43C4364CB7A55 /* WYPieCenterCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6841C05588A3C9AE1175CB99E651CC37 /* WYPieCenterCircle.m */; };
-		35D4BF4DC76ED9DB20D395A1608B13EB /* WYSectorLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 18FC6B84950C4F718AB9D6E55415B635 /* WYSectorLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3A14EB0ABAE3013DE23CC214F6FB4B5C /* WYLineChartView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C322722B4F84E3BEE5CF4C2A42CAF11 /* WYLineChartView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4466AE6204F09D1F217D4FFE088AE864 /* WYLineChartJunctionShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA148896A2FBAFF64EDA5E53A48A9EA /* WYLineChartJunctionShape.m */; };
-		44AD6642BFD57A4D07DA1C7DD3363B6A /* WYSectorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC3C331293711B237953E0520AA5C69 /* WYSectorLayer.m */; };
-		4A51D4F60CF0EDC3D2A7063E54BF9890 /* WYLineChartCalculator.h in Headers */ = {isa = PBXBuildFile; fileRef = D8D64035B8403727BEB99A3A27B7A1E9 /* WYLineChartCalculator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4D0D5536F4ED514FD5DEAF4F0E1800BA /* WYPieSector.h in Headers */ = {isa = PBXBuildFile; fileRef = 352D8A4148E132127EA16C620CDE3432 /* WYPieSector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1EB6C896597DECC33F199A7D9E09232B /* WYLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC830FC1AC516BF50E774F202428411 /* WYLineChartView.m */; };
+		2A13850DB91334D91B1E13E41865A6B4 /* WYLineChartView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EE6F9CF7A8BE88560455F3BB8AC3A97 /* WYLineChartView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2CEE676D84D5DD3FB99FFB6EA8469C54 /* WYPieCenterCircle.h in Headers */ = {isa = PBXBuildFile; fileRef = 0430F53472CC9124493F06852C3019AC /* WYPieCenterCircle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2FC45E52FF6E1D82B3ABD88A3E9F21CE /* WYRadarChartModel.h in Headers */ = {isa = PBXBuildFile; fileRef = F10D8C58DE137D47538CD6380690F596 /* WYRadarChartModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3328651E12B90B66FC4AA55F32163935 /* WYRadarChartMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FCDDDD49BA4F77D30451346048F731 /* WYRadarChartMainView.m */; };
+		350DEEE1D16A3D08FE84F170670055C1 /* WYLineChartPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E0112FA95F99D4882AD2F9C543DF6A0 /* WYLineChartPoint.m */; };
+		352C4489A01FB94232332B244931952F /* WYSectorLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 554FD9EE6CDE40A2356B2BEBB3A71131 /* WYSectorLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		378FBB6568E1B7FD8C4BECB81269D767 /* WYRadarChartItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 917C34D47C612D242C44E9F62D70D07F /* WYRadarChartItemView.m */; };
+		386D527F92E96813AFA4844EA2AAE354 /* WYLineChartJunctionShape.h in Headers */ = {isa = PBXBuildFile; fileRef = 583AB0945A9F18B1D22C926A4FD38C3B /* WYLineChartJunctionShape.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3C10CB139907DC2C9F7389F10B51C93C /* WYPieChartForegroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC61D798FD4CF7D477681563C670863 /* WYPieChartForegroundView.m */; };
+		4A3231C9FB00F18D28D2369DB7265CE1 /* WYChartCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = 758EA3496E3D3C898DFB7B39538DB173 /* WYChartCategory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50D9434E12ACF1CD5666B8C986534B11 /* WYRadarChartMainView.h in Headers */ = {isa = PBXBuildFile; fileRef = E86A4AF10667C92AEBAD126EF1BC82E6 /* WYRadarChartMainView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		52E8D9756B84753F98BB126AD8138254 /* Pods-WYChart_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 63703D0781F393F2CD8AC19D5DF47946 /* Pods-WYChart_Tests-dummy.m */; };
-		576A984EFFEA103A3BA116A544779AE6 /* WYPieCenterCircle.h in Headers */ = {isa = PBXBuildFile; fileRef = FED6093C62E97BA2F60B5A6F7994F3A4 /* WYPieCenterCircle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		54AA1100ABAD0F3A030959450CE00D27 /* WYLineChartCoordinateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F730F833E80AB031CFA3529BB7D82F /* WYLineChartCoordinateView.m */; };
 		5C03A93B1C52C1E8BE229E8164CE9CEC /* Pods-WYChart_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F44018A8500144C3731E0A697F759350 /* Pods-WYChart_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6C7F5EC550294A6D148922B05D28084D /* WYMainPieChartView.h in Headers */ = {isa = PBXBuildFile; fileRef = D793BD98AF1E433C35158FC988115AFE /* WYMainPieChartView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7129E3FFDD49D9BDBDAFD5610BDCEF4B /* WYLineChartLabelsView.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAEA4C72769D2D0027E351C1742D84D /* WYLineChartLabelsView.m */; };
-		7575A0676B4203D23DD870E7C2DF7451 /* WYChart-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BD597914B2A745EB72AD0E707C4021F7 /* WYChart-dummy.m */; };
-		7742C3270B6298814A7EB8C7D3A2CE7E /* WYLineChartDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = CE02A054D9F5AD685860D02C03F87A3A /* WYLineChartDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7978AD4D72279407E97ED06DC5D0791B /* WYLineChartBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E80EACB4A684C5450FF30C75BE226D3 /* WYLineChartBackgroundView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7ADA20DB0130AF6929B0D6C05E34ED97 /* WYLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = D079B3D7FDDAB1AA593DEB05AD9F3C24 /* WYLineChartView.m */; };
-		7C4EEDB7B25938CF5E5F97D9B4109B47 /* WYMainPieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D04CC7E8625F21A7E9F8B1E7119E50 /* WYMainPieChartView.m */; };
-		7CCA47181D240F7DE7310CDEB1D3605E /* WYLineChartLabelsView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07CC8D57D15367B79108D20C7EDC0196 /* WYLineChartLabelsView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		86DD8254DD99EF1F119F5A8C5AE3CE75 /* WYLineChartPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A99ABCBA73D74E94ADC228E40E64D0C /* WYLineChartPoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		90A08C49DE0A8B1AA1EBF37A9A0DFA3A /* WYLineChartPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6A3AA9C520DB1CB4EBB37A77DCFEE0 /* WYLineChartPoint.m */; };
+		632F043659B3A0FE217C1F6F4E0F3DE9 /* WYRadarChartDimensionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD81F3CD31C1EA6C7DCCA9518D500CC /* WYRadarChartDimensionView.m */; };
+		647D3752A9CAC2E492A40F6B41DA7BC2 /* YYWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D9138E7A73C65166716D9648951A3D /* YYWeakProxy.m */; };
+		68D205D66829035133DCD60A9D678520 /* WYPieChartForegroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = B4E84C6E549719AD2DD87C90BD72803F /* WYPieChartForegroundView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6A96EA85AD0ABBC67E234F37CD72AA54 /* WYMainPieChartView.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E6C6B6E8FC4D140938E5A4CF46556B /* WYMainPieChartView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6CB43C162A0DB956A689052BBD2D3BD2 /* WYLineChartReferenceLineView.h in Headers */ = {isa = PBXBuildFile; fileRef = D363CBC677FD804BA0EA8B36A7C183E3 /* WYLineChartReferenceLineView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6CFF42AE91D725DA415C2EC41646F710 /* WYLineChartDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = BD47A39CDB952038F43BC48827A63FB9 /* WYLineChartDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E6B5C5454DD4DD37783021C61A24054 /* WYLineChartCoordinateView.h in Headers */ = {isa = PBXBuildFile; fileRef = EA4793D094ED5C2B855B2DF94C923F7A /* WYLineChartCoordinateView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		70D89CD3ABA49FE18DA66AB5E6AF7CC7 /* WYSectorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF621174EE34C9C1FAE4A7AAAB2C73D /* WYSectorLayer.m */; };
+		79CCA64932E38673BF9E18188F331AAD /* WYLineChartLabelsView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D1F725FD46E018747980960E9941A86 /* WYLineChartLabelsView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7A8184FCAA4EB77BD3376888599C9815 /* WYLineChartCalculator.h in Headers */ = {isa = PBXBuildFile; fileRef = 666FF69377A3F71FEF4EC5954CFE0322 /* WYLineChartCalculator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		87DD33AC9FC45EB99CE600E53B6DF106 /* UIView+WYAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 600D07C4A232A46A95DAD534BC9A7F7C /* UIView+WYAnimation.m */; };
+		89B8D3A329A97D1F2BEF51526AB0CC2D /* UIView+WYAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 8383022ACF0433C46AD0899D4A8C8F61 /* UIView+WYAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8A305363E162408F7DD4E41B53AA7F65 /* WYLineChartMainLineView.h in Headers */ = {isa = PBXBuildFile; fileRef = EC5DF242E43E94CC0B78B1E25B851D7A /* WYLineChartMainLineView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8D15ECB875EC58CCB416BBAD36A832D1 /* WYLineChartBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 117E9E4378664B9410A2F698E5287F09 /* WYLineChartBackgroundView.m */; };
 		915F8490C098293F6BB97E8F39D8F527 /* Pods-WYChart_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 439179C634A2BE03327E64B3C8E998AF /* Pods-WYChart_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		933F652C4B4904BEC5014B7251B537E2 /* WYLineChartBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9790A74932590C75197DC17F2EA7E3 /* WYLineChartBackgroundView.m */; };
-		9C65012DFECF1F3D9F6EB3A05812518F /* WYLineChartReferenceLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6C645E56D77C86A327BEA0909DB02D /* WYLineChartReferenceLineView.m */; };
-		A30AC8036A5760C5A1DC8318CB8AE0A9 /* WYLineChartReferenceLineView.h in Headers */ = {isa = PBXBuildFile; fileRef = A631F13F7FD632BC7638DAFCB2B4AF83 /* WYLineChartReferenceLineView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A7DBD96BD9DA0EAF00614338AAA8DEA2 /* WYLineChartCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C7AC9F6B25DAC3605302D9BC51A35B /* WYLineChartCalculator.m */; };
+		934412D4CF2F915BAC52020FEF4E35A0 /* WYRadarChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 44878360F270926A383379007DEF5798 /* WYRadarChartModel.m */; };
+		A3B8885FF51FE7D41406E2DE453EEB5A /* WYRadarChartItemView.h in Headers */ = {isa = PBXBuildFile; fileRef = C371900F4941FB74924B72D608014355 /* WYRadarChartItemView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A6C83198D276D29468693942FAD5C955 /* WYPieChartCalculator.h in Headers */ = {isa = PBXBuildFile; fileRef = A623BB2D005849456FFE6C413120B946 /* WYPieChartCalculator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A9E5F6B278CDFE4450D277EE68F6EEF4 /* WYPieCenterCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BAD133397CF906C01802CE4E016F7D /* WYPieCenterCircle.m */; };
 		AA1B28890F475EEC157DC8E37B504233 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		B1CA2D67830DE5B44D6645E8C32EE2D2 /* WYLineChartJunctionShape.h in Headers */ = {isa = PBXBuildFile; fileRef = C0F6BA422C2D87B6F69FBD2ECE8A0DBC /* WYLineChartJunctionShape.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ADDD5AFC90904E3CE74E1B1C1DAC438F /* WYMainPieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4732FC767A50FB343E1793E0F0C560E /* WYMainPieChartView.m */; };
+		AED08599354C22A1F5E2C08AFCCF29D3 /* WYRadarChartDimensionView.h in Headers */ = {isa = PBXBuildFile; fileRef = F0A31C0C740B798855B6C44F42858B16 /* WYRadarChartDimensionView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B57825EC90BD9B3C0B527976A4A879F3 /* WYRadarChartView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7524E16EF0643FEA7778B3AE0248E723 /* WYRadarChartView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BA0951FF9534F8D4093CFF3CAC9F0CB4 /* YYWeakProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 829034A9BA9996A61770BA1276A88634 /* YYWeakProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C3B677B58F77E6B7F6DA0BCF2E4A8563 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		CE2A2AE2DAAF7641B563D6FE61AEE7BC /* WYPieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E574478710FAAB999D9D7F108970E713 /* WYPieChartView.m */; };
-		D5EC33DAD3179E5E905F9E7D26E5CF21 /* WYChart-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E1B5B3CEF5A8147EA3B6473DB9B92663 /* WYChart-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CA574CB657EF60E1662265225F4A66D9 /* WYPieChartCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 621248245C036FAC8E3986EA899D7DD9 /* WYPieChartCalculator.m */; };
+		CE84DB8624975001C90059CA5B4AE1B9 /* WYLineChartJunctionShape.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B0935EBC4F5AEAE012C8BA73C3986A /* WYLineChartJunctionShape.m */; };
+		D2D6CA89BD9DE5AEFC5F3AF0896D15B3 /* NSArray+Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DD5D7C41A78B434E1FE78D4A3DC15B1 /* NSArray+Utils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D5F42AE27206F5A02D10553D9129AC8B /* WYChart-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E1B5B3CEF5A8147EA3B6473DB9B92663 /* WYChart-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D67E38C56CB3C1880FCF62D56C67185A /* WYPieChartView.h in Headers */ = {isa = PBXBuildFile; fileRef = D2D015DDBB7C661DE3296915474A3E87 /* WYPieChartView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DCE12C5F79FE04E0F9693096C3F4FE1D /* WYLineChartReferenceLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33D452C05210380012732665D4B394DE /* WYLineChartReferenceLineView.m */; };
 		DF7A71CD60FF402F3E6AAC8C97BADBD9 /* Pods-WYChart_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A754D09B83927FE60C99C5EA33F830A3 /* Pods-WYChart_Example-dummy.m */; };
-		E840882CF18CED012F9D076E28FB51EC /* WYPieChartForegroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE8688F0BBE35E47AE10CD401077A13 /* WYPieChartForegroundView.m */; };
-		F5BDF000728E8EEF654F5C6BFB88A406 /* WYLineChartMainLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 675327641EE85A153EBF65335D7C642C /* WYLineChartMainLineView.m */; };
-		F6D1C0D489235B35B60A9B44CB956AFE /* WYPieChartCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7061D3298BAB512640D5560FCA4A9F6B /* WYPieChartCalculator.m */; };
-		F8BAAA3AD44A524764C80F305665B865 /* WYLineChartMainLineView.h in Headers */ = {isa = PBXBuildFile; fileRef = C81A9E03170B7FB5BCE69A6E13986823 /* WYLineChartMainLineView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FBFFE3883B8C54A58476A167A012D1C2 /* WYChartCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = 611412966326BF2C32DD4DFBCA7DBB57 /* WYChartCategory.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FEE4229A014927937B12657454215F01 /* WYLineChartCoordinateView.h in Headers */ = {isa = PBXBuildFile; fileRef = 939E8AF44A94BA6C21202C3D4197D185 /* WYLineChartCoordinateView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E00A0B978AC3DC5D5B9CDE4176FF4D30 /* NSArray+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D3437BD200ADFF73F9425566BF0F79CC /* NSArray+Utils.m */; };
+		E4EFB7F19446C1D0CAAB2022CFB01139 /* WYLineChartLabelsView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC65A99BCE0E70D311C2F8A7032E7443 /* WYLineChartLabelsView.m */; };
+		E894A9B134ACC6BB1C34BD288449CA66 /* WYLineChartBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = 50F082990E4C2F3B5236F67FF7DAB730 /* WYLineChartBackgroundView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA23911E2C31E0917348B5CD0037DE73 /* WYLineChartPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = F59B94E29D606342D170D9E95DFBEB61 /* WYLineChartPoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F9AF1AD44D8B6035A6BC98470C9AC118 /* WYPieSector.h in Headers */ = {isa = PBXBuildFile; fileRef = 07340812EB800D26BE97266EA85AB651 /* WYPieSector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FC4BAC880B02405652AA2C591751E68D /* WYRadarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DAEF8274D81AC11A7DA988B46A9FB0 /* WYRadarChartView.m */; };
+		FFF3B666EDA1BAC1D530F9A8C41CDB9D /* WYChartCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = F52F1954FDEBE822686F9F069A0F9544 /* WYChartCategory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,71 +80,87 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0430F53472CC9124493F06852C3019AC /* WYPieCenterCircle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYPieCenterCircle.h; sourceTree = "<group>"; };
 		064A3C3FE068F9D7EFD933095F8EABA0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		07CC8D57D15367B79108D20C7EDC0196 /* WYLineChartLabelsView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartLabelsView.h; sourceTree = "<group>"; };
-		0D9790A74932590C75197DC17F2EA7E3 /* WYLineChartBackgroundView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartBackgroundView.m; sourceTree = "<group>"; };
+		07340812EB800D26BE97266EA85AB651 /* WYPieSector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYPieSector.h; sourceTree = "<group>"; };
+		117E9E4378664B9410A2F698E5287F09 /* WYLineChartBackgroundView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartBackgroundView.m; sourceTree = "<group>"; };
 		15CB9284A835F178D30245E96C7C1279 /* WYChart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WYChart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1728156EAD35B89E6CDD51A10FBD536A /* WYChart-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WYChart-prefix.pch"; sourceTree = "<group>"; };
-		18FC6B84950C4F718AB9D6E55415B635 /* WYSectorLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYSectorLayer.h; sourceTree = "<group>"; };
 		22917278D7CB1B9898A7445E31C6E85A /* Pods-WYChart_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-WYChart_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		24DAEF8274D81AC11A7DA988B46A9FB0 /* WYRadarChartView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYRadarChartView.m; sourceTree = "<group>"; };
 		2C523CAC085CB686B26092BB66255DB4 /* Pods-WYChart_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-WYChart_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		2FA148896A2FBAFF64EDA5E53A48A9EA /* WYLineChartJunctionShape.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartJunctionShape.m; sourceTree = "<group>"; };
+		2D1F725FD46E018747980960E9941A86 /* WYLineChartLabelsView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartLabelsView.h; sourceTree = "<group>"; };
 		31325A8C75B87AD6BC9E0C30559B0F69 /* Pods_WYChart_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WYChart_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3173174B648D8419035E8A0E5E6DA915 /* WYLineChartCoordinateView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartCoordinateView.m; sourceTree = "<group>"; };
-		352D8A4148E132127EA16C620CDE3432 /* WYPieSector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYPieSector.h; sourceTree = "<group>"; };
+		33D452C05210380012732665D4B394DE /* WYLineChartReferenceLineView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartReferenceLineView.m; sourceTree = "<group>"; };
 		392EE9249D495DFB4812C8C6C867DDDD /* Pods-WYChart_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-WYChart_Tests.modulemap"; sourceTree = "<group>"; };
+		3CD1FDE23DE760FC2B989D1DB63E35AD /* WYLineChartMainLineView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartMainLineView.m; sourceTree = "<group>"; };
 		3E9137BE4556AD36653738D8D030745D /* Pods_WYChart_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WYChart_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		439179C634A2BE03327E64B3C8E998AF /* Pods-WYChart_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WYChart_Example-umbrella.h"; sourceTree = "<group>"; };
+		44878360F270926A383379007DEF5798 /* WYRadarChartModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYRadarChartModel.m; sourceTree = "<group>"; };
 		44D93E5167D42B39F7737D294A5E321D /* Pods-WYChart_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WYChart_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		49077A798B8D5BC34262D995BBFEF932 /* Pods-WYChart_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-WYChart_Example.modulemap"; sourceTree = "<group>"; };
-		57BA584A4EF3B9EDC97E3AA6214100A0 /* WYPieSector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYPieSector.m; sourceTree = "<group>"; };
-		611412966326BF2C32DD4DFBCA7DBB57 /* WYChartCategory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYChartCategory.h; sourceTree = "<group>"; };
+		50F082990E4C2F3B5236F67FF7DAB730 /* WYLineChartBackgroundView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartBackgroundView.h; sourceTree = "<group>"; };
+		554FD9EE6CDE40A2356B2BEBB3A71131 /* WYSectorLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYSectorLayer.h; sourceTree = "<group>"; };
+		583AB0945A9F18B1D22C926A4FD38C3B /* WYLineChartJunctionShape.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartJunctionShape.h; sourceTree = "<group>"; };
+		5BD81F3CD31C1EA6C7DCCA9518D500CC /* WYRadarChartDimensionView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYRadarChartDimensionView.m; sourceTree = "<group>"; };
+		5EE6F9CF7A8BE88560455F3BB8AC3A97 /* WYLineChartView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartView.h; sourceTree = "<group>"; };
+		600D07C4A232A46A95DAD534BC9A7F7C /* UIView+WYAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIView+WYAnimation.m"; sourceTree = "<group>"; };
+		621248245C036FAC8E3986EA899D7DD9 /* WYPieChartCalculator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYPieChartCalculator.m; sourceTree = "<group>"; };
 		63703D0781F393F2CD8AC19D5DF47946 /* Pods-WYChart_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-WYChart_Tests-dummy.m"; sourceTree = "<group>"; };
 		6538D691A60D1BA47AE19E30D89FD7B8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		675327641EE85A153EBF65335D7C642C /* WYLineChartMainLineView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartMainLineView.m; sourceTree = "<group>"; };
-		67D04CC7E8625F21A7E9F8B1E7119E50 /* WYMainPieChartView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYMainPieChartView.m; sourceTree = "<group>"; };
-		6841C05588A3C9AE1175CB99E651CC37 /* WYPieCenterCircle.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYPieCenterCircle.m; sourceTree = "<group>"; };
-		6A99ABCBA73D74E94ADC228E40E64D0C /* WYLineChartPoint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartPoint.h; sourceTree = "<group>"; };
+		666FF69377A3F71FEF4EC5954CFE0322 /* WYLineChartCalculator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartCalculator.h; sourceTree = "<group>"; };
+		66E6C6B6E8FC4D140938E5A4CF46556B /* WYMainPieChartView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYMainPieChartView.h; sourceTree = "<group>"; };
 		6BAE13C716FAC981BD40490C01ABC66A /* Pods-WYChart_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WYChart_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		7061D3298BAB512640D5560FCA4A9F6B /* WYPieChartCalculator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYPieChartCalculator.m; sourceTree = "<group>"; };
-		7E589B3BDE5027FF410F569E1D3BF0EA /* WYChartCategory.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYChartCategory.m; sourceTree = "<group>"; };
-		7E80EACB4A684C5450FF30C75BE226D3 /* WYLineChartBackgroundView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartBackgroundView.h; sourceTree = "<group>"; };
+		6DD5D7C41A78B434E1FE78D4A3DC15B1 /* NSArray+Utils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSArray+Utils.h"; sourceTree = "<group>"; };
+		74D9138E7A73C65166716D9648951A3D /* YYWeakProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = YYWeakProxy.m; sourceTree = "<group>"; };
+		7524E16EF0643FEA7778B3AE0248E723 /* WYRadarChartView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYRadarChartView.h; sourceTree = "<group>"; };
+		758EA3496E3D3C898DFB7B39538DB173 /* WYChartCategory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYChartCategory.h; sourceTree = "<group>"; };
+		7CC95EA0015591D3FD64ED0E887B06CD /* WYPieSector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYPieSector.m; sourceTree = "<group>"; };
 		7F29023F39CFBD4870A2C08587D8E3B9 /* Pods-WYChart_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WYChart_Example-frameworks.sh"; sourceTree = "<group>"; };
+		829034A9BA9996A61770BA1276A88634 /* YYWeakProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = YYWeakProxy.h; sourceTree = "<group>"; };
 		8305A770154DFF233F822A45D9B88349 /* Pods-WYChart_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WYChart_Tests-resources.sh"; sourceTree = "<group>"; };
+		8383022ACF0433C46AD0899D4A8C8F61 /* UIView+WYAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+WYAnimation.h"; sourceTree = "<group>"; };
 		89A2CF630C2BD84D7D0C9535E651998B /* Pods-WYChart_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-WYChart_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		8C322722B4F84E3BEE5CF4C2A42CAF11 /* WYLineChartView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartView.h; sourceTree = "<group>"; };
-		8F6A3AA9C520DB1CB4EBB37A77DCFEE0 /* WYLineChartPoint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartPoint.m; sourceTree = "<group>"; };
-		939E8AF44A94BA6C21202C3D4197D185 /* WYLineChartCoordinateView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartCoordinateView.h; sourceTree = "<group>"; };
+		8AC61D798FD4CF7D477681563C670863 /* WYPieChartForegroundView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYPieChartForegroundView.m; sourceTree = "<group>"; };
+		917C34D47C612D242C44E9F62D70D07F /* WYRadarChartItemView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYRadarChartItemView.m; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9E0112FA95F99D4882AD2F9C543DF6A0 /* WYLineChartPoint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartPoint.m; sourceTree = "<group>"; };
 		9F2BDD7A4BB568D18587442E285BCE96 /* Pods-WYChart_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WYChart_Example.release.xcconfig"; sourceTree = "<group>"; };
-		9FC3C331293711B237953E0520AA5C69 /* WYSectorLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYSectorLayer.m; sourceTree = "<group>"; };
-		A49B902D7ECF6B46BEF9562AB90696A5 /* WYPieChartCalculator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYPieChartCalculator.h; sourceTree = "<group>"; };
-		A631F13F7FD632BC7638DAFCB2B4AF83 /* WYLineChartReferenceLineView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartReferenceLineView.h; sourceTree = "<group>"; };
+		A0B0935EBC4F5AEAE012C8BA73C3986A /* WYLineChartJunctionShape.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartJunctionShape.m; sourceTree = "<group>"; };
+		A5F730F833E80AB031CFA3529BB7D82F /* WYLineChartCoordinateView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartCoordinateView.m; sourceTree = "<group>"; };
+		A623BB2D005849456FFE6C413120B946 /* WYPieChartCalculator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYPieChartCalculator.h; sourceTree = "<group>"; };
 		A754D09B83927FE60C99C5EA33F830A3 /* Pods-WYChart_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-WYChart_Example-dummy.m"; sourceTree = "<group>"; };
-		ABAEA4C72769D2D0027E351C1742D84D /* WYLineChartLabelsView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartLabelsView.m; sourceTree = "<group>"; };
-		B27A179A1986F44B43AF7FCD11E103EB /* WYPieChartForegroundView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYPieChartForegroundView.h; sourceTree = "<group>"; };
+		AA25E766D6DD76EF4A498BE6F1C39232 /* WYPieChartView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYPieChartView.m; sourceTree = "<group>"; };
+		B4E84C6E549719AD2DD87C90BD72803F /* WYPieChartForegroundView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYPieChartForegroundView.h; sourceTree = "<group>"; };
+		BD47A39CDB952038F43BC48827A63FB9 /* WYLineChartDefine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartDefine.h; sourceTree = "<group>"; };
 		BD597914B2A745EB72AD0E707C4021F7 /* WYChart-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "WYChart-dummy.m"; sourceTree = "<group>"; };
 		BD672D15A02C14EED3091C6DEBEEB4C6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BE6C645E56D77C86A327BEA0909DB02D /* WYLineChartReferenceLineView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartReferenceLineView.m; sourceTree = "<group>"; };
-		C0F6BA422C2D87B6F69FBD2ECE8A0DBC /* WYLineChartJunctionShape.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartJunctionShape.h; sourceTree = "<group>"; };
-		C81A9E03170B7FB5BCE69A6E13986823 /* WYLineChartMainLineView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartMainLineView.h; sourceTree = "<group>"; };
-		C8C7AC9F6B25DAC3605302D9BC51A35B /* WYLineChartCalculator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartCalculator.m; sourceTree = "<group>"; };
-		CAE8688F0BBE35E47AE10CD401077A13 /* WYPieChartForegroundView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYPieChartForegroundView.m; sourceTree = "<group>"; };
-		CE02A054D9F5AD685860D02C03F87A3A /* WYLineChartDefine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartDefine.h; sourceTree = "<group>"; };
+		C2FCDDDD49BA4F77D30451346048F731 /* WYRadarChartMainView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYRadarChartMainView.m; sourceTree = "<group>"; };
+		C371900F4941FB74924B72D608014355 /* WYRadarChartItemView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYRadarChartItemView.h; sourceTree = "<group>"; };
+		C6BAD133397CF906C01802CE4E016F7D /* WYPieCenterCircle.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYPieCenterCircle.m; sourceTree = "<group>"; };
 		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		D079B3D7FDDAB1AA593DEB05AD9F3C24 /* WYLineChartView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartView.m; sourceTree = "<group>"; };
 		D0CA4A5F002BE96B0203EB40963A33C8 /* Pods-WYChart_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WYChart_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		D2D015DDBB7C661DE3296915474A3E87 /* WYPieChartView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYPieChartView.h; sourceTree = "<group>"; };
 		D2E09C97F9E4B4199E3BD054C7477364 /* WYChart.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = WYChart.modulemap; sourceTree = "<group>"; };
-		D793BD98AF1E433C35158FC988115AFE /* WYMainPieChartView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYMainPieChartView.h; sourceTree = "<group>"; };
-		D8D64035B8403727BEB99A3A27B7A1E9 /* WYLineChartCalculator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartCalculator.h; sourceTree = "<group>"; };
-		DCDDC10AD82B16578BDC734B3759266A /* WYPieChartView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYPieChartView.h; sourceTree = "<group>"; };
+		D3437BD200ADFF73F9425566BF0F79CC /* NSArray+Utils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Utils.m"; sourceTree = "<group>"; };
+		D363CBC677FD804BA0EA8B36A7C183E3 /* WYLineChartReferenceLineView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartReferenceLineView.h; sourceTree = "<group>"; };
+		DDF621174EE34C9C1FAE4A7AAAB2C73D /* WYSectorLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYSectorLayer.m; sourceTree = "<group>"; };
 		E0DD49A25FFA6261E7BD5D902826A689 /* Pods-WYChart_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-WYChart_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		E1B5B3CEF5A8147EA3B6473DB9B92663 /* WYChart-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WYChart-umbrella.h"; sourceTree = "<group>"; };
-		E574478710FAAB999D9D7F108970E713 /* WYPieChartView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYPieChartView.m; sourceTree = "<group>"; };
+		E86A4AF10667C92AEBAD126EF1BC82E6 /* WYRadarChartMainView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYRadarChartMainView.h; sourceTree = "<group>"; };
+		EA4793D094ED5C2B855B2DF94C923F7A /* WYLineChartCoordinateView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartCoordinateView.h; sourceTree = "<group>"; };
 		EA51A76EFC9D7B0A7FAE60A244957C16 /* WYChart.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = WYChart.xcconfig; sourceTree = "<group>"; };
+		EC5DF242E43E94CC0B78B1E25B851D7A /* WYLineChartMainLineView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartMainLineView.h; sourceTree = "<group>"; };
+		F0A31C0C740B798855B6C44F42858B16 /* WYRadarChartDimensionView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYRadarChartDimensionView.h; sourceTree = "<group>"; };
+		F10D8C58DE137D47538CD6380690F596 /* WYRadarChartModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYRadarChartModel.h; sourceTree = "<group>"; };
 		F44018A8500144C3731E0A697F759350 /* Pods-WYChart_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WYChart_Tests-umbrella.h"; sourceTree = "<group>"; };
+		F4732FC767A50FB343E1793E0F0C560E /* WYMainPieChartView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYMainPieChartView.m; sourceTree = "<group>"; };
 		F4B3B613B9C7CD6387307AD86D31F8A2 /* Pods-WYChart_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WYChart_Example-resources.sh"; sourceTree = "<group>"; };
-		FED6093C62E97BA2F60B5A6F7994F3A4 /* WYPieCenterCircle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYPieCenterCircle.h; sourceTree = "<group>"; };
+		F4F68CDA9FA34070B111DA7AC0A5909F /* WYLineChartCalculator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartCalculator.m; sourceTree = "<group>"; };
+		F52F1954FDEBE822686F9F069A0F9544 /* WYChartCategory.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYChartCategory.m; sourceTree = "<group>"; };
+		F59B94E29D606342D170D9E95DFBEB61 /* WYLineChartPoint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WYLineChartPoint.h; sourceTree = "<group>"; };
+		FC65A99BCE0E70D311C2F8A7032E7443 /* WYLineChartLabelsView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartLabelsView.m; sourceTree = "<group>"; };
+		FCC830FC1AC516BF50E774F202428411 /* WYLineChartView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = WYLineChartView.m; sourceTree = "<group>"; };
 		FFE19E56CBD190EA7DCC5B9A1FED2EC5 /* Pods-WYChart_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WYChart_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -168,48 +200,17 @@
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		163020008158DF78ADCF8AA3C8CC2DAE /* Foreground */ = {
+		1A197BFBF439E5C514B753D74EF63E57 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				C0F6BA422C2D87B6F69FBD2ECE8A0DBC /* WYLineChartJunctionShape.h */,
-				2FA148896A2FBAFF64EDA5E53A48A9EA /* WYLineChartJunctionShape.m */,
-				07CC8D57D15367B79108D20C7EDC0196 /* WYLineChartLabelsView.h */,
-				ABAEA4C72769D2D0027E351C1742D84D /* WYLineChartLabelsView.m */,
-				C81A9E03170B7FB5BCE69A6E13986823 /* WYLineChartMainLineView.h */,
-				675327641EE85A153EBF65335D7C642C /* WYLineChartMainLineView.m */,
-				A631F13F7FD632BC7638DAFCB2B4AF83 /* WYLineChartReferenceLineView.h */,
-				BE6C645E56D77C86A327BEA0909DB02D /* WYLineChartReferenceLineView.m */,
+				6DD5D7C41A78B434E1FE78D4A3DC15B1 /* NSArray+Utils.h */,
+				D3437BD200ADFF73F9425566BF0F79CC /* NSArray+Utils.m */,
+				8383022ACF0433C46AD0899D4A8C8F61 /* UIView+WYAnimation.h */,
+				600D07C4A232A46A95DAD534BC9A7F7C /* UIView+WYAnimation.m */,
+				829034A9BA9996A61770BA1276A88634 /* YYWeakProxy.h */,
+				74D9138E7A73C65166716D9648951A3D /* YYWeakProxy.m */,
 			);
-			path = Foreground;
-			sourceTree = "<group>";
-		};
-		2176CBFBC20812BFBD3490069F738E8E /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				6EB0DBC3BCC8895A67072DBDBCB90EDC /* WYLineChart */,
-				2F46359422AD05B24FF7E94D25C2AD5B /* WYPieChart */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		2F46359422AD05B24FF7E94D25C2AD5B /* WYPieChart */ = {
-			isa = PBXGroup;
-			children = (
-				B03CAC157B64E1319BF0FB6BE3171655 /* Components */,
-				5E8FBCBE34F0D93028068B0D957F389E /* Main */,
-			);
-			path = WYPieChart;
-			sourceTree = "<group>";
-		};
-		30EA243672B8B70B7FB445EEF3AEF215 /* Background */ = {
-			isa = PBXGroup;
-			children = (
-				7E80EACB4A684C5450FF30C75BE226D3 /* WYLineChartBackgroundView.h */,
-				0D9790A74932590C75197DC17F2EA7E3 /* WYLineChartBackgroundView.m */,
-				939E8AF44A94BA6C21202C3D4197D185 /* WYLineChartCoordinateView.h */,
-				3173174B648D8419035E8A0E5E6DA915 /* WYLineChartCoordinateView.m */,
-			);
-			path = Background;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
@@ -238,50 +239,30 @@
 			path = "Target Support Files/Pods-WYChart_Tests";
 			sourceTree = "<group>";
 		};
-		5E812B36F760C4703267C96B46A5A60E /* Main */ = {
+		4E0888B11D9D0C8A164E7BDC8E4C1E46 /* WYChart */ = {
 			isa = PBXGroup;
 			children = (
-				611412966326BF2C32DD4DFBCA7DBB57 /* WYChartCategory.h */,
-				7E589B3BDE5027FF410F569E1D3BF0EA /* WYChartCategory.m */,
-				D8D64035B8403727BEB99A3A27B7A1E9 /* WYLineChartCalculator.h */,
-				C8C7AC9F6B25DAC3605302D9BC51A35B /* WYLineChartCalculator.m */,
-				CE02A054D9F5AD685860D02C03F87A3A /* WYLineChartDefine.h */,
-				6A99ABCBA73D74E94ADC228E40E64D0C /* WYLineChartPoint.h */,
-				8F6A3AA9C520DB1CB4EBB37A77DCFEE0 /* WYLineChartPoint.m */,
-				8C322722B4F84E3BEE5CF4C2A42CAF11 /* WYLineChartView.h */,
-				D079B3D7FDDAB1AA593DEB05AD9F3C24 /* WYLineChartView.m */,
+				BC8F930D3A720F731E7DE56A4BE2824B /* Classes */,
 			);
-			path = Main;
+			path = WYChart;
 			sourceTree = "<group>";
 		};
-		5E8FBCBE34F0D93028068B0D957F389E /* Main */ = {
+		70456DDB09BAA15748D948DB53B2BC9A /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				A49B902D7ECF6B46BEF9562AB90696A5 /* WYPieChartCalculator.h */,
-				7061D3298BAB512640D5560FCA4A9F6B /* WYPieChartCalculator.m */,
-				DCDDC10AD82B16578BDC734B3759266A /* WYPieChartView.h */,
-				E574478710FAAB999D9D7F108970E713 /* WYPieChartView.m */,
-				352D8A4148E132127EA16C620CDE3432 /* WYPieSector.h */,
-				57BA584A4EF3B9EDC97E3AA6214100A0 /* WYPieSector.m */,
+				F10D8C58DE137D47538CD6380690F596 /* WYRadarChartModel.h */,
+				44878360F270926A383379007DEF5798 /* WYRadarChartModel.m */,
+				7524E16EF0643FEA7778B3AE0248E723 /* WYRadarChartView.h */,
+				24DAEF8274D81AC11A7DA988B46A9FB0 /* WYRadarChartView.m */,
 			);
-			path = Main;
-			sourceTree = "<group>";
-		};
-		6EB0DBC3BCC8895A67072DBDBCB90EDC /* WYLineChart */ = {
-			isa = PBXGroup;
-			children = (
-				30EA243672B8B70B7FB445EEF3AEF215 /* Background */,
-				163020008158DF78ADCF8AA3C8CC2DAE /* Foreground */,
-				5E812B36F760C4703267C96B46A5A60E /* Main */,
-			);
-			path = WYLineChart;
+			path = Public;
 			sourceTree = "<group>";
 		};
 		79FAE7FB40101B66A51DCC1AAA8732E7 /* WYChart */ = {
 			isa = PBXGroup;
 			children = (
 				98DE000276B9AE39CA356E97D763035E /* Support Files */,
-				DF1B1B0FCC8F7D49E71CC28607E268E0 /* WYChart */,
+				4E0888B11D9D0C8A164E7BDC8E4C1E46 /* WYChart */,
 			);
 			name = WYChart;
 			path = ../..;
@@ -296,6 +277,35 @@
 				A83CED12A5E72D07349471BB2CF31E99 /* Products */,
 				B3BD395361954A7A0910AA63FBD03E4A /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		7F289CE2BD30BF41BE298F8A4B770F23 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				A623BB2D005849456FFE6C413120B946 /* WYPieChartCalculator.h */,
+				621248245C036FAC8E3986EA899D7DD9 /* WYPieChartCalculator.m */,
+				D2D015DDBB7C661DE3296915474A3E87 /* WYPieChartView.h */,
+				AA25E766D6DD76EF4A498BE6F1C39232 /* WYPieChartView.m */,
+				07340812EB800D26BE97266EA85AB651 /* WYPieSector.h */,
+				7CC95EA0015591D3FD64ED0E887B06CD /* WYPieSector.m */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		808186C0682F877EED3CFB2A98853ADD /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				758EA3496E3D3C898DFB7B39538DB173 /* WYChartCategory.h */,
+				F52F1954FDEBE822686F9F069A0F9544 /* WYChartCategory.m */,
+				666FF69377A3F71FEF4EC5954CFE0322 /* WYLineChartCalculator.h */,
+				F4F68CDA9FA34070B111DA7AC0A5909F /* WYLineChartCalculator.m */,
+				BD47A39CDB952038F43BC48827A63FB9 /* WYLineChartDefine.h */,
+				F59B94E29D606342D170D9E95DFBEB61 /* WYLineChartPoint.h */,
+				9E0112FA95F99D4882AD2F9C543DF6A0 /* WYLineChartPoint.m */,
+				5EE6F9CF7A8BE88560455F3BB8AC3A97 /* WYLineChartView.h */,
+				FCC830FC1AC516BF50E774F202428411 /* WYLineChartView.m */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		8BCE238DE48DF5737C4FCBA564191C9B /* Pods-WYChart_Example */ = {
@@ -316,6 +326,36 @@
 			path = "Target Support Files/Pods-WYChart_Example";
 			sourceTree = "<group>";
 		};
+		90343FD4E746C8D260A365F1AD8AD9E7 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				66E6C6B6E8FC4D140938E5A4CF46556B /* WYMainPieChartView.h */,
+				F4732FC767A50FB343E1793E0F0C560E /* WYMainPieChartView.m */,
+				0430F53472CC9124493F06852C3019AC /* WYPieCenterCircle.h */,
+				C6BAD133397CF906C01802CE4E016F7D /* WYPieCenterCircle.m */,
+				B4E84C6E549719AD2DD87C90BD72803F /* WYPieChartForegroundView.h */,
+				8AC61D798FD4CF7D477681563C670863 /* WYPieChartForegroundView.m */,
+				554FD9EE6CDE40A2356B2BEBB3A71131 /* WYSectorLayer.h */,
+				DDF621174EE34C9C1FAE4A7AAAB2C73D /* WYSectorLayer.m */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		951CD4035CF61C222083AA44212CB751 /* Foreground */ = {
+			isa = PBXGroup;
+			children = (
+				583AB0945A9F18B1D22C926A4FD38C3B /* WYLineChartJunctionShape.h */,
+				A0B0935EBC4F5AEAE012C8BA73C3986A /* WYLineChartJunctionShape.m */,
+				2D1F725FD46E018747980960E9941A86 /* WYLineChartLabelsView.h */,
+				FC65A99BCE0E70D311C2F8A7032E7443 /* WYLineChartLabelsView.m */,
+				EC5DF242E43E94CC0B78B1E25B851D7A /* WYLineChartMainLineView.h */,
+				3CD1FDE23DE760FC2B989D1DB63E35AD /* WYLineChartMainLineView.m */,
+				D363CBC677FD804BA0EA8B36A7C183E3 /* WYLineChartReferenceLineView.h */,
+				33D452C05210380012732665D4B394DE /* WYLineChartReferenceLineView.m */,
+			);
+			path = Foreground;
+			sourceTree = "<group>";
+		};
 		98DE000276B9AE39CA356E97D763035E /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,6 +370,17 @@
 			path = "Example/Pods/Target Support Files/WYChart";
 			sourceTree = "<group>";
 		};
+		A469E089776A67D15BF62BD36DAF6FB2 /* Background */ = {
+			isa = PBXGroup;
+			children = (
+				50F082990E4C2F3B5236F67FF7DAB730 /* WYLineChartBackgroundView.h */,
+				117E9E4378664B9410A2F698E5287F09 /* WYLineChartBackgroundView.m */,
+				EA4793D094ED5C2B855B2DF94C923F7A /* WYLineChartCoordinateView.h */,
+				A5F730F833E80AB031CFA3529BB7D82F /* WYLineChartCoordinateView.m */,
+			);
+			path = Background;
+			sourceTree = "<group>";
+		};
 		A83CED12A5E72D07349471BB2CF31E99 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,21 +389,6 @@
 				15CB9284A835F178D30245E96C7C1279 /* WYChart.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		B03CAC157B64E1319BF0FB6BE3171655 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				D793BD98AF1E433C35158FC988115AFE /* WYMainPieChartView.h */,
-				67D04CC7E8625F21A7E9F8B1E7119E50 /* WYMainPieChartView.m */,
-				FED6093C62E97BA2F60B5A6F7994F3A4 /* WYPieCenterCircle.h */,
-				6841C05588A3C9AE1175CB99E651CC37 /* WYPieCenterCircle.m */,
-				B27A179A1986F44B43AF7FCD11E103EB /* WYPieChartForegroundView.h */,
-				CAE8688F0BBE35E47AE10CD401077A13 /* WYPieChartForegroundView.m */,
-				18FC6B84950C4F718AB9D6E55415B635 /* WYSectorLayer.h */,
-				9FC3C331293711B237953E0520AA5C69 /* WYSectorLayer.m */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		B3BD395361954A7A0910AA63FBD03E4A /* Targets Support Files */ = {
@@ -372,17 +408,95 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DF1B1B0FCC8F7D49E71CC28607E268E0 /* WYChart */ = {
+		BC4B88F4E463B01033E87578878D3503 /* WYPieChart */ = {
 			isa = PBXGroup;
 			children = (
-				2176CBFBC20812BFBD3490069F738E8E /* Classes */,
+				90343FD4E746C8D260A365F1AD8AD9E7 /* Components */,
+				7F289CE2BD30BF41BE298F8A4B770F23 /* Main */,
 			);
-			path = WYChart;
+			path = WYPieChart;
+			sourceTree = "<group>";
+		};
+		BC8F930D3A720F731E7DE56A4BE2824B /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D4D5C94D84CE2ADCEF7F1FAFFE0BDC5D /* WYLineChart */,
+				BC4B88F4E463B01033E87578878D3503 /* WYPieChart */,
+				CD29DBBB34F31AFF31BC30903CD357D0 /* WYRadarChart */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		CD29DBBB34F31AFF31BC30903CD357D0 /* WYRadarChart */ = {
+			isa = PBXGroup;
+			children = (
+				FB6833C0E0A16341C9D2515BB670A063 /* Private */,
+				70456DDB09BAA15748D948DB53B2BC9A /* Public */,
+				1A197BFBF439E5C514B753D74EF63E57 /* Utils */,
+			);
+			path = WYRadarChart;
+			sourceTree = "<group>";
+		};
+		D4D5C94D84CE2ADCEF7F1FAFFE0BDC5D /* WYLineChart */ = {
+			isa = PBXGroup;
+			children = (
+				A469E089776A67D15BF62BD36DAF6FB2 /* Background */,
+				951CD4035CF61C222083AA44212CB751 /* Foreground */,
+				808186C0682F877EED3CFB2A98853ADD /* Main */,
+			);
+			path = WYLineChart;
+			sourceTree = "<group>";
+		};
+		FB6833C0E0A16341C9D2515BB670A063 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				F0A31C0C740B798855B6C44F42858B16 /* WYRadarChartDimensionView.h */,
+				5BD81F3CD31C1EA6C7DCCA9518D500CC /* WYRadarChartDimensionView.m */,
+				C371900F4941FB74924B72D608014355 /* WYRadarChartItemView.h */,
+				917C34D47C612D242C44E9F62D70D07F /* WYRadarChartItemView.m */,
+				E86A4AF10667C92AEBAD126EF1BC82E6 /* WYRadarChartMainView.h */,
+				C2FCDDDD49BA4F77D30451346048F731 /* WYRadarChartMainView.m */,
+			);
+			path = Private;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		4B4D70BC31D56411996589A29A3C149A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2D6CA89BD9DE5AEFC5F3AF0896D15B3 /* NSArray+Utils.h in Headers */,
+				89B8D3A329A97D1F2BEF51526AB0CC2D /* UIView+WYAnimation.h in Headers */,
+				D5F42AE27206F5A02D10553D9129AC8B /* WYChart-umbrella.h in Headers */,
+				4A3231C9FB00F18D28D2369DB7265CE1 /* WYChartCategory.h in Headers */,
+				E894A9B134ACC6BB1C34BD288449CA66 /* WYLineChartBackgroundView.h in Headers */,
+				7A8184FCAA4EB77BD3376888599C9815 /* WYLineChartCalculator.h in Headers */,
+				6E6B5C5454DD4DD37783021C61A24054 /* WYLineChartCoordinateView.h in Headers */,
+				6CFF42AE91D725DA415C2EC41646F710 /* WYLineChartDefine.h in Headers */,
+				386D527F92E96813AFA4844EA2AAE354 /* WYLineChartJunctionShape.h in Headers */,
+				79CCA64932E38673BF9E18188F331AAD /* WYLineChartLabelsView.h in Headers */,
+				8A305363E162408F7DD4E41B53AA7F65 /* WYLineChartMainLineView.h in Headers */,
+				EA23911E2C31E0917348B5CD0037DE73 /* WYLineChartPoint.h in Headers */,
+				6CB43C162A0DB956A689052BBD2D3BD2 /* WYLineChartReferenceLineView.h in Headers */,
+				2A13850DB91334D91B1E13E41865A6B4 /* WYLineChartView.h in Headers */,
+				6A96EA85AD0ABBC67E234F37CD72AA54 /* WYMainPieChartView.h in Headers */,
+				2CEE676D84D5DD3FB99FFB6EA8469C54 /* WYPieCenterCircle.h in Headers */,
+				A6C83198D276D29468693942FAD5C955 /* WYPieChartCalculator.h in Headers */,
+				68D205D66829035133DCD60A9D678520 /* WYPieChartForegroundView.h in Headers */,
+				D67E38C56CB3C1880FCF62D56C67185A /* WYPieChartView.h in Headers */,
+				F9AF1AD44D8B6035A6BC98470C9AC118 /* WYPieSector.h in Headers */,
+				AED08599354C22A1F5E2C08AFCCF29D3 /* WYRadarChartDimensionView.h in Headers */,
+				A3B8885FF51FE7D41406E2DE453EEB5A /* WYRadarChartItemView.h in Headers */,
+				50D9434E12ACF1CD5666B8C986534B11 /* WYRadarChartMainView.h in Headers */,
+				2FC45E52FF6E1D82B3ABD88A3E9F21CE /* WYRadarChartModel.h in Headers */,
+				B57825EC90BD9B3C0B527976A4A879F3 /* WYRadarChartView.h in Headers */,
+				352C4489A01FB94232332B244931952F /* WYSectorLayer.h in Headers */,
+				BA0951FF9534F8D4093CFF3CAC9F0CB4 /* YYWeakProxy.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		982D56D1A2D3447118089B6A25FB5C41 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -396,32 +510,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C03A93B1C52C1E8BE229E8164CE9CEC /* Pods-WYChart_Tests-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C384158695876353A7E9ADB5B7D35091 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D5EC33DAD3179E5E905F9E7D26E5CF21 /* WYChart-umbrella.h in Headers */,
-				FBFFE3883B8C54A58476A167A012D1C2 /* WYChartCategory.h in Headers */,
-				7978AD4D72279407E97ED06DC5D0791B /* WYLineChartBackgroundView.h in Headers */,
-				4A51D4F60CF0EDC3D2A7063E54BF9890 /* WYLineChartCalculator.h in Headers */,
-				FEE4229A014927937B12657454215F01 /* WYLineChartCoordinateView.h in Headers */,
-				7742C3270B6298814A7EB8C7D3A2CE7E /* WYLineChartDefine.h in Headers */,
-				B1CA2D67830DE5B44D6645E8C32EE2D2 /* WYLineChartJunctionShape.h in Headers */,
-				7CCA47181D240F7DE7310CDEB1D3605E /* WYLineChartLabelsView.h in Headers */,
-				F8BAAA3AD44A524764C80F305665B865 /* WYLineChartMainLineView.h in Headers */,
-				86DD8254DD99EF1F119F5A8C5AE3CE75 /* WYLineChartPoint.h in Headers */,
-				A30AC8036A5760C5A1DC8318CB8AE0A9 /* WYLineChartReferenceLineView.h in Headers */,
-				3A14EB0ABAE3013DE23CC214F6FB4B5C /* WYLineChartView.h in Headers */,
-				6C7F5EC550294A6D148922B05D28084D /* WYMainPieChartView.h in Headers */,
-				576A984EFFEA103A3BA116A544779AE6 /* WYPieCenterCircle.h in Headers */,
-				0AB62905135639090F789CEED9176C67 /* WYPieChartCalculator.h in Headers */,
-				1EE4649832004C5F5F4B575ED12876F6 /* WYPieChartForegroundView.h in Headers */,
-				172700318D0BF27751AB62887DC46468 /* WYPieChartView.h in Headers */,
-				4D0D5536F4ED514FD5DEAF4F0E1800BA /* WYPieSector.h in Headers */,
-				35D4BF4DC76ED9DB20D395A1608B13EB /* WYSectorLayer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,9 +555,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 92C189C62B4DB0E6C0AAEC65F7C20C3B /* Build configuration list for PBXNativeTarget "WYChart" */;
 			buildPhases = (
-				858A16B9321AEF8807901DBA942DDD99 /* Sources */,
+				398F7BCCD346E38BCA3F2852430CFEB3 /* Sources */,
 				30E3982DD2565AB41CE2B87E7EF69432 /* Frameworks */,
-				C384158695876353A7E9ADB5B7D35091 /* Headers */,
+				4B4D70BC31D56411996589A29A3C149A /* Headers */,
 			);
 			buildRules = (
 			);
@@ -509,28 +597,36 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		858A16B9321AEF8807901DBA942DDD99 /* Sources */ = {
+		398F7BCCD346E38BCA3F2852430CFEB3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7575A0676B4203D23DD870E7C2DF7451 /* WYChart-dummy.m in Sources */,
-				2A12D1D3696246F10ED5092BF71268EB /* WYChartCategory.m in Sources */,
-				933F652C4B4904BEC5014B7251B537E2 /* WYLineChartBackgroundView.m in Sources */,
-				A7DBD96BD9DA0EAF00614338AAA8DEA2 /* WYLineChartCalculator.m in Sources */,
-				1B355D8A8B9BC1DE05FCB5EC7FBBC1F5 /* WYLineChartCoordinateView.m in Sources */,
-				4466AE6204F09D1F217D4FFE088AE864 /* WYLineChartJunctionShape.m in Sources */,
-				7129E3FFDD49D9BDBDAFD5610BDCEF4B /* WYLineChartLabelsView.m in Sources */,
-				F5BDF000728E8EEF654F5C6BFB88A406 /* WYLineChartMainLineView.m in Sources */,
-				90A08C49DE0A8B1AA1EBF37A9A0DFA3A /* WYLineChartPoint.m in Sources */,
-				9C65012DFECF1F3D9F6EB3A05812518F /* WYLineChartReferenceLineView.m in Sources */,
-				7ADA20DB0130AF6929B0D6C05E34ED97 /* WYLineChartView.m in Sources */,
-				7C4EEDB7B25938CF5E5F97D9B4109B47 /* WYMainPieChartView.m in Sources */,
-				2F7985949355C89D4DD43C4364CB7A55 /* WYPieCenterCircle.m in Sources */,
-				F6D1C0D489235B35B60A9B44CB956AFE /* WYPieChartCalculator.m in Sources */,
-				E840882CF18CED012F9D076E28FB51EC /* WYPieChartForegroundView.m in Sources */,
-				CE2A2AE2DAAF7641B563D6FE61AEE7BC /* WYPieChartView.m in Sources */,
-				264D23B900994246EF2F2016DDC9DA9B /* WYPieSector.m in Sources */,
-				44AD6642BFD57A4D07DA1C7DD3363B6A /* WYSectorLayer.m in Sources */,
+				E00A0B978AC3DC5D5B9CDE4176FF4D30 /* NSArray+Utils.m in Sources */,
+				87DD33AC9FC45EB99CE600E53B6DF106 /* UIView+WYAnimation.m in Sources */,
+				12A9052189E70F5AE12837DB46A0B52D /* WYChart-dummy.m in Sources */,
+				FFF3B666EDA1BAC1D530F9A8C41CDB9D /* WYChartCategory.m in Sources */,
+				8D15ECB875EC58CCB416BBAD36A832D1 /* WYLineChartBackgroundView.m in Sources */,
+				03F39207CC5A71B16845D5C7CAB9606D /* WYLineChartCalculator.m in Sources */,
+				54AA1100ABAD0F3A030959450CE00D27 /* WYLineChartCoordinateView.m in Sources */,
+				CE84DB8624975001C90059CA5B4AE1B9 /* WYLineChartJunctionShape.m in Sources */,
+				E4EFB7F19446C1D0CAAB2022CFB01139 /* WYLineChartLabelsView.m in Sources */,
+				0E42D0CC3B4F7A7C8005B139EB517A1E /* WYLineChartMainLineView.m in Sources */,
+				350DEEE1D16A3D08FE84F170670055C1 /* WYLineChartPoint.m in Sources */,
+				DCE12C5F79FE04E0F9693096C3F4FE1D /* WYLineChartReferenceLineView.m in Sources */,
+				1EB6C896597DECC33F199A7D9E09232B /* WYLineChartView.m in Sources */,
+				ADDD5AFC90904E3CE74E1B1C1DAC438F /* WYMainPieChartView.m in Sources */,
+				A9E5F6B278CDFE4450D277EE68F6EEF4 /* WYPieCenterCircle.m in Sources */,
+				CA574CB657EF60E1662265225F4A66D9 /* WYPieChartCalculator.m in Sources */,
+				3C10CB139907DC2C9F7389F10B51C93C /* WYPieChartForegroundView.m in Sources */,
+				14EE197250F66ED419C0C8CA487AB659 /* WYPieChartView.m in Sources */,
+				0E04476F0D6373FFF6F89E2E65BCFAD0 /* WYPieSector.m in Sources */,
+				632F043659B3A0FE217C1F6F4E0F3DE9 /* WYRadarChartDimensionView.m in Sources */,
+				378FBB6568E1B7FD8C4BECB81269D767 /* WYRadarChartItemView.m in Sources */,
+				3328651E12B90B66FC4AA55F32163935 /* WYRadarChartMainView.m in Sources */,
+				934412D4CF2F915BAC52020FEF4E35A0 /* WYRadarChartModel.m in Sources */,
+				FC4BAC880B02405652AA2C591751E68D /* WYRadarChartView.m in Sources */,
+				70D89CD3ABA49FE18DA66AB5E6AF7CC7 /* WYSectorLayer.m in Sources */,
+				647D3752A9CAC2E492A40F6B41DA7BC2 /* YYWeakProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

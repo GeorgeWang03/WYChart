@@ -22,6 +22,13 @@ WYChart是一个简洁优雅的，集线性图和扇形图一体的图形库，�
 </p>
 </p>
 
+<p align="center"><img width="240" src="IMG/RadarChart_001.png"/></p> 
+<p align="center">
+<b>WYRadarChart</b>
+<p align="center">简单方便地创建拥有动画的雷达图
+</p>
+</p>
+
 ***
 
 **经过一段时间的改造，WYChart v0.2.0版本发布，线型图支持多线段**
@@ -276,7 +283,7 @@ WYLineChart 支持以下三种风格的线条:
 <p align="center">
 <b>弹簧动画</b>
 </p>  
-**数据点形状**
+**<a name="JunctionStyle"></a>数据点形状**
 
 你可以选择以下数据点形状的风格：
 
@@ -444,6 +451,129 @@ WYPieChart 有两种方式让你选中扇块，并触发代理方法`pieChartVie
 </br>
 </br>
 </br>
+
+####WYRadarChart
+
+**首先，** 让一个类实现 `WYRadarChartViewDataSource `协议
+
+```objc
+@interface SomeClass <WYRadarChartViewDataSource>
+```
+**其次,** 创建 `WYRadarChartDimension`实例, 用于描述统计数据的维度，决定了雷达图中角的个数.
+
+```objc
+self.dimensions = [NSMutableArray new];
+for (NSInteger index = 0; index < self.dimensionCount; index++) {
+    WYRadarChartDimension *dimension = [WYRadarChartDimension new];
+    dimension.title = @"title";
+    dimension.titleColor = [UIColor whiteColor];
+    [self.dimensions addObject:dimension];
+}
+```
+
+**然后，** 用dimension实例数组创建 `WYRadarChartView` 实例，并指定dataSource.
+
+```objc
+self.radarChartView = [[WYRadarChartView alloc] initWithFrame:CGRectMake(0, 0, 100,100)
+                                                   dimensions:self.dimensions
+                                                     gradient:1];
+self.radarChartView.dataSource = self;
+```
+
+**最后,** 你能改变 `WYRadarChartView`的UI属性, 比如 
+`gradient `(决定了雷达图中同心环形的个数，至少是1，即最外圈的环形), `lineWidth `, `lineColor `. 然后用`reloadData` 或 `reloadDataWithAnimation:duration:`刷新UI
+
+----------
+**数据维度**
+
+Radar chart view must be created with dimension array.
+<p align="center"><img width="240" src="IMG/RadarChartDimension.gif"/></p> 
+<p align="center">
+<b>dimension</b>
+</p>
+</br>  
+
+**数据实例**
+
+从datasource获取数据实例`WYRadarChartItem `，并设置`WYRadarChartItem `的UI属性
+
+```objc
+self.items = [NSMutableArray new];
+for (NSInteger index = 0; index < self.itemCount; index++) {
+    WYRadarChartItem *item = [WYRadarChartItem new];
+    NSMutableArray *value = [NSMutableArray new];
+    for (NSInteger i = 0; i < self.dimensionCount; i++) {
+        [value addObject:@(arc4random_uniform(100)*0.01)];
+    }
+    item.value = value;
+    item.borderColor = [UIColor wy_colorWithHex:0xffffff];
+    item.fillColor = [UIColor wy_colorWithHex:arc4random_uniform(0xffffff) alpha:0.5];
+    item.junctionShape = kWYLineChartJunctionShapeSolidCircle;
+    [self.items addObject:item];
+}
+
+#pragma mark - WYRadarChartViewDataSource
+
+- (NSUInteger)numberOfItemInRadarChartView:(WYRadarChartView *)radarChartView {
+    return self.items.count;
+}
+
+- (WYRadarChartItem *)radarChartView:(WYRadarChartView *)radarChartView itemAtIndex:(NSUInteger)index {
+    return self.items[index];
+}
+
+- (id<WYRadarChartViewItemDescription>)radarChartView:(WYRadarChartView *)radarChartView descriptionForItemAtIndex:(NSUInteger)index {
+    return nil;
+}
+```
+<p align="center"><img width="240" src="IMG/RadarChartItem.gif"/></p> 
+<p align="center">
+<b>Item</b>
+</p>
+</br>  
+
+**Gradient**
+
+```objc
+self.radarChartView.gradient = self.gradient;
+[self.radarChartView reloadDataWithAnimation:self.animation duration:kAnimationDuration];
+```
+<p align="center"><img width="240" src="IMG/RadarChartGradient.gif"/></p> 
+<p align="center">
+<b>Gradient</b>
+</p>
+</br>  
+
+**动画**
+
+reload with aniamtion and animation duration.
+
+```objc
+typedef NS_ENUM(NSUInteger, WYRadarChartViewAnimation) {
+    WYRadarChartViewAnimationNone,
+    WYRadarChartViewAnimationScale,
+    WYRadarChartViewAnimationScaleSpring,
+    WYRadarChartViewAnimationStrokePath
+};
+
+[self.radarChartView reloadDataWithAnimation:self.animation duration:kAnimationDuration];
+```
+<p align="center"><img width="240" src="IMG/RadarChartAnimation.gif"/></p> 
+<p align="center">
+<b>All Spreading Style</b>
+</p>
+</br>  
+
+**数据点形状**
+
+数据点的形状可通过 `WYRadarChartItem`实例的`junctionShape ` 属性来设置，与 [WYLineChart的数据点样式](#JunctionStyle)一致
+
+```objc
+/*
+ *  default is kWYLineChartJunctionShapeNone
+ */
+@property (nonatomic, assign) WYLineChartJunctionShapeStyle junctionShape;
+```
 
 ##特性
 
