@@ -118,7 +118,7 @@
         NSArray *points = [WYLineChartPoint pointsFromValueArray:@[@(70706.89),@(40446.85),@(50555.67),@(20216.48),@(60664.45),@(80890.34),@(30321.2)]];
         [mutableArray addObject:points];
         points = [WYLineChartPoint pointsFromValueArray:@[@(50503.134)]];
-        [mutableArray addObject:points];
+//        [mutableArray addObject:points];
         return mutableArray;
     };
     

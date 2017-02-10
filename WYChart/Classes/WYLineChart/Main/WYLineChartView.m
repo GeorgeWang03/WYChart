@@ -382,6 +382,7 @@
         _labelsView = [[WYLineChartLabelsView alloc] initWithFrame:CGRectZero];
         _labelsView.parentView = self;
         _labelsView.backgroundColor = [UIColor clearColor];
+        _labelsView.userInteractionEnabled = NO;
         [_pinchView addSubview:_labelsView];
     }
     
