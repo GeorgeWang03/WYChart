@@ -78,6 +78,7 @@ typedef NS_ENUM(NSUInteger, WYPieChartAnimationStyle) {
 
 @property (nonatomic) CGFloat animationDuration;
 @property (nonatomic) WYPieChartAnimationStyle animationStyle;
+@property (nonatomic) CGFloat foregroundAnimationDuration;
 
 @property (nonatomic) WYPieChartStyle style;
 

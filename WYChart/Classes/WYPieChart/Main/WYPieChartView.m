@@ -49,6 +49,7 @@
     _calculator = [[WYPieChartCalculator alloc] init];
     
     _animationDuration = DEFAULT_ANIMATION_DURATION;
+    _foregroundAnimationDuration = 1.0;
     
     _fillByGradient = true;
     _rotatable = true;
@@ -126,7 +127,7 @@
 }
 
 - (void)chartAnimationDidStop {
-    [UIView animateWithDuration:1.0
+    [UIView animateWithDuration:_foregroundAnimationDuration
                      animations:^{
                          _foregroundView.alpha = 1;
                      }];
